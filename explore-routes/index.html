@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>探索线路 - 尊享旅行大巴及精品小团线路</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a0a0f;
+            --bg-surface: #12121a;
+            --bg-card: rgba(255,255,255,0.04);
+            --bg-card-hover: rgba(255,255,255,0.08);
+            --border-subtle: rgba(255,255,255,0.08);
+            --text-primary: #f0f0f5;
+            --text-secondary: rgba(240,240,245,0.6);
+            --accent-green: #00e676;
+            --accent-green-dim: rgba(0,230,118,0.15);
+            --glow-green: 0 0 20px rgba(0,230,118,0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== Header ===== */
+        .header {
+            position: relative;
+            padding: 5rem 2rem 3rem;
+            text-align: center;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 50% at 50% 50%, rgba(0,230,118,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .header h1 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-green), #69f0ae);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .logo-card {
+            display: inline-block;
+            background: white;
+            border-radius: 16px;
+            padding: 1.25rem 3rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        .logo-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,230,118,0.2);
+        }
+        .logo-card img {
+            display: block;
+            height: 110px;
+            width: auto;
+            margin: 0 auto;
+        }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* 咨询按钮 */
+        .consult-btn {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.75rem 2rem;
+            background: var(--accent-green);
+            color: #0a0a0a;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.15rem;
+            font-family: 'STKaiti', 'KaiTi', '楷体', 'Kaiti TC', serif;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,230,118,0.3);
+        }
+        .consult-btn:hover {
+            background: #69f0ae;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,230,118,0.4);
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-green);
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        /* 统计数据卡片样式 */
+        .stat-item {
+            text-align: center;
+            padding: 1.25rem 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            min-width: 160px;
+        }
+        .stat-item:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent-green);
+            box-shadow: var(--glow-green);
+            transform: translateY(-2px);
+        }
+        .stat-number {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-green);
+            line-height: 1;
+            text-shadow: 0 0 20px rgba(0,230,118,0.4);
+        }
+
+        /* 渐变分隔线 */
+        .header-divider {
+            width: 120px;
+            height: 2px;
+            margin: 2.5rem auto 0;
+            background: linear-gradient(90deg, transparent, var(--accent-green), transparent);
+            border-radius: 1px;
+        }
+
+        /* 特色标签 */
+        .header-features {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* ===== Route Grid ===== */
+        .routes-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+            .routes-container {
+                display: block;
+            }
+            .routes-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                gap: 2rem;
+            }
+        .route-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .route-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent-green);
+            box-shadow: var(--glow-green);
+            transform: translateY(-4px);
+        }
+        .route-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            background: var(--bg-surface);
+        }
+        .route-card-content {
+            padding: 1.5rem;
+        }
+        .route-card-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        .route-card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .route-card-count {
+            background: var(--accent-green-dim);
+            color: var(--accent-green);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* ===== Tour Orders Section ===== */
+        .tours-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem 4rem;
+        }
+        .tours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+            gap: 1.5rem;
+            align-items: stretch;
+        }
+        .tour-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.75rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 320px;
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            overflow: hidden;
+        }
+        .tour-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-green), #69f0ae);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tour-card:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(0,230,118,0.4);
+            box-shadow: 0 8px 32px rgba(0,230,118,0.15);
+            transform: translateY(-4px);
+        }
+        .tour-card:hover::before {
+            opacity: 1;
+        }
+        .tour-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+            gap: 0.75rem;
+        }
+        .tour-card-name {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .tour-card-code {
+            background: var(--accent-green-dim);
+            color: var(--accent-green);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .tour-card-route {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            max-height: 2.7em;
+        }
+        .tour-card-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: auto;
+        }
+        .tour-detail-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: rgba(0,230,118,0.06);
+            border: 1px solid rgba(0,230,118,0.15);
+            border-radius: 20px;
+            padding: 0.3rem 0.7rem;
+            font-size: 0.8rem;
+            color: rgba(240,240,245,0.8);
+        }
+        .tour-detail-tag .icon {
+            font-size: 0.95rem;
+        }
+        .tour-highlights {
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border-subtle);
+        }
+        .tour-highlights-title {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.3rem;
+        }
+        .tour-highlights-text {
+            font-size: 0.85rem;
+            color: rgba(240,240,245,0.7);
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .tour-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 0.75rem;
+        }
+        .tour-card-dates {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            flex: 1;
+        }
+        .tour-card-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.5rem 1rem;
+            background: var(--accent-green);
+            border: none;
+            border-radius: 8px;
+            color: #000;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+        .tour-card-download:hover {
+            background: #69f0ae;
+            box-shadow: 0 4px 12px rgba(0,230,118,0.3);
+        }
+            flex-wrap: wrap;
+            gap: 0.5rem 1.5rem;
+        }
+        .tour-highlights {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-subtle);
+        }
+        .tour-highlights-title {
+            font-size: 0.85rem;
+            color: var(--accent-green);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .tour-highlights-text {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        .tour-search-box {
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            position: relative;
+        }
+        .tour-search-input {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            background: rgba(0,230,118,0.05);
+            border: 2px solid rgba(0,230,118,0.3);
+            border-radius: 14px;
+            color: var(--text-primary);
+            font-size: 1.05rem;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0,230,118,0.1);
+        }
+        .tour-search-input::placeholder {
+            color: rgba(0,230,118,0.5);
+        }
+        .tour-search-input:focus {
+            border-color: var(--accent-green);
+            box-shadow: 0 0 30px rgba(0,230,118,0.4), inset 0 0 10px rgba(0,230,118,0.05);
+            background: rgba(0,230,118,0.08);
+        }
+        .tour-search-hint {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* ===== Back Button (Fixed Top-Left) ===== */
+        .back-btn {
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 100;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: rgba(10,10,15,0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .back-btn:hover {
+            background: rgba(0,230,118,0.15);
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        /* ===== Gallery Back Button ===== */
+        .gallery-back-btn {
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 100;
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: rgba(10,10,15,0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .gallery-back-btn:hover {
+            background: rgba(0,230,118,0.15);
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        /* ===== Photo Gallery ===== */
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: none;
+        }
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .gallery-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--accent-green);
+        }
+        .gallery-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .gallery-item {
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--bg-surface);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            background: #000;
+        }
+        .gallery-item-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 2rem 1rem 1rem;
+            font-size: 0.85rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* ===== Lightbox ===== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 56px;
+            height: 56px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .lightbox-nav:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .lightbox-prev { left: 2rem; }
+        .lightbox-next { right: 2rem; }
+        .lightbox-counter {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .footer a {
+            color: var(--accent-green);
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .routes-grid {
+                grid-template-columns: 1fr;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .lightbox-nav {
+                width: 40px;
+                height: 40px;
+            }
+            .lightbox-prev { left: 0.5rem; }
+            .lightbox-next { right: 0.5rem; }
+
+            /* Header 移动端适配 */
+            .header {
+                padding: 3.5rem 1rem 2rem;
+            }
+            .header p {
+                font-size: 0.95rem;
+            }
+            .stat-item {
+                min-width: auto;
+                padding: 1rem 1.25rem;
+            }
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            /* Routes 容器 */
+            .routes-container {
+                padding: 2rem 1rem;
+            }
+
+            /* 团单区域适配 */
+            .tours-section {
+                padding: 2rem 1rem 3rem;
+            }
+            .tours-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .tour-card {
+                height: auto;
+                min-height: 280px;
+                padding: 1.25rem;
+            }
+            .tour-card-name {
+                font-size: 1rem;
+            }
+            .tour-card-route {
+                font-size: 0.8rem;
+                -webkit-line-clamp: 2;
+            }
+
+            /* 搜索框适配 */
+            .tour-search-box {
+                margin: 0 0 1.5rem;
+            }
+            .tour-search-input {
+                padding: 1rem 1.25rem;
+                font-size: 0.95rem;
+            }
+            .tour-search-hint {
+                font-size: 0.8rem;
+                margin-top: 0.75rem;
+            }
+
+            /* 模态框适配 */
+            .modal {
+                margin: 0;
+                border-radius: 0;
+                min-height: 100vh;
+            }
+            .modal-header {
+                padding: 1.25rem 1.5rem;
+            }
+            .modal-header h2 {
+                font-size: 1.15rem;
+                padding-right: 2.5rem;
+            }
+            .modal-body {
+                padding: 1.5rem;
+                max-height: calc(100vh - 6rem);
+            }
+
+            /* Footer 适配 */
+            .footer {
+                padding: 2rem 1rem;
+                font-size: 0.8rem;
+            }
+            .footer p {
+                white-space: normal;
+            }
+        }
+
+        /* 更小屏幕 */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            .stat-number {
+                font-size: 1.75rem;
+            }
+            .stat-label {
+                font-size: 0.75rem;
+            }
+            .tour-card-header {
+                flex-wrap: wrap;
+            }
+            .tour-detail-tag {
+                font-size: 0.75rem;
+                padding: 0.25rem 0.6rem;
+            }
+            .tour-card-download {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* ===== Tour Detail Modal ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.65);
+            backdrop-filter: blur(12px);
+            z-index: 10000;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem 1rem;
+            overflow-y: auto;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal {
+            background: var(--color-bg-white, #fff);
+            border-radius: 16px;
+            max-width: 800px;
+            width: 100%;
+            margin: 2rem auto;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.25), 0 8px 24px rgba(0,0,0,0.15);
+            position: relative;
+            animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .modal-header {
+            background: linear-gradient(135deg, #0a6e3a, #0a8f4a);
+            color: white;
+            padding: 2rem 2.5rem;
+            position: relative;
+        }
+        .modal-header h2 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 0.75rem;
+            padding-right: 3rem;
+        }
+        .modal-header .modal-tour-meta {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .modal-header .modal-tour-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .modal-close {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            line-height: 1;
+        }
+        .modal-close:hover {
+            background: rgba(255,255,255,0.35);
+        }
+        .modal-body {
+            padding: 2rem 2.5rem;
+            max-height: calc(100vh - 8rem);
+            overflow-y: auto;
+            color: #333;
+        }
+        .modal-body::-webkit-scrollbar {
+            width: 6px;
+        }
+        .modal-body::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 3px;
+        }
+        .modal-section {
+            margin-bottom: 1.75rem;
+        }
+        .modal-section:last-child {
+            margin-bottom: 0;
+        }
+        .modal-section h3 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #0a6e3a;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e8f5e9;
+            display: inline-block;
+        }
+        .modal-section p,
+        .modal-section li {
+            font-size: 0.92rem;
+            line-height: 1.8;
+            color: #333;
+        }
+        .modal-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .modal-section ul li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.4rem;
+        }
+        .modal-section ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #0a8f4a;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .modal {
+                margin: 0;
+                border-radius: 0;
+                min-height: 100vh;
+            }
+            .modal-header {
+                padding: 1.25rem 1.5rem;
+            }
+            .modal-header h2 {
+                font-size: 1.15rem;
+                padding-right: 2.5rem;
+            }
+            .modal-body {
+                padding: 1.5rem;
+                max-height: calc(100vh - 6rem);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== Tour Detail Modal ===== -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="modal-title">团单详情</h2>
+                <div class="modal-tour-meta">
+                    <span id="modal-product-code"></span>
+                    <span id="modal-duration"></span>
+                    <span id="modal-departure"></span>
+                </div>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>途径景点</h3>
+                    <p id="modal-route"></p>
+                </div>
+                <div class="modal-section">
+                    <h3>出发班期</h3>
+                    <p id="modal-dates"></p>
+                </div>
+                <div class="modal-section">
+                    <h3>参团信息</h3>
+                    <p id="modal-departure-info">两人成团，保证出发。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Home View -->
+    <div id="home-view">
+        <header class="header">
+            <div class="logo-card">
+                <img src="../assets/logo.png" alt="JJTOUR Logo">
+            </div>
+            <p>尊享旅行大巴及精品小团线路，专业路线规划，即刻出发</p>
+            <a href="../index.html#contact" class="consult-btn">包团定制及行程咨询</a>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="route-count">0</div>
+                    <div class="stat-label">旅游线路</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="spot-count">0</div>
+                    <div class="stat-label">热门景点</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="photo-count">0</div>
+                    <div class="stat-label">旅行照片</div>
+                </div>
+            </div>
+            <div class="header-divider"></div>
+        </header>
+
+        <section class="tours-section">
+            <div class="tour-search-box">
+                <input type="text" id="tour-search-input" class="tour-search-input" placeholder="输入目的地、出发城市等关键字搜索...">
+                <p class="tour-search-hint">搜索关键字寻找团型</p>
+            </div>
+            <div class="tours-grid" id="tours-grid"></div>
+            <div id="no-results" style="grid-column: 1 / -1; text-align: center; color: var(--text-secondary); padding: 3rem; display: none;">
+                <p>未找到匹配的团单，请尝试其他关键字</p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>尊享旅行大巴及精品小团线路 &copy; 2026 | <a href="../index.html">回到首页</a> | <a href="../photo-gallery.html">景点相册</a> | <a href="../index.html#contact" style="color: var(--accent-green); text-decoration: none;">联系我们</a></p>
+        </footer>
+    </div>
+
+    <!-- Gallery View -->
+    <div id="gallery-view" class="gallery-container">
+        <button class="gallery-back-btn" onclick="goHome()">← 返回线路列表</button>
+        <div class="gallery-header">
+            <h2 class="gallery-title" id="gallery-title"></h2>
+            <p class="gallery-subtitle" id="gallery-subtitle"></p>
+        </div>
+        <div class="gallery-grid" id="gallery-grid"></div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+        <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(event, -1)">&#8249;</button>
+        <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(event, 1)">&#8250;</button>
+        <img id="lightbox-img" src="" alt="">
+        <div class="lightbox-counter" id="lightbox-counter"></div>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+
+        // 加载路线数据和统计数据
+        loadSpotStats();
+
+        // 加载景点统计数据
+        function loadSpotStats() {
+            fetch('routes.json')
+                .then(res => res.json())
+                .then(routes => {
+                    const spotCount = Object.keys(routes).length;
+                    let photoCount = 0;
+                    Object.values(routes).forEach(photos => {
+                        photoCount += photos.length;
+                    });
+
+                    const spotCountEl = document.getElementById('spot-count');
+                    if (spotCountEl) spotCountEl.textContent = spotCount;
+
+                    const photoCountEl = document.getElementById('photo-count');
+                    if (photoCountEl) photoCountEl.textContent = photoCount;
+                })
+                .catch(err => {
+                    console.error('Failed to load routes:', err);
+                });
+        }
+
+        // Load and display tour orders
+        loadTourOrders();
+
+        function loadTourOrders() {
+            fetch('tours.json')
+                .then(res => res.json())
+                .then(tours => {
+                    const grid = document.getElementById('tours-grid');
+                    if (!grid || tours.length === 0) return;
+                    
+                    // 清空现有卡片，避免重复加载
+                    grid.innerHTML = '';
+                    
+                    // tours.json 里数据是旧→新，需要反转一下，让新的排在最上面
+                    const reversedTours = tours.slice().reverse();
+                    
+                    // 保存原始索引映射，避免索引错乱
+                    reversedTours.forEach((tour, reverseIndex) => {
+                        const originalIndex = tours.indexOf(tour);
+                        
+                        const wrapper = document.createElement('div');
+                        wrapper.className = 'tour-card-wrapper';
+                        wrapper.dataset.originalIndex = originalIndex;
+                        
+                        const card = document.createElement('div');
+                        card.className = 'tour-card';
+                        card.onclick = () => openTourDoc(originalIndex);
+                        
+                        // 处理路线文本：去除换行，保留空格
+                        const routeText = (tour.route || '').replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
+                        
+                        // 解析出发班期中的关键信息
+                        const datesText = (tour.dates || '').replace(/\n/g, ' ');
+                        
+                        card.innerHTML = `
+                            <div class="tour-card-header">
+                                <div class="tour-card-name">${tour.name}</div>
+                                <span class="tour-card-code">${tour.product_code || tour.tour_code}</span>
+                            </div>
+                            ${routeText ? `<div class="tour-card-route">${routeText}</div>` : ''}
+                            <div class="tour-card-details">
+                                <span class="tour-detail-tag"><span class="icon">🏙️</span> ${tour.departure_city}</span>
+                                <span class="tour-detail-tag"><span class="icon">🏁</span> ${tour.arrival_city || tour.departure_city}</span>
+                                <span class="tour-detail-tag"><span class="icon">📅</span> ${tour.duration}</span>
+                            </div>
+                            <div class="tour-card-footer">
+                                ${tour.dates ? `<div class="tour-card-dates">📆 ${tour.dates.substring(0, 60)}${tour.dates.length > 60 ? '...' : ''}</div>` : ''}
+                                <a class="tour-card-download" href="javascript:void(0);" onclick="event.preventDefault(); downloadTour(${originalIndex})" title="点击下载详细团单">⬇ 下载团单</a>
+                            </div>
+                        `;
+                        
+                        wrapper.appendChild(card);
+                        grid.appendChild(wrapper);
+                    });
+                    
+                    // 更新统计数字
+                    const routeCountEl = document.getElementById('route-count');
+                    if (routeCountEl) routeCountEl.textContent = tours.length;
+
+                    // 同时更新景点和照片统计
+                    loadSpotStats();
+                })
+                .catch(err => {
+                    console.error('Failed to load tours:', err);
+                });
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            const lightbox = document.getElementById('lightbox');
+            if (!lightbox.classList.contains('active')) return;
+
+            if (e.key === 'Escape') {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            } else if (e.key === 'ArrowLeft') {
+                navigateLightbox(e, -1);
+            } else if (e.key === 'ArrowRight') {
+                navigateLightbox(e, 1);
+            }
+        });
+
+        // Current selected tour for modal
+        let currentTour = null;
+
+        // Open tour modal (点击卡片弹出模态框预览)
+        function openTourDoc(index) {
+            fetch('tours.json')
+                .then(res => res.json())
+                .then(tours => {
+                    currentTour = tours[index];
+                    if (!currentTour) return;
+
+                    document.getElementById('modal-title').textContent = currentTour.name;
+                    document.getElementById('modal-product-code').textContent = '产品编号: ' + currentTour.product_code;
+                    document.getElementById('modal-duration').textContent = currentTour.duration;
+                    document.getElementById('modal-departure').textContent = '出发城市: ' + currentTour.departure_city;
+
+                    // 途径景点
+                    document.getElementById('modal-route').textContent = currentTour.route.replace(/\n/g, '、');
+
+                    // 出发班期
+                    document.getElementById('modal-dates').textContent = currentTour.dates || '详情请联系客服';
+
+                    // 参团信息（出发城市 + 到达城市 + 成团说明）
+                    const departureCity = currentTour.departure_city;
+                    const arrivalCity = currentTour.arrival_city || departureCity;
+                    const departureInfo = `出发城市：${departureCity}\n到达城市：${arrivalCity}\n两人成团，保证出发。`;
+                    document.getElementById('modal-departure-info').textContent = departureInfo;
+
+                    // Show modal
+                    const modal = document.getElementById('modal-overlay');
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                })
+                .catch(err => {
+                    console.error('Failed to load tour data:', err);
+                });
+        }
+
+        // Close modal
+        function closeModal() {
+            const modal = document.getElementById('modal-overlay');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            currentTour = null;
+        }
+
+        // Current selected tour for modal
+
+        // Download tour file
+        function downloadTour(index) {
+            fetch('tours.json')
+                .then(res => res.json())
+                .then(tours => {
+                    const tour = tours[index];
+                    if (!tour) return;
+                    
+                    // 本地文件直接下载
+                    const url = tour.pdf_url;
+                    if (!url) {
+                        alert('下载链接不可用');
+                        return;
+                    }
+                    
+                    // 创建临时 <a> 标签触发下载
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = tour.filename || '团单.docx';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                })
+                .catch(err => {
+                    console.error('下载失败:', err);
+                    alert('下载失败');
+                });
+        }
+
+        // Close modal on overlay click
+        document.getElementById('modal-overlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // 首页搜索框
+        function handleSearch() {
+            const keyword = document.getElementById('home-search-input').value.trim();
+            if (!keyword) return;
+            // 跳转到团单搜索区域
+            const toursSection = document.querySelector('.tours-section');
+            if (toursSection) {
+                // 显示隐藏的团单区域
+                toursSection.style.display = '';
+                const searchInput = document.getElementById('tour-search-input');
+                if (searchInput) {
+                    searchInput.value = keyword;
+                    searchInput.dispatchEvent(new Event('input'));
+                    toursSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        }
+        // 首页搜索框回车触发
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && document.activeElement.id === 'home-search-input') {
+                handleSearch();
+            }
+        });
+
+        // Tour search functionality
+        const searchInput = document.getElementById('tour-search-input');
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                const keyword = this.value.toLowerCase().trim();
+                const wrappers = document.querySelectorAll('.tour-card-wrapper');
+                let visibleCount = 0;
+
+                wrappers.forEach(wrapper => {
+                    const card = wrapper.querySelector('.tour-card');
+                    const text = card.textContent.toLowerCase();
+                    
+                    if (!keyword || text.includes(keyword)) {
+                        wrapper.style.display = '';
+                        visibleCount++;
+                    } else {
+                        wrapper.style.display = 'none';
+                    }
+                });
+
+                const noResults = document.getElementById('no-results');
+                noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>

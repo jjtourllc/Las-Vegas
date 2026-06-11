@@ -1,0 +1,3743 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>尊享旅行 - 美西精品旅游线路</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #2D5A3D;
+            --color-primary-dark: #1A3A25;
+            --color-primary-light: #4A8C62;
+            --color-accent: #B8864C;
+            --color-accent-light: #D4A96E;
+            --color-bg-cream: #FAF6F0;
+            --color-bg-white: #FFFFFF;
+            --color-text-dark: #1A1A1A;
+            --color-text-medium: #555555;
+            --color-text-light: #888888;
+            --color-border: #E0D8CC;
+            --shadow-soft: 0 2px 16px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
+            --shadow-medium: 0 8px 30px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+            --shadow-hover: 0 16px 50px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.06);
+            --radius-sm: 10px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--color-bg-cream);
+            color: var(--color-text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ===== Navigation ===== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+        }
+
+        .nav.scrolled {
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 24px rgba(0,0,0,0.06);
+            padding: 0.7rem 2rem;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-logo img {
+            height: 40px;
+            width: auto;
+            transition: opacity 0.3s;
+        }
+
+        .nav.scrolled .nav-logo img {
+            opacity: 0.9;
+        }
+
+        .nav-logo-text {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            transition: color 0.3s;
+        }
+
+        .nav.scrolled .nav-logo-text {
+            color: var(--color-primary-dark);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav.scrolled .nav-links a {
+            color: var(--color-text-medium);
+        }
+
+        .nav-links a:hover {
+            color: var(--color-accent-light);
+        }
+
+        .nav.scrolled .nav-links a:hover {
+            color: var(--color-accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile menu button */
+        .nav-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .nav-menu-btn span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav.scrolled .nav-menu-btn span {
+            background: var(--color-text-dark);
+        }
+
+        /* ===== Hero Section ===== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: 
+                linear-gradient(135deg, rgba(26,58,37,0.7) 0%, rgba(45,90,61,0.5) 50%, rgba(200,149,108,0.4) 100%),
+                url('images/jjtour-banner.jpg') center/cover no-repeat;
+            transform: scale(1.05);
+            animation: heroZoom 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroZoom {
+            from { transform: scale(1.05); }
+            to { transform: scale(1.15); }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.4) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.55rem 1.6rem;
+            background: rgba(255,255,255,0.18);
+            backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 50px;
+            color: white;
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+
+        .hero h1 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 40px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2.8rem;
+            background: var(--color-accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 24px rgba(184,134,76,0.35), inset 0 1px 0 rgba(255,255,255,0.15);
+            letter-spacing: 0.5px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .hero-cta:hover {
+            background: var(--color-accent-light);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 32px rgba(184,134,76,0.45), inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+
+        .gallery-cta:hover {
+            box-shadow: 0 8px 32px rgba(184,134,76,0.45), inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            animation: bounce 2s infinite;
+        }
+
+        .hero-scroll svg {
+            width: 30px;
+            height: 30px;
+            stroke: rgba(255,255,255,0.7);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* ===== Section Common ===== */
+        .section {
+            padding: 6rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-label::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: var(--color-accent);
+            margin: 0.6rem auto 0;
+            opacity: 0.5;
+        }
+
+        .section-header h2 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--color-primary-dark);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--color-text-medium);
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* ===== Tours Grid ===== */
+        .tours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .tour-card {
+            background: var(--color-bg-white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tour-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .tour-card-image {
+            position: relative;
+            height: 260px;
+            overflow: hidden;
+        }
+
+        .tour-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .tour-card:hover .tour-card-image img {
+            transform: scale(1.08);
+        }
+
+        .tour-card-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.45rem 1.1rem;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(12px) saturate(150%);
+            border: 1px solid rgba(255,255,255,0.7);
+            border-radius: 50px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.5);
+        }
+
+        .tour-card-days {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1.3rem;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: white;
+            box-shadow: 0 2px 12px rgba(45,90,61,0.3);
+        }
+
+        .tour-card-body {
+            padding: 1.8rem;
+            flex: 1;
+        }
+
+        .tour-card-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-text-dark);
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .tour-card-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .tour-highlight-tag {
+            padding: 0.3rem 0.8rem;
+            background: var(--color-bg-cream);
+            border-radius: 50px;
+            font-size: 0.78rem;
+            color: var(--color-text-medium);
+            font-weight: 500;
+        }
+
+        .tour-card-departure {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tour-card-departure svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--color-accent);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .tour-card-pricing {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .tour-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .tour-price-label {
+            color: var(--color-text-light);
+            font-weight: 400;
+        }
+
+        .tour-price-value {
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .tour-price-highlight {
+            font-size: 1.1rem;
+            color: var(--color-accent);
+        }
+
+        .tour-card-footer {
+            padding: 1.2rem 1.8rem;
+            background: var(--color-bg-cream);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .tour-card-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.5rem;
+            background: var(--color-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .tour-card-cta:hover {
+            background: var(--color-primary-dark);
+        }
+
+        .tour-card-cta svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            transition: transform 0.3s;
+        }
+
+        .tour-card-cta:hover svg {
+            transform: translateX(3px);
+        }
+
+        .tour-card-detail-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.6rem 1.2rem;
+            background: transparent;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tour-card-detail-btn:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .tour-card-detail-btn svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            transition: transform 0.3s;
+        }
+
+        .tour-card-detail-btn:hover svg {
+            transform: translateX(3px);
+        }
+
+        /* ===== Feature Section ===== */
+        .features {
+            background: var(--color-primary-dark);
+            color: white;
+        }
+
+        .features .section-label {
+            color: var(--color-accent-light);
+        }
+
+        .features .section-header h2 {
+            color: white;
+        }
+
+        .features .section-header p {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem 1.5rem;
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1.5rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--color-accent-light);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .feature-item h3 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-item p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.7);
+            font-weight: 300;
+        }
+
+        /* ===== Fleet Section ===== */
+        .fleet-section {
+            background: linear-gradient(135deg, var(--color-bg-cream) 0%, #F5EDE3 100%);
+        }
+
+        .fleet-display-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .fleet-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+        }
+
+        .fleet-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(45, 90, 61, 0.12);
+        }
+
+        .fleet-card-image {
+            width: 100%;
+            height: auto;
+            min-height: 200px;
+            overflow: hidden;
+            background: var(--color-bg-cream);
+        }
+
+        .fleet-card-image img {
+            width: 100%;
+            display: block;
+        }
+
+        .fleet-card-image svg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .fleet-card-info {
+            padding: 1.5rem 2rem 2rem;
+        }
+
+        .fleet-card-info h3 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-text-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .fleet-card-info p {
+            font-size: 0.95rem;
+            color: var(--color-text-medium);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .fleet-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .fleet-tag {
+            display: inline-block;
+            padding: 0.35rem 0.85rem;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .fleet-highlights {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 900px;
+            margin: 2.5rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .fleet-highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--color-text-medium);
+        }
+
+        .fleet-highlight-item svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--color-primary);
+            flex-shrink: 0;
+        }
+
+        /* ===== Contact Section ===== */
+        .contact {
+            background: linear-gradient(135deg, var(--color-bg-cream) 0%, #F5EDE3 100%);
+        }
+
+        /* ===== Contact + Booking Section ===== */
+        .contact-booking-wrapper {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 3rem !important;
+            max-width: 1500px !important;
+            margin: 0 auto !important;
+            align-items: stretch !important;
+        }
+
+        .contact-grid {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 1.5rem !important;
+            width: 100% !important;
+        }
+
+        .contact-card {
+            background: var(--color-bg-white) !important;
+            border: 2px solid var(--color-border) !important;
+            border-radius: var(--radius-lg) !important;
+            padding: 2rem !important;
+            text-align: center !important;
+            box-shadow: var(--shadow-soft) !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            min-height: 300px !important;
+            box-sizing: border-box !important;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .contact-icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-icon.phone {
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+        }
+
+        .contact-icon.wechat {
+            background: linear-gradient(135deg, #E8F5E9, #A5D6A7);
+        }
+
+        .contact-icon.xiaohongshu {
+            background: linear-gradient(135deg, #FFEBEE, #FFCDD2);
+        }
+
+        .contact-icon.email {
+            background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+        }
+
+        .contact-email-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            width: 120px;
+            max-width: 120px;
+            min-height: 120px;
+            justify-content: flex-start;
+        }
+
+        .contact-email-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, #1976D2, #1E88E5);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            font-family: 'Noto Sans SC', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            width: 100%;
+        }
+
+        .contact-email-btn:hover {
+            background: linear-gradient(135deg, #1565C0, #1976D2);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(25, 118, 210, 0.25);
+        }
+
+        .contact-email-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: white;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* ===== Booking Form ===== */
+        .booking-section {
+            max-width: 750px;
+            margin: 0 auto 0;
+            background: var(--color-bg-white);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow-soft);
+            position: relative;
+        }
+
+        /* 边缘闪光边框 */
+        .booking-section-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                #1A3A25, 
+                #B8864C, 
+                #2D5A3D, 
+                #D4A96E, 
+                #1A3A25);
+            background-size: 400% 400%;
+            border-radius: var(--radius-lg);
+            z-index: -1;
+            animation: bookingGlow 3s ease-in-out infinite;
+            filter: blur(10px);
+            opacity: 0.95;
+        }
+
+        /* 流动色彩线条边框 */
+        .booking-flow-border {
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(90deg,
+                transparent 0%,
+                #00e5ff 20%,
+                #b388ff 50%,
+                #ff4081 80%,
+                transparent 100%);
+            background-size: 200% 100%;
+            animation: borderShimmer 3s linear infinite;
+            z-index: -2;
+            padding: 2px;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+
+        @keyframes borderShimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        @keyframes bookingGlow {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .booking-section h3 {
+            text-align: center;
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .booking-section .booking-subtitle {
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--color-text-light);
+            margin-bottom: 2rem;
+        }
+
+        .booking-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .booking-form .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+
+        .booking-form .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .booking-form .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .booking-form label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-text-medium);
+        }
+
+        .booking-form label .required {
+            color: #E53E3E;
+            margin-left: 2px;
+        }
+
+        .booking-form input,
+        .booking-form select,
+        .booking-form textarea {
+            padding: 0.75rem 1rem;
+            border: 1.5px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+            font-family: 'Noto Sans SC', sans-serif;
+            color: var(--color-text-dark);
+            background: var(--color-bg-cream);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .booking-form input:focus,
+        .booking-form select:focus,
+        .booking-form textarea:focus {
+            border-color: var(--color-primary);
+            background: var(--color-bg-white);
+            box-shadow: 0 0 0 3px rgba(45, 90, 61, 0.1);
+        }
+
+        .booking-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .booking-form .submit-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2rem;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'Noto Sans SC', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+        }
+
+        .booking-form .submit-btn:hover {
+            background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(45, 90, 61, 0.2);
+        }
+
+        .booking-form .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .booking-form .success-message {
+            text-align: center;
+            padding: 1.5rem;
+            background: #E8F5E9;
+            border-radius: var(--radius-sm);
+            color: #2E7D32;
+            font-weight: 500;
+        }
+
+        .booking-form .success-message svg {
+            width: 24px;
+            height: 24px;
+            stroke: #2E7D32;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== Booking Form End ===== */
+
+        .contact-email-copy {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+            padding: 0.65rem 1.5rem;
+            background: linear-gradient(135deg, #4CAF50, #66BB6A);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            font-family: 'Noto Sans SC', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            width: 100%;
+        }
+
+        .contact-email-copy:hover {
+            background: linear-gradient(135deg, #43A047, #4CAF50);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.25);
+        }
+
+        .contact-email-copy svg {
+            width: 16px;
+            height: 16px;
+            stroke: white;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .contact-card h3 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--color-text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card .contact-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .contact-card .contact-note {
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+        }
+
+        .contact-qr-placeholder {
+            flex: none !important;
+            min-height: 120px !important;
+            width: 120px !important;
+            max-width: 120px !important;
+            height: 120px !important;
+            margin: 1.5rem auto 0 !important;
+            border: 2px dashed var(--color-border);
+            border-radius: var(--radius-md);
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-size: 0.8rem;
+            color: var(--color-text-light);
+            background: var(--color-bg-cream);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        }
+
+        .contact-qr-placeholder:hover {
+            border-color: var(--color-accent);
+            background: var(--color-accent-light);
+            transform: scale(1.05);
+        }
+
+        .contact-qr-placeholder img {
+            transition: transform 0.3s ease;
+        }
+
+        .qr-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            z-index: 10001;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .qr-overlay.active {
+            display: flex;
+        }
+
+        .qr-overlay img {
+            max-width: 40vw;
+            max-height: 60vh;
+            width: auto;
+            height: auto;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 24px 80px rgba(0,0,0,0.4);
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .qr-overlay.active img {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .qr-close-hint {
+            position: absolute;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            background: transparent;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            color: var(--color-text-dark);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .footer-logo {
+            margin-bottom: 1rem;
+        }
+
+        .footer p {
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-accent-light);
+        }
+
+        /* ===== More Options Section ===== */
+        .more-options {
+            background: linear-gradient(180deg, var(--color-bg-cream) 0%, #F0E8DC 50%, var(--color-bg-cream) 100%);
+        }
+
+        .rte-new-routes-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(45,90,61,0.75);
+            backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin: 0 auto;
+            box-shadow: 0 4px 20px rgba(45,90,61,0.35), inset 0 1px 0 rgba(255,255,255,0.15);
+            animation: rte-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes rte-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        /* ===== More Options Section - Map ===== */
+        .map-container {
+            max-width: 1200px;
+            margin: 2rem auto 3rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-medium);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .map-container:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .map-zoom-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+            cursor: grab;
+        }
+
+        .map-zoom-wrapper:active {
+            cursor: grabbing;
+        }
+
+        .map-viewport {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .tour-map-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            transform-origin: center center;
+            transition: transform 0.1s ease-out;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        /* 地图控制按钮 */
+        .map-controls {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .map-zoom-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--color-text-dark);
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .map-zoom-btn:hover {
+            background: white;
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .map-zoom-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* 地图提示文字 */
+        .map-hint {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+            margin-top: 0.75rem;
+            font-style: italic;
+        }
+
+        .map-container:hover .tour-map-image {
+            /* 移除 hover 缩放效果，改为交互控制 */
+        }
+
+        .tour-types-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto 3rem;
+        }
+
+        .tour-type-card {
+            background: var(--color-bg-white);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-medium);
+            transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .tour-type-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+            opacity: 0.8;
+        }
+
+        .tour-type-card:nth-child(1)::before {
+            background: linear-gradient(90deg, #2E7D32 0%, #4CAF50 100%);
+        }
+
+        .tour-type-card:nth-child(2)::before {
+            background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+        }
+
+        .tour-type-card:nth-child(3)::before {
+            background: linear-gradient(90deg, #7C6CF0 0%, #9F8FEF 100%);
+        }
+
+        .tour-type-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .tour-type-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #F8F5F0 0%, #F0E8DC 100%);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+
+        .tour-type-icon svg {
+            width: 48px;
+            height: 48px;
+        }
+
+        .tour-type-icon.bus {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+        }
+
+        .tour-type-icon.premium {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+        }
+
+        .tour-type-icon.custom {
+            background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
+        }
+
+        .tour-type-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--color-text-dark);
+        }
+
+        .tour-type-desc {
+            font-size: 0.95rem;
+            color: var(--color-text-medium);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .tour-type-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .tour-type-features li {
+            padding: 0.6rem 0;
+            font-size: 0.9rem;
+            color: var(--color-text-medium);
+            border-bottom: 1px solid var(--color-border);
+            line-height: 1.5;
+        }
+
+        .tour-type-features li:last-child {
+            border-bottom: none;
+        }
+
+        .tour-type-cta {
+            padding-top: 1rem;
+            border-top: 2px solid var(--color-border);
+        }
+
+        .more-options-cta {
+            background: var(--color-bg-white);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow-medium);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1.5rem 3rem;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+            min-width: 200px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.15);
+            letter-spacing: 0.5px;
+        }
+
+        .cta-btn svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .cta-phone {
+            background: linear-gradient(135deg, #2E7D32 0%, #388E3C 100%);
+            color: white;
+        }
+
+        .cta-phone:hover {
+            background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 100%);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(46, 125, 50, 0.45), inset 0 1px 0 rgba(255,255,255,0.15);
+        }
+
+        .cta-phone-number {
+            font-size: 0.9rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .cta-wechat {
+            background: linear-gradient(135deg, #07C160 0%, #06D650 100%);
+            color: white;
+        }
+
+        .cta-wechat:hover {
+            background: linear-gradient(135deg, #05A94E 0%, #07C160 100%);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(7, 193, 96, 0.45), inset 0 1px 0 rgba(255,255,255,0.15);
+        }
+
+        .cta-wechat-id {
+            font-size: 0.85rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .cta-hint {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            margin-top: 0.5rem;
+        }
+
+        /* ===== Footer ===== */
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255,255,255,0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 1.5rem 0;
+                gap: 0;
+                box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                color: var(--color-text-dark);
+                padding: 1rem 2rem;
+                border-bottom: 1px solid var(--color-border);
+            }
+
+            .nav-links a:hover {
+                background: var(--color-bg-cream);
+                color: var(--color-primary);
+            }
+
+            .nav-links a::after {
+                display: none;
+            }
+
+            .nav-menu-btn {
+                display: block;
+            }
+
+            .nav.scrolled .nav-menu-btn span {
+                background: var(--color-primary-dark);
+            }
+
+            .tours-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 4rem 1.5rem;
+            }
+
+            .hero {
+                padding: 8rem 1.5rem 4rem;
+                min-height: 60vh;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-cta {
+                padding: 0.85rem 2rem;
+                font-size: 0.95rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .feature-item {
+                padding: 1.5rem 1rem;
+            }
+
+            .tour-card-header {
+                padding: 1.5rem;
+            }
+
+            .tour-card-body {
+                padding: 1.2rem;
+            }
+
+            .tour-card-footer {
+                padding: 1rem 1.2rem;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .tour-card-top-row {
+                flex-direction: column;
+            }
+
+            .tour-card-cta,
+            .tour-card-download {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-header p {
+                font-size: 1rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .fleet-display-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .fleet-highlights {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .fleet-display-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            .contact-booking-wrapper {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr !important;
+                max-width: 100% !important;
+            }
+
+            .contact-card {
+                max-width: 400px !important;
+                margin: 0 auto !important;
+            }
+
+            .booking-section {
+                max-width: 600px !important;
+                margin: 0 !important;
+                padding: 2rem 1.5rem;
+            }
+
+            .booking-form .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-price-box {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            /* ===== 额外的移动端适配 ===== */
+            .hero {
+                padding: 7rem 1rem 3rem;
+                min-height: 50vh;
+            }
+            
+            .hero h1 {
+                font-size: 1.6rem;
+                line-height: 1.4;
+            }
+            
+            .hero p {
+                font-size: 0.9rem;
+            }
+            
+            .hero-badge {
+                font-size: 0.85rem;
+                padding: 0.5rem 1.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            
+            .hero-cta,
+            .hero-btn-secondary {
+                width: 100%;
+                text-align: center;
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .section {
+                padding: 3rem 1rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .section-header p {
+                font-size: 0.9rem;
+            }
+            
+            .section-label {
+                font-size: 1rem !important;
+            }
+            
+            .features-grid {
+                gap: 1rem;
+            }
+            
+            .feature-item {
+                padding: 1.25rem 0.75rem;
+            }
+            
+            .feature-item h3 {
+                font-size: 1rem;
+            }
+            
+            .feature-item p {
+                font-size: 0.85rem;
+            }
+            
+            .tour-card-header {
+                padding: 1rem;
+            }
+            
+            .tour-card-body {
+                padding: 1rem;
+            }
+            
+            .tour-card-footer {
+                padding: 0.75rem 1rem;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .tour-card-top-row {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .tour-card-cta,
+            .tour-card-detail-btn {
+                width: 100%;
+                padding: 0.6rem 1rem;
+                font-size: 0.85rem;
+            }
+            
+            .tour-card-download {
+                width: 100%;
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+            
+            .fleet-card {
+                min-height: 200px;
+            }
+            
+            .fleet-card-info {
+                padding: 1rem;
+            }
+            
+            .fleet-card-info h3 {
+                font-size: 1rem;
+            }
+            
+            .fleet-card-info p {
+                font-size: 0.85rem;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+            
+            .fleet-tag {
+                font-size: 0.75rem;
+                padding: 0.25rem 0.6rem;
+            }
+            
+            .fleet-highlights {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+            
+            .fleet-highlight-item {
+                font-size: 0.85rem;
+                gap: 0.5rem;
+            }
+            
+            .contact-card {
+                padding: 1.25rem;
+                min-height: auto;
+            }
+            
+            .contact-card h3 {
+                font-size: 1rem;
+            }
+            
+            .contact-card p {
+                font-size: 0.85rem;
+            }
+            
+            .contact-card .qr-trigger {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .contact-card .card-action {
+                font-size: 0.85rem;
+            }
+            
+            .contact-card .card-action a {
+                font-size: 0.85rem;
+                padding: 0.5rem 1rem;
+            }
+            
+            .qr-trigger img {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .contact-grid {
+                gap: 1rem;
+            }
+            
+            .qr-overlay {
+                padding: 1rem;
+            }
+            
+            .qr-overlay img {
+                width: 90% !important;
+                max-width: 350px !important;
+                height: auto !important;
+            }
+            
+            .qr-close-hint {
+                font-size: 0.85rem;
+            }
+            
+            .nav-links {
+                padding: 1rem 0;
+            }
+            
+            .nav-links a {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .nav-logo img {
+                height: 36px;
+            }
+            
+            .nav-logo-text {
+                font-size: 1.2rem;
+            }
+            
+            .tour-type-card {
+                padding: 1.5rem 1rem;
+            }
+            
+            .tour-type-card h3 {
+                font-size: 1.1rem;
+            }
+            
+            .tour-type-card .tour-type-desc {
+                font-size: 0.85rem;
+            }
+            
+            .tour-type-card .tour-type-features {
+                font-size: 0.85rem;
+            }
+            
+            .tour-type-cta span {
+                font-size: 0.8rem;
+            }
+            
+            .contact-booking-wrapper {
+                gap: 1.5rem;
+            }
+            
+            .booking-section {
+                padding: 1.5rem 1rem;
+            }
+            
+            .booking-section h3 {
+                font-size: 1.2rem;
+            }
+            
+            .booking-section .booking-subtitle {
+                font-size: 0.85rem;
+            }
+            
+            .booking-form .form-group label {
+                font-size: 0.85rem;
+            }
+            
+            .booking-form .form-group input,
+            .booking-form .form-group select,
+            .booking-form .form-group textarea {
+                font-size: 0.85rem;
+                padding: 0.65rem;
+            }
+            
+            .submit-btn {
+                padding: 0.85rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .footer-section {
+                padding: 1.5rem 1rem;
+            }
+            
+            .footer-section h3 {
+                font-size: 1.1rem;
+            }
+            
+            .footer-section p,
+            .footer-section li {
+                font-size: 0.85rem;
+            }
+            
+            .footer-section a {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* ===== Animations on Scroll ===== */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== Tour Detail Modal ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.65);
+            backdrop-filter: blur(12px);
+            z-index: 10000;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem 1rem;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--color-bg-white);
+            border-radius: var(--radius-lg);
+            max-width: 800px;
+            width: 100%;
+            margin: 2rem auto;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.25), 0 8px 24px rgba(0,0,0,0.15);
+            position: relative;
+            animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            color: white;
+            padding: 2rem 2.5rem;
+            position: relative;
+        }
+
+        .modal-header h2 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 0.75rem;
+            padding-right: 3rem;
+        }
+
+        .modal-header .modal-tour-meta {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .modal-header .modal-tour-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            background: rgba(255,255,255,0.35);
+        }
+
+        .modal-body {
+            padding: 2rem 2.5rem;
+            max-height: calc(100vh - 8rem);
+            overflow-y: auto;
+        }
+
+        .modal-body::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .modal-body::-webkit-scrollbar-thumb {
+            background: var(--color-border);
+            border-radius: 3px;
+        }
+
+        .modal-section {
+            margin-bottom: 1.75rem;
+        }
+
+        .modal-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .modal-section h3 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--color-accent-light);
+            display: inline-block;
+        }
+
+        .modal-section p,
+        .modal-section li {
+            font-size: 0.92rem;
+            line-height: 1.8;
+            color: var(--color-text-dark);
+        }
+
+        .modal-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .modal-section ul li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .modal-section ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--color-primary-light);
+            font-weight: 700;
+        }
+
+        .modal-day-item {
+            margin-bottom: 1rem;
+            padding: 0.75rem 1rem;
+            background: var(--color-bg-cream);
+            border-radius: var(--radius-sm);
+            border-left: 3px solid var(--color-accent);
+        }
+
+        .modal-day-item .day-title {
+            font-weight: 600;
+            color: var(--color-primary-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .modal-day-item .day-content {
+            font-size: 0.88rem;
+            color: var(--color-text-medium);
+            line-height: 1.7;
+        }
+
+        .modal-price-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .modal-price-item {
+            background: var(--color-bg-cream);
+            border-radius: var(--radius-sm);
+            padding: 0.75rem 1rem;
+            text-align: center;
+        }
+
+        .modal-price-item .price-label {
+            font-size: 0.8rem;
+            color: var(--color-text-light);
+            margin-bottom: 0.25rem;
+        }
+
+        .modal-price-item .price-value {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--color-accent);
+        }
+
+        /* Tour download button styles */
+        .tour-card-footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .tour-card-top-row {
+            display: flex;
+            flex-direction: row;
+            gap: 0.75rem;
+            width: 100%;
+        }
+
+        .tour-card-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.7rem 2rem;
+            background: linear-gradient(135deg, #1976D2, #1E88E5);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            font-family: 'Noto Sans SC', sans-serif;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(25, 118, 210, 0.3);
+            flex: 1;
+        }
+
+        .tour-card-cta:hover {
+            background: linear-gradient(135deg, #1565C0, #1976D2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(25, 118, 210, 0.4);
+        }
+
+        .tour-card-cta svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .tour-card-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.6rem 1.8rem;
+            background: linear-gradient(135deg, #FF9800, #FFB74D);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            font-family: 'Noto Sans SC', sans-serif;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3);
+        }
+
+        .tour-card-download:hover {
+            background: linear-gradient(135deg, #F57C00, #FF9800);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
+        }
+
+        .tour-card-download svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .tour-card-detail-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.7rem 2rem;
+            background: transparent;
+            color: var(--color-accent);
+            border: 2px solid var(--color-accent);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            font-family: 'Noto Sans SC', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tour-card-detail-btn:hover {
+            background: var(--color-accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .tour-card-detail-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .tour-card-footer {
+                gap: 0.4rem;
+            }
+            .tour-card-cta, .tour-card-detail-btn {
+                width: 100%;
+                padding: 0.65rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            .tour-card-download {
+                width: 100%;
+                padding: 0.55rem 1.5rem;
+                font-size: 0.82rem;
+            }
+        }
+
+        .modal-cta {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            color: white;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            margin-top: 1.5rem;
+        }
+
+        .modal-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(45,90,61,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .modal-header {
+                padding: 1.5rem;
+            }
+            .modal-header h2 {
+                font-size: 1.2rem;
+                padding-right: 2.5rem;
+            }
+            .modal-body {
+                padding: 1.5rem;
+            }
+            .modal-price-box {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <a href="#" class="nav-logo">
+            <img src="assets/logo.png" alt="JJTOUR Logo" style="height:56px;">
+        </a>
+        <button class="nav-menu-btn" id="nav-menu-btn" onclick="toggleNav()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#tours" onclick="closeNav()">旅行线路</a></li>
+            <li><a href="#features" onclick="closeNav()">服务优势</a></li>
+            <li><a href="#fleet" onclick="closeNav()">关于我们车队</a></li>
+            <li><a href="#contact" onclick="closeNav()">联系我们</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-badge">美西精品旅游</div>
+            <h1>探索美西壮美自然风光</h1>
+            <p>黄石公园、羚羊彩穴、大峡谷……六大精品线路，带你深入美西最震撼的自然景观</p>
+            <div class="hero-buttons">
+                <a href="explore-routes/index.html" class="hero-cta">
+                    探索线路
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                </a>
+                <a href="photo-gallery.html" class="hero-cta gallery-cta">
+                    真实相册
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                </a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </div>
+    </section>
+
+    <!-- Tours Section -->
+    <section class="section" id="tours">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">精选线路</span>
+                <h2>六大精选旅行线路</h2>
+                <p>从黄石公园到羚羊彩穴，从大峡谷到优胜美地，每一条线路都是精心设计的深度体验之旅</p>
+                <div class="rte-new-routes-badge" style="margin-top: 1rem;">
+                    <span class="rte-new-icon">🔄</span>
+                    <span>不定期更新精选路线 · 每天发掘好团行程</span>
+                </div>
+            </div>
+
+            <div class="tours-grid">
+
+                <!-- Tour 1: 西南巨环 10日游 -->
+                <div class="tour-card animate-on-scroll">
+                    <div class="tour-card-image">
+                        <img src="images/tour1-arch.jpg" alt="西南巨环" loading="lazy">
+                        <span class="tour-card-badge">推荐</span>
+                        <span class="tour-card-days">10天9晚</span>
+                    </div>
+                    <div class="tour-card-body">
+                        <h3 class="tour-card-title">西南巨环丨拉斯维加斯+锡安+布莱斯峡谷+羚羊彩穴+大峡谷+优胜美地+洛杉矶</h3>
+                        <div class="tour-card-highlights">
+                            <span class="tour-highlight-tag">五大国家公园</span>
+                            <span class="tour-highlight-tag">羚羊彩穴</span>
+                            <span class="tour-highlight-tag">大峡谷</span>
+                            <span class="tour-highlight-tag">优胜美地</span>
+                            <span class="tour-highlight-tag">洛杉矶自由行</span>
+                        </div>
+                        <div class="tour-card-departure">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            周日出发 · 01/22-12/24
+                        </div>
+                        <div class="tour-card-pricing">
+                            <div class="tour-price-row">
+                                <span class="tour-price-label">单人入住</span>
+                                <span class="tour-price-value tour-price-highlight">$1,908 /人</span>
+                            </div>
+                            <div class="tour-price-row">
+                                <span class="tour-price-label">两人入住</span>
+                                <span class="tour-price-value">$1,438 /人</span>
+                            </div>
+                            <div class="tour-price-row">
+                                <span class="tour-price-label">三人入住</span>
+                                <span class="tour-price-value">$1,248 /人</span>
+                            </div>
+                            <div class="tour-price-row">
+                                <span class="tour-price-label">四人入住</span>
+                                <span class="tour-price-value">$1,158 /人</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tour-card-footer">
+                        <div class="tour-card-top-row">
+                            <a href="#contact" class="tour-card-cta">
+                                立即咨询
+                                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </a>
+                            <button class="tour-card-detail-btn" onclick="openModal('tour1')">
+                                查看详情
+                                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </button>
+                        </div>
+                        <a href="tour-docs/西南巨环丨拉斯维加斯+锡安国家公园+布莱斯峡谷国家公园+羚羊彩穴+大峡谷国家公园+优胜美地国家公园+洛杉矶自由行 10日游（套餐） .docx" class="tour-card-download" download>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            下载详细路线
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tour 2: 精品8日游 -->
+                <div class="tour-card animate-on-scroll">
+                    <div class="tour-card-image">
+                        <img src="images/tour2-premium.jpg" alt="精品8日" loading="lazy">
+                        <span class="tour-card-badge">精品小团</span>
+                        <span class="tour-card-days">8天7晚</span>
+                    </div>
+                    <div class="tour-card-body">
+                        <h3 class="tour-card-title">精品小团丨拉斯维加斯接机+羚羊彩穴+马蹄湾+布莱斯峡谷+黄石+大提顿+盐湖城+锡安</h3>
+                        <div class="tour-card-highlights">
+                            <span class="tour-highlight-tag">6-12人</span>
+                            <span class="tour-highlight-tag">全新高顶车</span>
+                            <span class="tour-highlight-tag">3天2晚黄石</span>
+                            <span class="tour-highlight-tag">15大景点</span>
+                            <span class="tour-highlight-tag">锡安国家公园</span>
+                        </div>
+                        <div class="tour-card-departure">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            周二出发 · 05/13-10/07
+                        </div>
+                        <div class="tour-card-pricing">
+                            <div class="tour-price-row">
+                                <span class="tour-price-label">单人入住</span>
+                                <span class="tour-price-value tour-price-highlight">$2,378 /人</span>
+                            </div>
+                            <div class="tour-price-row">
+                                <span class="tour-price-label">两人入住</span>
+                                <span class="tour-price-value">$1,658 /人</span>
+                            </div>
+                            <div class="tour-price-row">
+                                <span class="tour-price-label">三人入住</span>
+                                <span class="tour-price-value">$1,428 /人</span>
+                            </div>
+                            <div class="tour-price-row">
+                                <span class="tour-price-label">四人入住</span>
+                                <span class="tour-price-value">$1,108 /人</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tour-card-footer">
+                        <div class="tour-card-top-row">
+                            <a href="#contact" class="tour-card-cta">
+                                立即咨询
+                                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </a>
+                            <button class="tour-card-detail-btn" onclick="openModal('tour2')">
+                                查看详情
+                                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </button>
+                        </div>
+                        <a href="tour-docs/精品  6-12人的精品小团  全新高顶  拉斯维加斯接机+下羚羊彩穴+马蹄湾+布莱斯峡谷国家公园+黄石国家公园+大提顿国家公园+盐湖城+锡安国家公园 8日游（套餐） .docx" class="tour-card-download" download>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            下载详细路线
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tour 3: 洛杉矶9日游 -->
+                <div class="tour-card animate-on-scroll">
+                    <div class="tour-card-image">
+                        <img src="images/tour3-la9day.jpg" alt="洛杉矶9日" loading="lazy">
+                        <span class="tour-card-badge">热卖</span>
+                        <span class="tour-card-days">9天8晚</span>
+                    </div>
+                    <div class="tour-card-body">
+                        <h3 class="tour-card-title">洛杉矶接机+拉斯维加斯+羚羊彩穴+大提顿+黄石+总统山+疯马巨石+盐湖城</h3>
+                        <div class="tour-card-highlights">
+                            <span class="tour-highlight-tag">15年热卖经典</span>
+                            <span class="tour-highlight-tag">黄石10大景点</span>
+                            <span class="tour-highlight-tag">美西7大州</span>
+                            <span class="tour-highlight-tag">总统巨石</span>
+                            <span class="tour-highlight-tag">免费接机</span>
+                        </div>
+                        <div class="tour-card-departure">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            周二出发 · 05/12-09/29
+                        </div>
+                        <div class="tour-card-pricing">
+                            <div class="tour-price-row">
+                                <span class="tour-price-label">单人入住</span>
+                                <span class="tour-price-value tour-price-highlight">$1,648 /人</span>
+                            </div>
+                            <div class="tour-price-row">
+                                <span class="tour-price-label">两人入住</span>
+                                <span class="tour-price-value">$1,218 /人</span>
+                            </div>
+                            <div class="tour-price-row">
+                                <span class="tour-price-label">三人入住</span>
+                                <span class="tour-price-value">$1,118 /人</span>
+                            </div>
+                            <div class="tour-price-row">
+                                <span class="tour-price-label">四人入住</span>
+                                <span class="tour-price-value">$1,028 /人</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tour-card-footer">
+                        <div class="tour-card-top-row">
+                            <a href="#contact" class="tour-card-cta">
+                                立即咨询
+                                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </a>
+                            <button class="tour-card-detail-btn" onclick="openModal('tour3')">
+                                查看详情
+                                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </button>
+                        </div>
+                        <a href="tour-docs/洛杉矶接机+拉斯维加斯+下羚羊彩穴+大提顿国家公园+黄石国家公园+总统山+疯马巨石+盐湖城 9日游（套餐）.docx" class="tour-card-download" download>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            下载详细路线
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tour 4: 精品小团黄石4日 -->
+                <div class="tour-card animate-on-scroll">
+                    <div class="tour-card-image">
+                        <img src="images/tour4-jp4day.jpg" alt="精品4日" loading="lazy">
+                        <span class="tour-card-badge">精品小团</span>
+                        <span class="tour-card-days">4天3晚</span>
+                    </div>
+                    <div class="tour-card-body">
+                        <h3 class="tour-card-title">精品小团丨盐湖城进出+大提顿国家公园+黄石国家公园</h3>
+                        <div class="tour-card-highlights">
+                            <span class="tour-highlight-tag">6-12人</span>
+                            <span class="tour-highlight-tag">深度体验</span>
+                            <span class="tour-highlight-tag">VIP级别</span>
+                            <span class="tour-highlight-tag">大提顿</span>
+                            <span class="tour-highlight-tag">地球之眼</span>
+                        </div>
+                        <div class="tour-card-departure">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            一/三/五/六出发 · 05/16-09/26
+                        </div>
+                        <div class="tour-card-pricing">
+                            <div class="tour-price-row">
+                                <span class="tour-price-label">单人入住</span>
+                                <span class="tour-price-value tour-price-highlight">$1,248 /人</span>
+                            </div>
+                            <div class="tour-price-row">
+                                <span class="tour-price-label">两人入住</span>
+                                <span class="tour-price-value">$898 /人</span>
+                            </div>
+                            <div class="tour-price-row">
+                                <span class="tour-price-label">三人入住</span>
+                                <span class="tour-price-value">$798 /人</span>
+                            </div>
+                            <div class="tour-price-row">
+                                <span class="tour-price-label">四人入住</span>
+                                <span class="tour-price-value">$758 /人</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tour-card-footer">
+                        <div class="tour-card-top-row">
+                            <a href="#contact" class="tour-card-cta">
+                                立即咨询
+                                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </a>
+                            <button class="tour-card-detail-btn" onclick="openModal('tour4')">
+                                查看详情
+                                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </button>
+                        </div>
+                        <a href="tour-docs/精品小团 盐湖城进出+大提顿国家公园+黄石国家公园 4日游.docx" class="tour-card-download" download>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            下载详细路线
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tour 5: 黄石大提顿4日 -->
+                <div class="tour-card animate-on-scroll">
+                    <div class="tour-card-image">
+                        <img src="images/tour5-y4.jpg" alt="黄石4日" loading="lazy">
+                        <span class="tour-card-badge">经典线路</span>
+                        <span class="tour-card-days">4天3晚</span>
+                    </div>
+                    <div class="tour-card-body">
+                        <h3 class="tour-card-title">盐湖城进出+大提顿国家公园+黄石国家公园</h3>
+                        <div class="tour-card-highlights">
+                            <span class="tour-highlight-tag">大提顿国家公园</span>
+                            <span class="tour-highlight-tag">黄石国家公园</span>
+                            <span class="tour-highlight-tag">自然奇观</span>
+                            <span class="tour-highlight-tag">野生动物</span>
+                        </div>
+                        <div class="tour-card-departure">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            多日出发 · 05/14-10/10
+                        </div>
+                        <div class="tour-card-pricing">
+                            <div class="tour-price-row">
+                                <span class="tour-price-label">单人入住</span>
+                                <span class="tour-price-value tour-price-highlight">$778 /人</span>
+                            </div>
+                            <div class="tour-price-row">
+                                <span class="tour-price-label">两人入住</span>
+                                <span class="tour-price-value">$528 /人</span>
+                            </div>
+                            <div class="tour-price-row">
+                                <span class="tour-price-label">三人入住</span>
+                                <span class="tour-price-value">$488 /人</span>
+                            </div>
+                            <div class="tour-price-row">
+                                <span class="tour-price-label">四人入住</span>
+                                <span class="tour-price-value">$428 /人</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tour-card-footer">
+                        <div class="tour-card-top-row">
+                            <a href="#contact" class="tour-card-cta">
+                                立即咨询
+                                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </a>
+                            <button class="tour-card-detail-btn" onclick="openModal('tour5')">
+                                查看详情
+                                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </button>
+                        </div>
+                        <a href="tour-docs/盐湖城进出+大提顿国家公园+黄石国家公园 4日游.docx" class="tour-card-download" download>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            下载详细路线
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tour 6: 羚羊谷一日游 -->
+                <div class="tour-card animate-on-scroll">
+                    <div class="tour-card-image">
+                        <img src="images/tour6-ac1.jpg" alt="羚羊谷" loading="lazy">
+                        <span class="tour-card-badge">摄影奇观</span>
+                        <span class="tour-card-days">1天</span>
+                    </div>
+                    <div class="tour-card-body">
+                        <h3 class="tour-card-title">羚羊彩穴+马蹄湾 1日游</h3>
+                        <div class="tour-card-highlights">
+                            <span class="tour-highlight-tag">下羚羊彩穴</span>
+                            <span class="tour-highlight-tag">马蹄湾</span>
+                            <span class="tour-highlight-tag">摄影圣地</span>
+                            <span class="tour-highlight-tag">梦幻色彩</span>
+                        </div>
+                        <div class="tour-card-departure">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            天天出发 · 两人成团
+                        </div>
+                        <div class="tour-card-pricing">
+                            <div class="tour-price-row">
+                                <span class="tour-price-label">成人</span>
+                                <span class="tour-price-value tour-price-highlight">$258 /人</span>
+                            </div>
+                            <div class="tour-price-row">
+                                <span class="tour-price-label">儿童</span>
+                                <span class="tour-price-value">$258 /人</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tour-card-footer">
+                        <div class="tour-card-top-row">
+                            <a href="#contact" class="tour-card-cta">
+                                立即咨询
+                                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </a>
+                            <button class="tour-card-detail-btn" onclick="openModal('tour6')">
+                                查看详情
+                                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </button>
+                        </div>
+                        <a href="tour-docs/羚羊谷一日游.docx" class="tour-card-download" download>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            下载详细路线
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- More Options Section -->
+    <section class="section more-options" id="more-options">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">更多选择</span>
+                <h2>更多团型 · 全球线路</h2>
+                <p>除了以上6条标准行程，我们还有更多选择适合您的需求，欢迎通过地图查阅然后咨询</p>
+            </div>
+
+            <!-- 世界地图 -->
+            <div class="map-container animate-on-scroll" id="map-container">
+                <div class="map-zoom-wrapper">
+                    <div class="map-viewport">
+                        <img src="images/tour-map.png" alt="环球旅行线路图" class="tour-map-image" id="tour-map">
+                    </div>
+                </div>
+                <div class="map-controls">
+                    <button class="map-zoom-btn" id="zoom-in" title="放大">+</button>
+                    <button class="map-zoom-btn" id="zoom-out" title="缩小">−</button>
+                    <button class="map-zoom-btn" id="map-reset" title="重置">↺</button>
+                </div>
+                <p class="map-hint">💡 鼠标滚轮缩放 · 拖拽查看</p>
+            </div>
+
+            <!-- 三种团型分类 -->
+            <div class="tour-types-grid">
+                <div class="tour-type-card animate-on-scroll">
+                    <div class="tour-type-icon bus">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="#2D5A3D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <!-- 大巴车头正面 -->
+                            <rect x="8" y="10" width="48" height="38" rx="6" fill="#E8F5E9" stroke="#2D5A3D"/>
+                            <!-- 前挡风玻璃 -->
+                            <rect x="12" y="14" width="40" height="14" rx="3" fill="#B2DFDB" stroke="#2D5A3D"/>
+                            <!-- 车窗分割线 -->
+                            <line x1="24" y1="14" x2="24" y2="28"/>
+                            <line x1="40" y1="14" x2="40" y2="28"/>
+                            <!-- 前保险杠 -->
+                            <rect x="10" y="48" width="44" height="6" rx="2" fill="#2D5A3D"/>
+                            <!-- 前大灯 -->
+                            <rect x="12" y="49" width="6" height="4" rx="1" fill="#FFD54F"/>
+                            <rect x="46" y="49" width="6" height="4" rx="1" fill="#FFD54F"/>
+                            <!-- 前轮 -->
+                            <circle cx="18" cy="54" r="4" fill="#424242"/>
+                            <circle cx="18" cy="54" r="2" fill="#9E9E9E"/>
+                            <circle cx="46" cy="54" r="4" fill="#424242"/>
+                            <circle cx="46" cy="54" r="2" fill="#9E9E9E"/>
+                            <!-- 车牌 -->
+                            <rect x="26" y="50" width="12" height="4" rx="1" fill="white"/>
+                        </svg>
+                    </div>
+                    <h3>大巴团</h3>
+                    <p class="tour-type-desc">经济实惠、结伴出行、标准行程</p>
+                    <ul class="tour-type-features">
+                        <li>✓ 价格优惠，适合个人、情侣</li>
+                        <li>✓ 标准行程，固定出发日期</li>
+                        <li>✓ 结识旅伴，欢乐同行</li>
+                    </ul>
+                    <div class="tour-type-cta">
+                        <span style="color: var(--color-text-light); font-size: 0.85rem;">欢迎电话/微信咨询</span>
+                    </div>
+                </div>
+
+                <div class="tour-type-card animate-on-scroll">
+                    <div class="tour-type-icon premium">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="#8B6914" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <!-- 奔驰高顶商务侧面 -->
+                            <!-- 车身 -->
+                            <path d="M8 38 L8 48 L56 48 L56 34 L48 24 L16 24 Z" fill="#FFF8E1" stroke="#8B6914" stroke-width="2.5"/>
+                            <!-- 高顶部分 -->
+                            <path d="M16 24 L16 18 C16 16 18 14 20 14 L38 14 C40 14 42 16 42 18 L48 24" fill="#FFF8E1" stroke="#8B6914" stroke-width="2.5"/>
+                            <!-- 车窗 -->
+                            <rect x="18" y="26" width="12" height="10" rx="2" fill="#E0F2F1" stroke="#8B6914"/>
+                            <rect x="32" y="26" width="12" height="10" rx="2" fill="#E0F2F1" stroke="#8B6914"/>
+                            <!-- 车门线 -->
+                            <line x1="28" y1="26" x2="28" y2="36" stroke="#8B6914" stroke-width="1.5"/>
+                            <!-- 前灯 -->
+                            <circle cx="52" cy="36" r="3" fill="#FFD54F" stroke="#FF8F00"/>
+                            <!-- 尾灯 -->
+                            <rect x="8" y="34" width="4" height="8" rx="1" fill="#EF5350" stroke="#C62828"/>
+                            <!-- 前轮 -->
+                            <circle cx="18" cy="48" r="5" fill="#424242"/>
+                            <circle cx="18" cy="48" r="2.5" fill="#9E9E9E"/>
+                            <!-- 后轮 -->
+                            <circle cx="44" cy="48" r="5" fill="#424242"/>
+                            <circle cx="44" cy="48" r="2.5" fill="#9E9E9E"/>
+                            <!-- 奔驰三叉星标志 -->
+                            <circle cx="40" cy="41" r="3" fill="none" stroke="#8B6914" stroke-width="1"/>
+                            <line x1="40" y1="38.5" x2="40" y2="43.5" stroke="#8B6914" stroke-width="1"/>
+                            <line x1="37.5" y1="41" x2="42.5" y2="41" stroke="#8B6914" stroke-width="1"/>
+                        </svg>
+                    </div>
+                    <h3>精品小团</h3>
+                    <p class="tour-type-desc">6-12人、高顶商务、灵活舒适</p>
+                    <ul class="tour-type-features">
+                        <li>✓ 精品小团，体验更私密</li>
+                        <li>✓ 高顶商务，空间宽敞</li>
+                        <li>✓ 两人即可成团，灵活出发</li>
+                    </ul>
+                    <div class="tour-type-cta">
+                        <span style="color: var(--color-text-light); font-size: 0.85rem;">欢迎电话/微信咨询</span>
+                    </div>
+                </div>
+
+                <div class="tour-type-card animate-on-scroll">
+                    <div class="tour-type-icon custom">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="#6C5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <!-- VIP 卡图标 -->
+                            <!-- 卡片背景 -->
+                            <rect x="4" y="12" width="56" height="40" rx="6" fill="#F3E5F5" stroke="#6C5CE7"/>
+                            <!-- VIP 文字 -->
+                            <text x="32" y="34" text-anchor="middle" font-size="20" font-weight="bold" fill="#6C5CE7" stroke="none" font-family="'Arial Black', 'Arial Bold', sans-serif">VIP</text>
+                            <!-- 星星装饰 -->
+                            <path d="M50 18 L52 22 L56 22 L53 25 L54 29 L50 27 L46 29 L47 25 L44 22 L48 22 Z" fill="#FFD54F" stroke="#F9A825"/>
+                            <!-- 底部装饰线 -->
+                            <rect x="10" y="40" width="20" height="2" rx="1" fill="#CE93D8" opacity="0.6"/>
+                            <!-- 钻石装饰 -->
+                            <path d="M14 24 L18 22 L22 24 L18 26 Z" fill="#AB47BC" stroke="#7B1FA2"/>
+                        </svg>
+                    </div>
+                    <h3>定制包团</h3>
+                    <p class="tour-type-desc">私人专属、自由搭配、专属导游</p>
+                    <ul class="tour-type-features">
+                        <li>✓ 专属行程，自由组合景点</li>
+                        <li>✓ 专属导游，全程贴心服务</li>
+                        <li>✓ 企业团队、家庭包团首选</li>
+                    </ul>
+                    <div class="tour-type-cta">
+                        <span style="color: var(--color-text-light); font-size: 0.85rem;">欢迎电话/微信咨询</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section features" id="features">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">服务优势</span>
+                <h2>为什么选择我们</h2>
+                <p>多年深耕美国旅游线路，为您打造无忧的深度旅行体验</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/></svg>
+                    </div>
+                    <h3>尊享体验</h3>
+                    <p>大巴，精品小团，订制包团，VIP级别旅行体验，拒绝走马观花</p>
+                </div>
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    </div>
+                    <h3>多年经验</h3>
+                    <p>连续超过15年热卖经典线路，经验丰富，服务可靠</p>
+                </div>
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg>
+                    </div>
+                    <h3>诚信为本</h3>
+                    <p>我们始终秉持诚实与透明的原则，坚守行业底线与品牌信誉。</p>
+                </div>
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    </div>
+                    <h3>贴心服务</h3>
+                    <p>我们懂两种语言，更懂您一份安心。全程照顾，尊享出行</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fleet Section -->
+    <section class="section fleet-section" id="fleet">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">我们的车队</span>
+                <h2>关于我们车队</h2>
+                <p>从高端商务用车到大型豪华巴士，一站式满足不同出行需求</p>
+            </div>
+            <div class="fleet-display-grid">
+                <div class="fleet-card animate-on-scroll">
+                    <div class="fleet-card-image">
+                        <img src="assets/fleet-highroof.png" alt="14-15座高顶商务车" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
+                    <div class="fleet-card-info">
+                        <h3>14-15座高顶商务车</h3>
+                        <p>高顶设计,轻松进出。商务级内饰,舒适私密。小型包团与家庭出游首选。</p>
+                        <div class="fleet-tags">
+                            <span class="fleet-tag">高顶设计</span>
+                            <span class="fleet-tag">商务内饰</span>
+                            <span class="fleet-tag">舒适私密</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="fleet-card animate-on-scroll">
+                    <div class="fleet-card-image">
+                        <img src="assets/fleet-midbus.png" alt="38-40座中型巴士" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
+                    <div class="fleet-card-info">
+                        <h3>38-40座中型巴士</h3>
+                        <p>高顶设计,轻松进出。商务级内饰,舒适私密。中小型团队出游首选。</p>
+                        <div class="fleet-tags">
+                            <span class="fleet-tag">高顶设计</span>
+                            <span class="fleet-tag">商务内饰</span>
+                            <span class="fleet-tag">轻松进出</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="fleet-card animate-on-scroll">
+                    <div class="fleet-card-image">
+                        <img src="assets/fleet-7seat.jpg" alt="7座高端商务车" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
+                    <div class="fleet-card-info">
+                        <h3>7座高端商务车</h3>
+                        <p>空间宽绰,上下自如。豪华内饰,私享舒适。精品小团与家庭出游首选。</p>
+                        <div class="fleet-tags">
+                            <span class="fleet-tag">空间宽绰</span>
+                            <span class="fleet-tag">豪华内饰</span>
+                            <span class="fleet-tag">私享舒适</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="fleet-card animate-on-scroll">
+                    <div class="fleet-card-image">
+                        <img src="assets/fleet-bus.png" alt="56座豪华大巴" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
+                    <div class="fleet-card-info">
+                        <h3>56座豪华大巴</h3>
+                        <p>最多可乘坐56位乘客,超大行李储存空间,车载洗手间。非常适合长途出行及大型团队。</p>
+                        <div class="fleet-tags">
+                            <span class="fleet-tag">56座超大</span>
+                            <span class="fleet-tag">超大行李舱</span>
+                            <span class="fleet-tag">车载洗手间</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fleet-highlights animate-on-scroll">
+                <div class="fleet-highlight-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+                    <span>车辆定期保养检修</span>
+                </div>
+                <div class="fleet-highlight-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <span>持证专业司机</span>
+                </div>
+                <div class="fleet-highlight-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <span>全程保险保障</span>
+                </div>
+                <div class="fleet-highlight-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    <span>干净舒适环境</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label" style="font-size: 1.5rem;">联系方式</span>
+                <p style="font-size: 1.1rem; color: var(--color-text-medium); margin-top: 0.5rem;">选择您方便的方式，我们随时为您解答</p>
+            </div>
+            <div class="contact-booking-wrapper">
+                <div class="contact-grid">
+                    <!-- Phone -->
+                    <div class="contact-card animate-on-scroll">
+                        <div class="contact-qr-placeholder" onclick="openQrOverlay(this)" style="margin-top:0 !important;">
+                            <img src="assets/whatsapp-qr.png" alt="电话二维码" style="width:100%;height:100%;object-fit:contain;border-radius:8px;">
+                        </div>
+                        <h3>电话咨询</h3>
+                        <div class="contact-value">702-430-0402</div>
+                        <div class="contact-note">扫码添加WhatsApp</div>
+                    </div>
+
+                    <!-- WeChat -->
+                    <div class="contact-card animate-on-scroll">
+                        <div class="contact-qr-placeholder" onclick="openQrOverlay(this)" style="margin-top:0 !important;">
+                            <img src="assets/wechat-qr.png" alt="微信二维码" style="width:100%;height:100%;object-fit:contain;border-radius:8px;">
+                        </div>
+                        <h3>微信咨询</h3>
+                        <div class="contact-value">Johnny87110</div>
+                        <div class="contact-note">扫码添加微信好友</div>
+                    </div>
+
+                    <!-- Xiaohongshu -->
+                    <div class="contact-card animate-on-scroll">
+                        <div class="contact-qr-placeholder" onclick="openQrOverlay(this)" style="margin-top:0 !important;">
+                            <img src="assets/xhs-qr.jpg" alt="小红书二维码" style="width:100%;height:100%;object-fit:contain;border-radius:8px;">
+                        </div>
+                        <h3>小红书</h3>
+                        <div class="contact-value">2582970085</div>
+                        <div class="contact-note">扫码添加小红书好友</div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="contact-card animate-on-scroll">
+                        <h3>邮件咨询</h3>
+                        <div class="contact-value">jjtourllc@gmail.com</div>
+                        <div class="contact-note">点击下方按钮直接发送邮件</div>
+                        <div class="contact-email-actions">
+                            <a href="mailto:jjtourllc@gmail.com" class="contact-email-btn">
+                                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                发送邮件
+                            </a>
+                            <button class="contact-email-copy" onclick="copyEmail()" title="点击复制邮箱地址">
+                                <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                <span id="copy-text">复制邮箱地址</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Booking Form -->
+                <div style="position: relative; max-width: 750px; margin: 0; border-radius: var(--radius-lg); display: flex; min-height: 100%;">
+                    <div class="booking-flow-border"></div>
+                    <div class="booking-section-glow"></div>
+                    <div class="booking-section animate-on-scroll" style="position: relative; background: white; border-radius: var(--radius-lg); display: flex; flex-direction: column; height: 100%;">
+                    <h3>留言预订/咨询</h3>
+                <p class="booking-subtitle">填写以下信息，我们会尽快与您联系</p>
+                <form class="booking-form" action="https://formspree.io/f/xbdeobae" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="booking-name">姓名 <span class="required">*</span></label>
+                            <input type="text" id="booking-name" name="name" placeholder="请输入您的姓名" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-phone">电话</label>
+                            <input type="tel" id="booking-phone" name="phone" placeholder="例如：702-123-4567">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="booking-email">邮箱</label>
+                            <input type="email" id="booking-email" name="email" placeholder="example@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-tour">微信号</label>
+                            <input type="text" id="booking-tour" name="tour" placeholder="请输入您的微信号">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="booking-date">期望出行日期</label>
+                            <input type="date" id="booking-date" name="travel_date">
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-guests">出行人数 <span class="required">*</span></label>
+                            <select id="booking-guests" name="guests" required>
+                                <option value="">请选择人数</option>
+                                <option value="1人">1人</option>
+                                <option value="2人">2人</option>
+                                <option value="3人">3人</option>
+                                <option value="4人">4人</option>
+                                <option value="5人以上">5人以上</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="booking-message">备注留言</label>
+                        <textarea id="booking-message" name="message" placeholder="请告知旅行线路或包团定制需求及联系方式......"></textarea>
+                    </div>
+                    <!-- Formspree hidden field -->
+                    <input type="text" name="_gotcha" style="display:none">
+                    <input type="hidden" name="_subject" value="新预订咨询 - 尊享旅行">
+                    <button type="submit" class="submit-btn">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        提交预订咨询
+                    </button>
+                </form>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QR Code Overlay -->
+    <div class="qr-overlay" id="qr-overlay" onclick="closeQrOverlay()">
+        <span class="qr-close-hint">点击任意位置关闭</span>
+        <img src="" alt="放大二维码" id="qr-overlay-img">
+    </div>
+
+    <!-- ===== Tour Detail Modals ===== -->
+    <div class="modal-overlay" id="modal-tour1">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>西南巨环丨拉斯维加斯+锡安+布莱斯峡谷+羚羊彩穴+大峡谷+优胜美地+洛杉矶 10日游</h2>
+                <div class="modal-tour-meta">
+                    <span>产品编号: R0004016</span>
+                    <span>10天9晚</span>
+                    <span>拉斯维加斯 → 洛杉矶</span>
+                </div>
+                <button class="modal-close" onclick="closeModal('tour1')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>产品特色</h3>
+                    <ul>
+                        <li>领略最完整的西南巨环行程！</li>
+                        <li>感受狂野美西的热情！</li>
+                        <li>享受五大著名国家公园、三大世界级景区赋予的视觉盛宴！</li>
+                        <li>全新景点搭配，给您最新的视觉享受！</li>
+                        <li>两晚入住赌城大道—云霄酒店，酒店内有拉斯维加斯最著名的观光塔以及丰富的娱乐设施</li>
+                    </ul>
+                </div>
+                <div class="modal-section">
+                    <h3>价格</h3>
+                    <div class="modal-price-box">
+                        <div class="modal-price-item"><div class="price-label">单人入住</div><div class="price-value">$1,748/人</div></div>
+                        <div class="modal-price-item"><div class="price-label">两人入住</div><div class="price-value">$1,278/人</div></div>
+                        <div class="modal-price-item"><div class="price-label">三人入住</div><div class="price-value">$1,098/人</div></div>
+                        <div class="modal-price-item"><div class="price-label">四人入住</div><div class="price-value">$1,018/人</div></div>
+                    </div>
+                </div>
+                <div class="modal-section">
+                    <h3>出发班期</h3>
+                    <p>套餐A：每周日出发（01/22-12/24）；套餐B：每周四出发（01/22-12/24）。两人成团，保证出发。</p>
+                </div>
+                <div class="modal-section">
+                    <h3>参/离团地点</h3>
+                    <p><strong>参团：</strong>拉斯维加斯哈里·瑞德国际机场 (LAS)，免费接机时间10:00-18:00。另可选 STRAT Hotel 15:30 出发。</p>
+                    <p><strong>离团：</strong>Howard Johnson Fullerton / Motel 6 Fountain Valley</p>
+                </div>
+                <a href="#contact" class="modal-cta" onclick="closeModal('tour1')">立即咨询此线路</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-tour2">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>精品小团丨拉斯维加斯接机+羚羊彩穴+马蹄湾+布莱斯峡谷+黄石+大提顿+盐湖城+锡安 8日游</h2>
+                <div class="modal-tour-meta">
+                    <span>产品编号: R0004514</span>
+                    <span>8天7晚</span>
+                    <span>6-12人精品团</span>
+                </div>
+                <button class="modal-close" onclick="closeModal('tour2')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>行程特色</h3>
+                    <ul>
+                        <li>3天2晚黄石公园，保证15大景点！</li>
+                        <li>打卡世界七大地质摄影奇观之一的羚羊彩穴、自然奇景马蹄湾</li>
+                        <li>畅游布莱斯峡谷国家公园、锡安国家公园</li>
+                        <li>独家免费升级两晚黄石景区木屋酒店</li>
+                        <li>特别赠送黄石野味大餐！当天捕捞的野生黄石鳟鱼、高角鹿肉等</li>
+                        <li>免费升级拉斯维加斯五星级枫丹白露酒店</li>
+                        <li>精品小团出行，两人即可成团，享受私密舒适的专属旅程</li>
+                        <li>金牌导游团队全程服务，配备专业导览讲解器</li>
+                        <li>保证车龄3年以内新车，车载Wi-Fi、充电接口一应俱全</li>
+                        <li>保证不早于8:30出发，最晚18:30回到酒店</li>
+                    </ul>
+                </div>
+                <div class="modal-section">
+                    <h3>价格</h3>
+                    <div class="modal-price-box">
+                        <div class="modal-price-item"><div class="price-label">单人入住</div><div class="price-value">$2,378/人</div></div>
+                        <div class="modal-price-item"><div class="price-label">两人入住</div><div class="price-value">$1,658/人</div></div>
+                        <div class="modal-price-item"><div class="price-label">三人入住</div><div class="price-value">$1,428/人</div></div>
+                        <div class="modal-price-item"><div class="price-label">四人入住</div><div class="price-value">$1,108/人</div></div>
+                    </div>
+                </div>
+                <div class="modal-section">
+                    <h3>出发班期</h3>
+                    <p>05/13-10/07：每周二出发。两人成团，保证出发。</p>
+                </div>
+                <div class="modal-section">
+                    <h3>参/离团地点</h3>
+                    <p><strong>参团：</strong>拉斯维加斯哈里·瑞德国际机场 (LAS)</p>
+                    <p><strong>离团：</strong>洛杉矶国际机场 (LAX)</p>
+                </div>
+                <a href="#contact" class="modal-cta" onclick="closeModal('tour2')">立即咨询此线路</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-tour3">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>洛杉矶接机+拉斯维加斯+羚羊彩穴+大提顿+黄石+总统山+疯马巨石+盐湖城 9日游</h2>
+                <div class="modal-tour-meta">
+                    <span>产品编号: R0003521</span>
+                    <span>9天8晚</span>
+                    <span>热销经典线路</span>
+                </div>
+                <button class="modal-close" onclick="closeModal('tour3')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>行程特色</h3>
+                    <ul>
+                        <li>连续超过15年热卖经典黄石公园+总统巨石线路！</li>
+                        <li>饱览黄石公园、总统巨石、魔鬼峰，是美国精神的象征！</li>
+                        <li>游览黄石10大景点！</li>
+                        <li>途经美西7大州，风土人情，美西全景团！</li>
+                        <li>免费接机/送机服务</li>
+                    </ul>
+                </div>
+                <div class="modal-section">
+                    <h3>价格</h3>
+                    <div class="modal-price-box">
+                        <div class="modal-price-item"><div class="price-label">单人入住</div><div class="price-value">$1,648/人</div></div>
+                        <div class="modal-price-item"><div class="price-label">两人入住</div><div class="price-value">$1,218/人</div></div>
+                        <div class="modal-price-item"><div class="price-label">三人入住</div><div class="price-value">$1,118/人</div></div>
+                        <div class="modal-price-item"><div class="price-label">四人入住</div><div class="price-value">$1,028/人</div></div>
+                    </div>
+                </div>
+                <div class="modal-section">
+                    <h3>出发班期</h3>
+                    <p>05/12-09/29：每周二出发。两人成团，保证出发。</p>
+                </div>
+                <div class="modal-section">
+                    <h3>参/离团地点</h3>
+                    <p><strong>参团：</strong>洛杉矶国际机场 (LAX)，免费接机时间10:00-22:00</p>
+                    <p><strong>离团：</strong>拉斯维加斯哈里·瑞德国际机场 (LAS)，免费送机10:30出发</p>
+                </div>
+                <a href="#contact" class="modal-cta" onclick="closeModal('tour3')">立即咨询此线路</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-tour4">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>精品小团丨盐湖城进出+大提顿国家公园+黄石国家公园 4日游</h2>
+                <div class="modal-tour-meta">
+                    <span>产品编号: R0004536</span>
+                    <span>4天3晚</span>
+                    <span>6-12人精品小团</span>
+                </div>
+                <button class="modal-close" onclick="closeModal('tour4')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>产品特色</h3>
+                    <ul>
+                        <li>厌倦了走马观花？这就是你在寻找的深度体验型旅游产品！</li>
+                        <li>3天2晚游览黄石国家公园，保证停留13大景点，地球之眼等您一探究竟</li>
+                        <li>打卡景色秀丽的大提顿国家公园，泛舟湖上，登山徒步</li>
+                        <li>瓶装矿泉水畅饮 + 免费零食，免费租借双筒望远镜</li>
+                        <li>金牌导游团队全程服务，配备专业导览讲解器</li>
+                        <li>保证车龄3年以内新车，车载Wi-Fi、充电接口一应俱全</li>
+                        <li>保证不早于8:30出发，最晚18:30回到酒店</li>
+                    </ul>
+                </div>
+                <div class="modal-section">
+                    <h3>价格</h3>
+                    <div class="modal-price-box">
+                        <div class="modal-price-item"><div class="price-label">单人入住</div><div class="price-value">$1,248/人</div></div>
+                        <div class="modal-price-item"><div class="price-label">两人入住</div><div class="price-value">$898/人</div></div>
+                        <div class="modal-price-item"><div class="price-label">三人入住</div><div class="price-value">$798/人</div></div>
+                        <div class="modal-price-item"><div class="price-label">四人入住</div><div class="price-value">$758/人</div></div>
+                    </div>
+                </div>
+                <div class="modal-section">
+                    <h3>出发班期</h3>
+                    <p>05/16-09/26：周一、周三、周五、周六出发。另有加开班期：04/26、04/30、05/04等。</p>
+                </div>
+                <div class="modal-section">
+                    <h3>参/离团地点</h3>
+                    <p><strong>参团：</strong>盐湖城国际机场（SLC），免费接机10:00-20:00</p>
+                    <p><strong>离团：</strong>盐湖城国际机场（SLC），建议预订21:00以后起飞的航班</p>
+                </div>
+                <a href="#contact" class="modal-cta" onclick="closeModal('tour4')">立即咨询此线路</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-tour5">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>盐湖城进出+大提顿国家公园+黄石国家公园 4日游</h2>
+                <div class="modal-tour-meta">
+                    <span>产品编号: R0001761</span>
+                    <span>4天3晚</span>
+                    <span>经典线路</span>
+                </div>
+                <button class="modal-close" onclick="closeModal('tour5')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>行程特色</h3>
+                    <ul>
+                        <li>空降盐湖城，最短平快的方式游览黄石！</li>
+                        <li>三天黄石公园，保证游览15大景点！</li>
+                        <li>欣赏大提顿国家公园万年不化的冰河与巍峨山脉</li>
+                        <li>浪漫迷人的黄石湖，蒸气腾腾的地热现象</li>
+                    </ul>
+                </div>
+                <div class="modal-section">
+                    <h3>价格</h3>
+                    <div class="modal-price-box">
+                        <div class="modal-price-item"><div class="price-label">单人入住</div><div class="price-value">$778/人</div></div>
+                        <div class="modal-price-item"><div class="price-label">两人入住</div><div class="price-value">$528/人</div></div>
+                        <div class="modal-price-item"><div class="price-label">三人入住</div><div class="price-value">$488/人</div></div>
+                        <div class="modal-price-item"><div class="price-label">四人入住</div><div class="price-value">$428/人</div></div>
+                    </div>
+                </div>
+                <div class="modal-section">
+                    <h3>出发班期</h3>
+                    <p>05/14-08/17：周一、周四、周六、周日出发。08/18-10/10：周三、周四、周六出发。另有加开日期。</p>
+                </div>
+                <div class="modal-section">
+                    <h3>参/离团地点</h3>
+                    <p><strong>参团：</strong>盐湖城自行入住 Radisson Hotel Salt Lake City Airport</p>
+                    <p><strong>离团：</strong>盐湖城国际机场 (SLC)，建议预订21:00以后起飞的航班</p>
+                </div>
+                <a href="#contact" class="modal-cta" onclick="closeModal('tour5')">立即咨询此线路</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-tour6">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>羚羊彩穴+马蹄湾 1日游</h2>
+                <div class="modal-tour-meta">
+                    <span>产品编号: R0000864</span>
+                    <span>1天</span>
+                    <span>摄影奇观</span>
+                </div>
+                <button class="modal-close" onclick="closeModal('tour6')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>产品特色</h3>
+                    <ul>
+                        <li>探访羚羊彩穴，斑驳的红砂岩经光折射幻化出美丽的色彩，如梦如幻</li>
+                        <li>在这里不需要任何技巧就可以成为摄影高手</li>
+                        <li>打卡自然奇景马蹄湾</li>
+                        <li>天天出发，两人成团</li>
+                    </ul>
+                </div>
+                <div class="modal-section">
+                    <h3>价格</h3>
+                    <div class="modal-price-box">
+                        <div class="modal-price-item"><div class="price-label">成人价格</div><div class="price-value">$258/人</div></div>
+                        <div class="modal-price-item"><div class="price-label">儿童价格</div><div class="price-value">$258/人</div></div>
+                    </div>
+                </div>
+                <div class="modal-section">
+                    <h3>出发班期</h3>
+                    <p>天天出发，两人成团。</p>
+                </div>
+                <div class="modal-section">
+                    <h3>参团地点</h3>
+                    <p>04:50-05:30 多个酒店接送点可选，包括 Plaza、Excalibur、MGM Grand、The STRAT、Venetian、Bellagio 等拉斯维加斯主要酒店。</p>
+                </div>
+                <a href="#contact" class="modal-cta" onclick="closeModal('tour6')">立即咨询此线路</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 2rem 2rem 1rem; background: transparent; color: #999; font-size: 0.8rem;">
+        <p>&copy; 2026 尊享旅行. JJ Tour LLC.</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleNav() {
+            const menu = document.getElementById('nav-links');
+            menu.classList.toggle('active');
+        }
+
+        function closeNav() {
+            const menu = document.getElementById('nav-links');
+            menu.classList.remove('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const nav = document.getElementById('nav');
+            const menu = document.getElementById('nav-links');
+            const menuBtn = document.getElementById('nav-menu-btn');
+            if (!nav.contains(e.target) && menu.classList.contains('active')) {
+                menu.classList.remove('active');
+            }
+        });
+
+        // Remove duplicate download links (fix for cached pages)
+        (function() {
+            document.querySelectorAll('.tour-card-download').forEach(function(link) {
+                if (link.dataset.deduped) return;
+                link.dataset.deduped = '1';
+            });
+            // If any tour-card has more than one download link, keep only the first
+            document.querySelectorAll('.tour-card').forEach(function(card) {
+                var links = card.querySelectorAll('.tour-card-download');
+                for (var i = 1; i < links.length; i++) {
+                    links[i].remove();
+                }
+            });
+        })();
+
+        // Navbar scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Animate on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Modal functions
+        function openModal(tourId) {
+            const modal = document.getElementById('modal-' + tourId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(tourId) {
+            const modal = document.getElementById('modal-' + tourId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // QR Code overlay functions
+        function openQrOverlay(container) {
+            const img = container.querySelector('img');
+            if (img) {
+                const overlay = document.getElementById('qr-overlay');
+                const overlayImg = document.getElementById('qr-overlay-img');
+                overlayImg.src = img.src;
+                overlayImg.alt = img.alt;
+                overlay.classList.add('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        function closeQrOverlay() {
+            const overlay = document.getElementById('qr-overlay');
+            overlay.classList.remove('active');
+        }
+
+        function copyEmail() {
+            const email = 'jjtourllc@gmail.com';
+            navigator.clipboard.writeText(email).then(function() {
+                const copyText = document.getElementById('copy-text');
+                const originalText = copyText.textContent;
+                copyText.textContent = '已复制!';
+                setTimeout(function() {
+                    copyText.textContent = originalText;
+                }, 2000);
+            }).catch(function() {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = email;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    const copyText = document.getElementById('copy-text');
+                    copyText.textContent = '已复制!';
+                    setTimeout(function() {
+                        copyText.textContent = '复制邮箱地址';
+                    }, 2000);
+                } catch (e) {
+                    alert('请手动复制邮箱地址: ' + email);
+                }
+                document.body.removeChild(textArea);
+            });
+        }
+
+        // Close QR overlay with ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeQrOverlay();
+            }
+        });
+
+        // Close modal on overlay click
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                document.body.style.overflow = '';
+            }
+        });
+
+        // ===== Map Zoom & Pan =====
+        (function() {
+            const mapContainer = document.getElementById('map-container');
+            if (!mapContainer) return;
+
+            const mapImage = document.getElementById('tour-map');
+            const zoomInBtn = document.getElementById('zoom-in');
+            const zoomOutBtn = document.getElementById('zoom-out');
+            const resetBtn = document.getElementById('map-reset');
+            const zoomWrapper = mapContainer.querySelector('.map-zoom-wrapper');
+
+            let scale = 1;
+            let panX = 0;
+            let panY = 0;
+            let isDragging = false;
+            let startX = 0;
+            let startY = 0;
+            const minScale = 1;
+            const maxScale = 3;
+            const zoomStep = 0.2;
+
+            function clampPan() {
+                // 计算容器和地图的边界，限制拖拽范围
+                const wrapperWidth = zoomWrapper.clientWidth;
+                const wrapperHeight = zoomWrapper.clientHeight;
+                const mapWidth = mapImage.naturalWidth || mapImage.offsetWidth;
+                const mapHeight = mapImage.naturalHeight || mapImage.offsetHeight;
+
+                const scaledWidth = mapWidth * scale;
+                const scaledHeight = mapHeight * scale;
+
+                // 只有在放大时才限制拖拽，确保地图边缘不超出容器
+                if (scaledWidth > wrapperWidth) {
+                    // 地图比容器宽，允许左右拖拽
+                    const excess = scaledWidth - wrapperWidth;
+                    const maxPanX = excess / (2 * scale);
+                    const minPanX = -maxPanX;
+                    panX = Math.max(minPanX, Math.min(maxPanX, panX));
+                } else {
+                    panX = 0;
+                }
+
+                if (scaledHeight > wrapperHeight) {
+                    // 地图比容器高，允许上下拖拽
+                    const excess = scaledHeight - wrapperHeight;
+                    const maxPanY = excess / (2 * scale);
+                    const minPanY = -maxPanY;
+                    panY = Math.max(minPanY, Math.min(maxPanY, panY));
+                } else {
+                    panY = 0;
+                }
+            }
+
+            function updateMapTransform() {
+                mapImage.style.transform = `scale(${scale}) translate(${panX / scale}px, ${panY / scale}px)`;
+            }
+
+            // 鼠标滚轮缩放
+            if (mapContainer) {
+                mapContainer.addEventListener('wheel', function(e) {
+                    e.preventDefault();
+                    const delta = e.deltaY > 0 ? -zoomStep : zoomStep;
+                    const newScale = Math.min(maxScale, Math.max(minScale, scale + delta));
+
+                    // 以鼠标位置为中心缩放
+                    const rect = mapContainer.getBoundingClientRect();
+                    const mouseX = e.clientX - rect.left;
+                    const mouseY = e.clientY - rect.top;
+
+                    const scaleChange = newScale - scale;
+                    panX = panX - mouseX * scaleChange / scale;
+                    panY = panY - mouseY * scaleChange / scale;
+                    scale = newScale;
+
+                    // 缩小到 1x 时自动居中
+                    if (scale <= minScale + 0.01) {
+                        scale = minScale;
+                        panX = 0;
+                        panY = 0;
+                    }
+
+                    // 缩放后限制拖拽范围
+                    clampPan();
+                    updateMapTransform();
+                }, { passive: false });
+            }
+
+            // 拖拽
+            if (zoomWrapper) {
+                zoomWrapper.addEventListener('mousedown', function(e) {
+                    if (scale <= minScale) return;
+                    isDragging = true;
+                    startX = e.clientX - panX * scale;
+                    startY = e.clientY - panY * scale;
+                    mapContainer.style.cursor = 'grabbing';
+                    e.preventDefault();
+                });
+
+                document.addEventListener('mousemove', function(e) {
+                    if (!isDragging) return;
+                    panX = (e.clientX - startX) / scale;
+                    panY = (e.clientY - startY) / scale;
+                    clampPan();
+                    updateMapTransform();
+                });
+
+                document.addEventListener('mouseup', function() {
+                    if (isDragging) {
+                        isDragging = false;
+                        mapContainer.style.cursor = '';
+                        // 拖拽结束后限制地图不超出边界
+                        clampPan();
+                        updateMapTransform();
+                    }
+                });
+            }
+
+            // 放大按钮
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', function() {
+                    scale = Math.min(maxScale, scale + zoomStep);
+                    clampPan();
+                    updateMapTransform();
+                });
+            }
+
+            // 缩小按钮
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', function() {
+                    scale = Math.max(minScale, scale - zoomStep);
+                    if (scale <= minScale + 0.01) {
+                        scale = minScale;
+                        panX = 0;
+                        panY = 0;
+                    }
+                    clampPan();
+                    updateMapTransform();
+                });
+            }
+
+            // 重置按钮
+            if (resetBtn) {
+                resetBtn.addEventListener('click', function() {
+                    scale = minScale;
+                    panX = 0;
+                    panY = 0;
+                    updateMapTransform();
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

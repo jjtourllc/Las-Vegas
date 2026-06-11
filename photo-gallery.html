@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美西景点相册 - 尊享旅行 JJTOUR</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a0a0f;
+            --bg-surface: #12121a;
+            --bg-card: rgba(255,255,255,0.04);
+            --bg-card-hover: rgba(255,255,255,0.08);
+            --border-subtle: rgba(255,255,255,0.08);
+            --text-primary: #f0f0f5;
+            --text-secondary: rgba(240,240,245,0.6);
+            --accent-cyan: #00e5ff;
+            --accent-purple: #b388ff;
+            --accent-pink: #ff4081;
+            --glow-cyan: 0 0 20px rgba(0,229,255,0.3);
+            --glow-purple: 0 0 20px rgba(179,136,255,0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== Animated background ===== */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 50% at 20% 20%, rgba(0,229,255,0.06) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 80% 80%, rgba(179,136,255,0.06) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 30% at 50% 50%, rgba(255,64,129,0.03) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ===== Header ===== */
+        .header {
+            position: relative;
+            padding: 5rem 2rem 4rem;
+            text-align: center;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        /* Background photo overlay */
+        .header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('Tiger.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        /* Animated border line */
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                var(--accent-cyan) 20%,
+                var(--accent-purple) 50%,
+                var(--accent-pink) 80%,
+                transparent 100%
+            );
+            background-size: 200% 100%;
+            animation: borderShimmer 3s linear infinite;
+        }
+        @keyframes borderShimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .header-content {
+            position: relative;
+            z-index: 10;
+        }
+        .header h1 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.8rem;
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent-cyan) 50%, var(--accent-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 2px 8px rgba(0,229,255,0.3));
+        }
+        .header .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.25em;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+        }
+        /* Stats cards */
+        .header .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            position: relative;
+        }
+        .header .stat-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 1.2rem 2.5rem;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+        .header .stat-card:hover {
+            border-color: rgba(0,229,255,0.3);
+            background: rgba(0,229,255,0.05);
+            transform: translateY(-2px);
+        }
+        .header .stat-num {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+        .header .stat-label {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-top: 0.3rem;
+            display: block;
+        }
+
+        /* ===== Back link ===== */
+        .back-link {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            z-index: 10;
+            border: 1px solid var(--border-subtle);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .back-link:hover {
+            color: var(--accent-cyan);
+            border-color: var(--accent-cyan);
+            box-shadow: var(--glow-cyan);
+            background: rgba(0,229,255,0.05);
+        }
+        .back-link svg { width: 18px; height: 18px; }
+
+        /* ===== Navigation ===== */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10,10,15,0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,229,255,0.15);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-purple) transparent;
+        }
+        .nav-inner::-webkit-scrollbar { height: 4px; }
+        .nav-inner::-webkit-scrollbar-thumb { background: var(--accent-purple); border-radius: 4px; }
+        .nav-tab {
+            padding: 0.45rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: rgba(240,240,245,0.75);
+            font-size: 0.82rem;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.06);
+            background: rgba(255,255,255,0.02);
+            flex-shrink: 0;
+        }
+        .nav-tab:hover {
+            color: var(--accent-cyan);
+            border-color: rgba(0,229,255,0.4);
+            background: rgba(0,229,255,0.08);
+            box-shadow: 0 0 12px rgba(0,229,255,0.15);
+        }
+        /* ===== Main ===== */
+        .main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== Park Section ===== */
+        .park-section {
+            margin-bottom: 2rem;
+            scroll-margin-top: 60px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 25px;
+        }
+        .park-section > *:not(.masonry-item) {
+            grid-column: 1 / -1;
+        }
+        .park-title {
+            font-family: 'KaiTi', '楷体', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: linear-gradient(135deg, #00e5ff, #a855f7, #00e5ff);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+            transition: filter 0.3s;
+        }
+        .park-title:hover {
+            filter: drop-shadow(0 0 8px rgba(0,229,255,0.6));
+        }
+        .park-title.active {
+            filter: drop-shadow(0 0 12px rgba(0,229,255,0.8));
+            animation: gradientShift 2s ease infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .park-title .badge {
+            background: rgba(0,229,255,0.1);
+            color: var(--accent-cyan);
+            padding: 0.15rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.72rem;
+            font-family: 'Noto Sans SC', sans-serif;
+            font-weight: 500;
+            border: 1px solid rgba(0,229,255,0.2);
+            letter-spacing: 0.05em;
+        }
+        .park-divider {
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple), transparent);
+            margin: 0.8rem 0 1.5rem;
+            opacity: 0.5;
+        }
+
+        /* ===== Masonry Grid - 正方形缩略图 固定宽度 多列并排 ===== */
+        .masonry-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-card);
+            cursor: pointer;
+            aspect-ratio: 1 / 1;
+            transition: transform 0.2s;
+        }
+        .masonry-item:hover {
+            transform: scale(1.2);
+        }
+        .masonry-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ===== 灯箱 ===== */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.92);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .lightbox-overlay.active {
+            display: flex;
+        }
+        .lightbox-overlay img {
+            max-width: 92vw;
+            max-height: 92vh;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.6);
+            animation: lightboxFadeIn 0.3s ease;
+        }
+        @keyframes lightboxFadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            border-top: 1px solid var(--border-subtle);
+            letter-spacing: 0.05em;
+        }
+        .footer a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .header { padding: 3rem 1rem 2rem; }
+            .header h1 { font-size: 1.8rem; }
+            .header .stats { gap: 1.5rem; }
+            .header .stat-num { font-size: 1.4rem; }
+            .main { padding: 1rem 0.5rem 3rem; }
+            .park-section {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+            .park-title {
+                font-size: 1.2rem;
+            }
+            .masonry-item {
+                border-width: 0.5px;
+            }
+        }
+        @media (max-width: 480px) {
+            .header { padding: 2rem 0.5rem 1.5rem; }
+            .header h1 { font-size: 1.4rem; }
+            .header .subtitle { font-size: 0.85rem; }
+            .header .stats { gap: 1rem; }
+            .header .stat-num { font-size: 1.2rem; }
+            .header .stat-label { font-size: 0.7rem; }
+            .main { padding: 0.5rem 0.25rem 2rem; }
+            .nav { padding: 0.5rem; }
+            .nav-tab {
+                font-size: 0.75rem;
+                padding: 0.3rem 0.5rem;
+            }
+            .park-section {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            .park-title {
+                font-size: 1rem;
+            }
+            .park-title .badge {
+                font-size: 0.75rem;
+                padding: 0.15rem 0.5rem;
+            }
+            .masonry-item {
+                border-width: 0.5px;
+            }
+            .back-link { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <a href="index.html" class="back-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            尊享旅行
+        </a>
+        <div class="header-content">
+            <h1>美西景点相册</h1>
+            <p class="subtitle">真实摄影·手机无敌</p>
+            <div class="stats">
+                <div class="stat-card">
+                    <span class="stat-num" id="stat-parks">20</span>
+                    <span class="stat-label">SPOTS</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-num" id="stat-photos">360</span>
+                    <span class="stat-label">PHOTOS</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#黄石国家公园" class="nav-tab nav-tab-active" data-category="黄石国家公园">黄石国家公园</a>
+            <a href="#大峡谷南峡" class="nav-tab" data-category="大峡谷南峡">大峡谷南峡</a>
+            <a href="#羚羊谷" class="nav-tab" data-category="羚羊谷">羚羊谷</a>
+            <a href="#拱门国家公园" class="nav-tab" data-category="拱门国家公园">拱门国家公园</a>
+            <a href="#锡安国家公园" class="nav-tab" data-category="锡安国家公园">锡安国家公园</a>
+            <a href="#盐湖城" class="nav-tab" data-category="盐湖城">盐湖城</a>
+            <a href="#佩吉" class="nav-tab" data-category="佩吉">佩吉</a>
+            <a href="#犹他州" class="nav-tab" data-category="犹他州">犹他州</a>
+            <a href="#马蹄湾" class="nav-tab" data-category="马蹄湾">马蹄湾</a>
+            <a href="#布莱斯国家公园" class="nav-tab" data-category="布莱斯国家公园">布莱斯国家公园</a>
+            <a href="#峡谷地国家公园" class="nav-tab" data-category="峡谷地国家公园">峡谷地国家公园</a>
+            <a href="#死亡谷国家公园" class="nav-tab" data-category="死亡谷国家公园">死亡谷国家公园</a>
+            <a href="#大提顿" class="nav-tab" data-category="大提顿">大提顿</a>
+            <a href="#火焰谷州立公园" class="nav-tab" data-category="火焰谷州立公园">火焰谷州立公园</a>
+            <a href="#杰克逊小镇" class="nav-tab" data-category="杰克逊小镇">杰克逊小镇</a>
+            <a href="#小伦敦桥" class="nav-tab" data-category="小伦敦桥">小伦敦桥</a>
+            <a href="#51区" class="nav-tab" data-category="51区">51区</a>
+            <a href="#胡佛水坝" class="nav-tab" data-category="胡佛水坝">胡佛水坝</a>
+            <a href="#纪念碑谷" class="nav-tab" data-category="纪念碑谷">纪念碑谷</a>
+            <a href="#野驴镇" class="nav-tab" data-category="野驴镇">野驴镇</a>
+        </div>
+    </nav>
+
+    <main class="main">
+    <section class="park-section" id="黄石国家公园">
+            <div class="park-title">
+                黄石国家公园
+                <span class="badge">38 张</span>
+            </div>
+            <div class="park-divider"></div>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/0 (34).JPG" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/0 (35).JPG" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/0 (36).JPG" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/0 (41).JPG" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/0 (42).JPG" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/0 (44).JPG" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/11 (166).jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/2018_07_02_14_47_IMG_2439.JPG" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/2020_04_14_20_13_IMG_2378.JPG" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/2020_04_14_20_13_IMG_2388.JPG" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/20241004_150512.jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/20241005_110406.jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/20241006_093909.jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/IMG_1617.JPG" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/IMG_8201.JPG" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/img_2322.jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/img_2333.jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/img_2368.jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/img_2433.jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/img_2442.jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/img_2449.jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/img_2455.jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/img_2457.jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/img_2459.jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/img_2502.jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/img_2519.jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/img_2532.jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/img_2571.jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/img_2585.jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/mmexport1530508151031.jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/mmexport1530508155299.jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/mmexport1530508158847.jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/mmexport1530697575760.jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/mmexport1557675589897.jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/mmexport1557675589937.jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/mmexport1557675589966.jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/mmexport1560538275381.jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="黄石国家公园">
+            <img src="photos/黄石国家公园/wx_camera_1541197733924.jpg" alt="黄石国家公园" loading="lazy">
+        </a>
+
+    </section>
+    <section class="park-section" id="大峡谷南峡">
+            <div class="park-title">
+                大峡谷南峡
+                <span class="badge">20 张</span>
+            </div>
+            <div class="park-divider"></div>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大峡谷南峡">
+            <img src="photos/大峡谷南峡/11 (304).jpg" alt="大峡谷南峡" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大峡谷南峡">
+            <img src="photos/大峡谷南峡/11 (305).jpg" alt="大峡谷南峡" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大峡谷南峡">
+            <img src="photos/大峡谷南峡/20180216_093722.jpg" alt="大峡谷南峡" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大峡谷南峡">
+            <img src="photos/大峡谷南峡/20241021_145642.jpg" alt="大峡谷南峡" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大峡谷南峡">
+            <img src="photos/大峡谷南峡/20241021_151036.jpg" alt="大峡谷南峡" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大峡谷南峡">
+            <img src="photos/大峡谷南峡/244379e06a889a421e15eaadcd1f97e1.jpg" alt="大峡谷南峡" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大峡谷南峡">
+            <img src="photos/大峡谷南峡/IMG_1262.JPG" alt="大峡谷南峡" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大峡谷南峡">
+            <img src="photos/大峡谷南峡/IMG_20220626_155425.jpg" alt="大峡谷南峡" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大峡谷南峡">
+            <img src="photos/大峡谷南峡/img_1894.jpg" alt="大峡谷南峡" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大峡谷南峡">
+            <img src="photos/大峡谷南峡/img_1898.jpg" alt="大峡谷南峡" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大峡谷南峡">
+            <img src="photos/大峡谷南峡/img_1899.jpg" alt="大峡谷南峡" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大峡谷南峡">
+            <img src="photos/大峡谷南峡/img_1912.jpg" alt="大峡谷南峡" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大峡谷南峡">
+            <img src="photos/大峡谷南峡/img_1913.jpg" alt="大峡谷南峡" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大峡谷南峡">
+            <img src="photos/大峡谷南峡/img_1914.jpg" alt="大峡谷南峡" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大峡谷南峡">
+            <img src="photos/大峡谷南峡/img_1918.jpg" alt="大峡谷南峡" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大峡谷南峡">
+            <img src="photos/大峡谷南峡/img_1922.jpg" alt="大峡谷南峡" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大峡谷南峡">
+            <img src="photos/大峡谷南峡/img_1923.jpg" alt="大峡谷南峡" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大峡谷南峡">
+            <img src="photos/大峡谷南峡/mmexport1524896477885.jpg" alt="大峡谷南峡" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大峡谷南峡">
+            <img src="photos/大峡谷南峡/大峡谷西峡(1).jpg" alt="大峡谷南峡" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大峡谷南峡">
+            <img src="photos/大峡谷南峡/大峡谷西峡(2).jpg" alt="大峡谷南峡" loading="lazy">
+        </a>
+
+    </section>
+    <section class="park-section" id="羚羊谷">
+            <div class="park-title">
+                羚羊谷
+                <span class="badge">7 张</span>
+            </div>
+            <div class="park-divider"></div>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="羚羊谷">
+            <img src="photos/羚羊谷/2020_04_14_20_13_img_2382.jpg" alt="羚羊谷" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="羚羊谷">
+            <img src="photos/羚羊谷/20240730_102810.jpg" alt="羚羊谷" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="羚羊谷">
+            <img src="photos/羚羊谷/20241020_171434.jpg" alt="羚羊谷" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="羚羊谷">
+            <img src="photos/羚羊谷/DSC_0459.JPG" alt="羚羊谷" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="羚羊谷">
+            <img src="photos/羚羊谷/DSC_0526(1).JPG" alt="羚羊谷" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="羚羊谷">
+            <img src="photos/羚羊谷/IMG_20180426_130645.jpg" alt="羚羊谷" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="羚羊谷">
+            <img src="photos/羚羊谷/IMG_20191029_230709.jpg" alt="羚羊谷" loading="lazy">
+        </a>
+
+    </section>
+    <section class="park-section" id="拱门国家公园">
+            <div class="park-title">
+                拱门国家公园
+                <span class="badge">10 张</span>
+            </div>
+            <div class="park-divider"></div>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="拱门国家公园">
+            <img src="photos/拱门国家公园/11 (291).jpg" alt="拱门国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="拱门国家公园">
+            <img src="photos/拱门国家公园/20241002_192725.jpg" alt="拱门国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="拱门国家公园">
+            <img src="photos/拱门国家公园/20241019_102405.jpg" alt="拱门国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="拱门国家公园">
+            <img src="photos/拱门国家公园/20241019_105910.jpg" alt="拱门国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="拱门国家公园">
+            <img src="photos/拱门国家公园/20241019_112741.jpg" alt="拱门国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="拱门国家公园">
+            <img src="photos/拱门国家公园/DSC_0009.JPG" alt="拱门国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="拱门国家公园">
+            <img src="photos/拱门国家公园/DSC_0583.JPG" alt="拱门国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="拱门国家公园">
+            <img src="photos/拱门国家公园/IMG_20241019_174035.jpg" alt="拱门国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="拱门国家公园">
+            <img src="photos/拱门国家公园/IMG_20241019_174311.jpg" alt="拱门国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="拱门国家公园">
+            <img src="photos/拱门国家公园/mmexport1524721022173.jpg" alt="拱门国家公园" loading="lazy">
+        </a>
+
+    </section>
+    <section class="park-section" id="锡安国家公园">
+            <div class="park-title">
+                锡安国家公园
+                <span class="badge">16 张</span>
+            </div>
+            <div class="park-divider"></div>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="锡安国家公园">
+            <img src="photos/锡安国家公园/20230414_113543.jpg" alt="锡安国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="锡安国家公园">
+            <img src="photos/锡安国家公园/20230414_114238.jpg" alt="锡安国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="锡安国家公园">
+            <img src="photos/锡安国家公园/20230414_114242.jpg" alt="锡安国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="锡安国家公园">
+            <img src="photos/锡安国家公园/20241018_154021.jpg" alt="锡安国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="锡安国家公园">
+            <img src="photos/锡安国家公园/DSC_0472.JPG" alt="锡安国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="锡安国家公园">
+            <img src="photos/锡安国家公园/DSC_0477.JPG" alt="锡安国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="锡安国家公园">
+            <img src="photos/锡安国家公园/DSC_0530.JPG" alt="锡安国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="锡安国家公园">
+            <img src="photos/锡安国家公园/Zion.jpg" alt="锡安国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="锡安国家公园">
+            <img src="photos/锡安国家公园/img_2681.jpg" alt="锡安国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="锡安国家公园">
+            <img src="photos/锡安国家公园/img_2682.jpg" alt="锡安国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="锡安国家公园">
+            <img src="photos/锡安国家公园/img_2691.jpg" alt="锡安国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="锡安国家公园">
+            <img src="photos/锡安国家公园/img_2693.jpg" alt="锡安国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="锡安国家公园">
+            <img src="photos/锡安国家公园/img_2696.jpg" alt="锡安国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="锡安国家公园">
+            <img src="photos/锡安国家公园/img_2697.jpg" alt="锡安国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="锡安国家公园">
+            <img src="photos/锡安国家公园/mmexport1524632473184.jpg" alt="锡安国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="锡安国家公园">
+            <img src="photos/锡安国家公园/mmexport1524632473372.jpg" alt="锡安国家公园" loading="lazy">
+        </a>
+
+    </section>
+    <section class="park-section" id="盐湖城">
+            <div class="park-title">
+                盐湖城
+                <span class="badge">47 张</span>
+            </div>
+            <div class="park-divider"></div>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/0 (56).JPG" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/0 (58).JPG" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/0 (59).JPG" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/2019_06_23_19_28_47B422A9-6D6F-4E3C-91C7-5DAF48B1F7FF.JPG" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/20241003_175234.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/20241003_185925.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/20241003_185948.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/20250805_192831.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/20250805_192922.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/IMG_20180704_111913.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/IMG_20180704_112035.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2222.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2228.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2229.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2230.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2231.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2236.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2237.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2238.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2239.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2240.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2241.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2242.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2243.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2244.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2247.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2248.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2249.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2250.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2251.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2252.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2253.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2259.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2260.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2264.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2266.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2267.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2271.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2286.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2287.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2288.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2289.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2290.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2291.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/img_2292.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/mmexport1541375716039.jpg" alt="盐湖城" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="盐湖城">
+            <img src="photos/盐湖城/盐湖城天空之境 (5).jpg" alt="盐湖城" loading="lazy">
+        </a>
+
+    </section>
+    <section class="park-section" id="佩吉">
+            <div class="park-title">
+                佩吉
+                <span class="badge">7 张</span>
+            </div>
+            <div class="park-divider"></div>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="佩吉">
+            <img src="photos/佩吉/DSC_0912.JPG" alt="佩吉" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="佩吉">
+            <img src="photos/佩吉/IMG_1279.JPG" alt="佩吉" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="佩吉">
+            <img src="photos/佩吉/IMG_2030.JPG" alt="佩吉" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="佩吉">
+            <img src="photos/佩吉/img_2193.jpg" alt="佩吉" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="佩吉">
+            <img src="photos/佩吉/img_2194.jpg" alt="佩吉" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="佩吉">
+            <img src="photos/佩吉/img_2195.jpg" alt="佩吉" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="佩吉">
+            <img src="photos/佩吉/佩吉飞机资料 (1).jpg" alt="佩吉" loading="lazy">
+        </a>
+
+    </section>
+    <section class="park-section" id="犹他州">
+            <div class="park-title">
+                犹他州
+                <span class="badge">39 张</span>
+            </div>
+            <div class="park-divider"></div>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/20241002_155456.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/DSC_0218.JPG" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/DSC_0235.JPG" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/DSC_0240.JPG" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/DSC_0585.JPG" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/DSC_0586.JPG" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/IMG_1484.JPG" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/IMG_20180502_084920.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2156.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2157.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2159.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2170.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2178.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2180.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2181.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2182.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2183.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2184.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2185.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2186.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2188.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2189.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2190.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2645.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2646.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2647.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2648.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2649.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2650.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2651.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2652.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2654.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2660.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2661.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2665.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2666.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2667.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2669.jpg" alt="犹他州" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="犹他州">
+            <img src="photos/犹他州/img_2672.jpg" alt="犹他州" loading="lazy">
+        </a>
+
+    </section>
+    <section class="park-section" id="马蹄湾">
+            <div class="park-title">
+                马蹄湾
+                <span class="badge">6 张</span>
+            </div>
+            <div class="park-divider"></div>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="马蹄湾">
+            <img src="photos/马蹄湾/11 (90).jpg" alt="马蹄湾" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="马蹄湾">
+            <img src="photos/马蹄湾/2018_05_03_15_06_IMG_2422.JPG" alt="马蹄湾" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="马蹄湾">
+            <img src="photos/马蹄湾/20221202_165244.jpg" alt="马蹄湾" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="马蹄湾">
+            <img src="photos/马蹄湾/DSC_0726.jpg" alt="马蹄湾" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="马蹄湾">
+            <img src="photos/马蹄湾/DSC_0728.JPG" alt="马蹄湾" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="马蹄湾">
+            <img src="photos/马蹄湾/IMG_20191029_230716.jpg" alt="马蹄湾" loading="lazy">
+        </a>
+
+    </section>
+    <section class="park-section" id="布莱斯国家公园">
+            <div class="park-title">
+                布莱斯国家公园
+                <span class="badge">24 张</span>
+            </div>
+            <div class="park-divider"></div>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="布莱斯国家公园">
+            <img src="photos/布莱斯国家公园/11 (1).JPG" alt="布莱斯国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="布莱斯国家公园">
+            <img src="photos/布莱斯国家公园/11 (278).jpg" alt="布莱斯国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="布莱斯国家公园">
+            <img src="photos/布莱斯国家公园/11 (279).jpg" alt="布莱斯国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="布莱斯国家公园">
+            <img src="photos/布莱斯国家公园/11 (284).jpg" alt="布莱斯国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="布莱斯国家公园">
+            <img src="photos/布莱斯国家公园/11 (4).JPG" alt="布莱斯国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="布莱斯国家公园">
+            <img src="photos/布莱斯国家公园/20221001_144249.jpg" alt="布莱斯国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="布莱斯国家公园">
+            <img src="photos/布莱斯国家公园/20221124_170400.jpg" alt="布莱斯国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="布莱斯国家公园">
+            <img src="photos/布莱斯国家公园/DSC_0597.JPG" alt="布莱斯国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="布莱斯国家公园">
+            <img src="photos/布莱斯国家公园/DSC_0776.JPG" alt="布莱斯国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="布莱斯国家公园">
+            <img src="photos/布莱斯国家公园/IMG_1251.JPG" alt="布莱斯国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="布莱斯国家公园">
+            <img src="photos/布莱斯国家公园/IMG_1256.JPG" alt="布莱斯国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="布莱斯国家公园">
+            <img src="photos/布莱斯国家公园/IMG_1259.JPG" alt="布莱斯国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="布莱斯国家公园">
+            <img src="photos/布莱斯国家公园/IMG_1260.JPG" alt="布莱斯国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="布莱斯国家公园">
+            <img src="photos/布莱斯国家公园/IMG_20220630_192951.jpg" alt="布莱斯国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="布莱斯国家公园">
+            <img src="photos/布莱斯国家公园/IMG_20220630_193014.jpg" alt="布莱斯国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="布莱斯国家公园">
+            <img src="photos/布莱斯国家公园/IMG_20220630_193035.jpg" alt="布莱斯国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="布莱斯国家公园">
+            <img src="photos/布莱斯国家公园/IMG_20220630_193139.jpg" alt="布莱斯国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="布莱斯国家公园">
+            <img src="photos/布莱斯国家公园/img_2199.jpg" alt="布莱斯国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="布莱斯国家公园">
+            <img src="photos/布莱斯国家公园/img_2200.jpg" alt="布莱斯国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="布莱斯国家公园">
+            <img src="photos/布莱斯国家公园/img_2201.jpg" alt="布莱斯国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="布莱斯国家公园">
+            <img src="photos/布莱斯国家公园/img_2203.jpg" alt="布莱斯国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="布莱斯国家公园">
+            <img src="photos/布莱斯国家公园/img_2209.jpg" alt="布莱斯国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="布莱斯国家公园">
+            <img src="photos/布莱斯国家公园/img_2211.jpg" alt="布莱斯国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="布莱斯国家公园">
+            <img src="photos/布莱斯国家公园/img_2215.jpg" alt="布莱斯国家公园" loading="lazy">
+        </a>
+
+    </section>
+    <section class="park-section" id="峡谷地国家公园">
+            <div class="park-title">
+                峡谷地国家公园
+                <span class="badge">48 张</span>
+            </div>
+            <div class="park-divider"></div>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/11 (290).jpg" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/11 (294).jpg" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/20241003_102251.jpg" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/20241003_103257.jpg" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/20241003_105657.jpg" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0007.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0024.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0038.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0073.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0093.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0130.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0137.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0139.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0144.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0146.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0149.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0155.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0274.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0275.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0294.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0305.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0306.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0310.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0312(1).JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0313.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0314.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0315.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0316.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0317.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0323.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0324.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0328(1).JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0372.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0373.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/DSC_0374.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/IMG_1386.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/IMG_1387.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/IMG_1388.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/IMG_1391.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/IMG_1392.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/IMG_1393.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/IMG_1394.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/IMG_1395.JPG" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/IMG_20180516_115839.jpg" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/mmexport1524718945491.jpg" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/mmexport1524722878278.jpg" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/mmexport1524722895880.jpg" alt="峡谷地国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="峡谷地国家公园">
+            <img src="photos/峡谷地国家公园/mmexport1524722899521.jpg" alt="峡谷地国家公园" loading="lazy">
+        </a>
+
+    </section>
+    <section class="park-section" id="死亡谷国家公园">
+            <div class="park-title">
+                死亡谷国家公园
+                <span class="badge">17 张</span>
+            </div>
+            <div class="park-divider"></div>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="死亡谷国家公园">
+            <img src="photos/死亡谷国家公园/20180314_092056.jpg" alt="死亡谷国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="死亡谷国家公园">
+            <img src="photos/死亡谷国家公园/20180314_100534.jpg" alt="死亡谷国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="死亡谷国家公园">
+            <img src="photos/死亡谷国家公园/20180314_101244.jpg" alt="死亡谷国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="死亡谷国家公园">
+            <img src="photos/死亡谷国家公园/20180314_112926.jpg" alt="死亡谷国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="死亡谷国家公园">
+            <img src="photos/死亡谷国家公园/20180314_115546.jpg" alt="死亡谷国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="死亡谷国家公园">
+            <img src="photos/死亡谷国家公园/20180314_115552.jpg" alt="死亡谷国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="死亡谷国家公园">
+            <img src="photos/死亡谷国家公园/20240120_112058.jpg" alt="死亡谷国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="死亡谷国家公园">
+            <img src="photos/死亡谷国家公园/IMG_1961.JPG" alt="死亡谷国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="死亡谷国家公园">
+            <img src="photos/死亡谷国家公园/IMG_20180328_092805.jpg" alt="死亡谷国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="死亡谷国家公园">
+            <img src="photos/死亡谷国家公园/IMG_20180328_095530.jpg" alt="死亡谷国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="死亡谷国家公园">
+            <img src="photos/死亡谷国家公园/IMG_20180328_095738.jpg" alt="死亡谷国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="死亡谷国家公园">
+            <img src="photos/死亡谷国家公园/IMG_20180328_103306.jpg" alt="死亡谷国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="死亡谷国家公园">
+            <img src="photos/死亡谷国家公园/IMG_20180328_125259.jpg" alt="死亡谷国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="死亡谷国家公园">
+            <img src="photos/死亡谷国家公园/死亡谷.jpg" alt="死亡谷国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="死亡谷国家公园">
+            <img src="photos/死亡谷国家公园/死亡谷2.jpg" alt="死亡谷国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="死亡谷国家公园">
+            <img src="photos/死亡谷国家公园/死亡谷3.jpg" alt="死亡谷国家公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="死亡谷国家公园">
+            <img src="photos/死亡谷国家公园/死亡谷4.jpg" alt="死亡谷国家公园" loading="lazy">
+        </a>
+
+    </section>
+    <section class="park-section" id="大提顿">
+            <div class="park-title">
+                大提顿
+                <span class="badge">21 张</span>
+            </div>
+            <div class="park-divider"></div>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大提顿">
+            <img src="photos/大提顿/20241006_110859.jpg" alt="大提顿" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大提顿">
+            <img src="photos/大提顿/20241006_110914.jpg" alt="大提顿" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大提顿">
+            <img src="photos/大提顿/20241006_110922.jpg" alt="大提顿" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大提顿">
+            <img src="photos/大提顿/20241006_115303.jpg" alt="大提顿" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大提顿">
+            <img src="photos/大提顿/img_2609.jpg" alt="大提顿" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大提顿">
+            <img src="photos/大提顿/img_2610.jpg" alt="大提顿" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大提顿">
+            <img src="photos/大提顿/img_2611.jpg" alt="大提顿" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大提顿">
+            <img src="photos/大提顿/img_2612.jpg" alt="大提顿" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大提顿">
+            <img src="photos/大提顿/img_2613.jpg" alt="大提顿" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大提顿">
+            <img src="photos/大提顿/img_2615.jpg" alt="大提顿" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大提顿">
+            <img src="photos/大提顿/img_2617.jpg" alt="大提顿" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大提顿">
+            <img src="photos/大提顿/img_2618.jpg" alt="大提顿" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大提顿">
+            <img src="photos/大提顿/img_2621.jpg" alt="大提顿" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大提顿">
+            <img src="photos/大提顿/img_2622.jpg" alt="大提顿" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大提顿">
+            <img src="photos/大提顿/img_2623.jpg" alt="大提顿" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大提顿">
+            <img src="photos/大提顿/img_2624.jpg" alt="大提顿" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大提顿">
+            <img src="photos/大提顿/img_2625.jpg" alt="大提顿" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大提顿">
+            <img src="photos/大提顿/img_2626.jpg" alt="大提顿" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大提顿">
+            <img src="photos/大提顿/img_2628.jpg" alt="大提顿" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大提顿">
+            <img src="photos/大提顿/img_2629.jpg" alt="大提顿" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="大提顿">
+            <img src="photos/大提顿/img_2631.jpg" alt="大提顿" loading="lazy">
+        </a>
+
+    </section>
+    <section class="park-section" id="火焰谷州立公园">
+            <div class="park-title">
+                火焰谷州立公园
+                <span class="badge">10 张</span>
+            </div>
+            <div class="park-divider"></div>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="火焰谷州立公园">
+            <img src="photos/火焰谷州立公园/20250111_101205.jpg" alt="火焰谷州立公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="火焰谷州立公园">
+            <img src="photos/火焰谷州立公园/20250111_101222.jpg" alt="火焰谷州立公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="火焰谷州立公园">
+            <img src="photos/火焰谷州立公园/20250111_101241.jpg" alt="火焰谷州立公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="火焰谷州立公园">
+            <img src="photos/火焰谷州立公园/20250111_101257.jpg" alt="火焰谷州立公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="火焰谷州立公园">
+            <img src="photos/火焰谷州立公园/20250111_103309.jpg" alt="火焰谷州立公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="火焰谷州立公园">
+            <img src="photos/火焰谷州立公园/20250111_103820.jpg" alt="火焰谷州立公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="火焰谷州立公园">
+            <img src="photos/火焰谷州立公园/20250111_104333.jpg" alt="火焰谷州立公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="火焰谷州立公园">
+            <img src="photos/火焰谷州立公园/20250111_110833.jpg" alt="火焰谷州立公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="火焰谷州立公园">
+            <img src="photos/火焰谷州立公园/20250111_110859.jpg" alt="火焰谷州立公园" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="火焰谷州立公园">
+            <img src="photos/火焰谷州立公园/20250111_111544.jpg" alt="火焰谷州立公园" loading="lazy">
+        </a>
+
+    </section>
+    <section class="park-section" id="杰克逊小镇">
+            <div class="park-title">
+                杰克逊小镇
+                <span class="badge">10 张</span>
+            </div>
+            <div class="park-divider"></div>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="杰克逊小镇">
+            <img src="photos/杰克逊小镇/img_2632.jpg" alt="杰克逊小镇" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="杰克逊小镇">
+            <img src="photos/杰克逊小镇/img_2635.jpg" alt="杰克逊小镇" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="杰克逊小镇">
+            <img src="photos/杰克逊小镇/img_2636.jpg" alt="杰克逊小镇" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="杰克逊小镇">
+            <img src="photos/杰克逊小镇/img_2637.jpg" alt="杰克逊小镇" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="杰克逊小镇">
+            <img src="photos/杰克逊小镇/img_2638.jpg" alt="杰克逊小镇" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="杰克逊小镇">
+            <img src="photos/杰克逊小镇/img_2639.jpg" alt="杰克逊小镇" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="杰克逊小镇">
+            <img src="photos/杰克逊小镇/img_2640.jpg" alt="杰克逊小镇" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="杰克逊小镇">
+            <img src="photos/杰克逊小镇/img_2641.jpg" alt="杰克逊小镇" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="杰克逊小镇">
+            <img src="photos/杰克逊小镇/img_2642.jpg" alt="杰克逊小镇" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="杰克逊小镇">
+            <img src="photos/杰克逊小镇/img_2644.jpg" alt="杰克逊小镇" loading="lazy">
+        </a>
+
+    </section>
+    <section class="park-section" id="小伦敦桥">
+            <div class="park-title">
+                小伦敦桥
+                <span class="badge">9 张</span>
+            </div>
+            <div class="park-divider"></div>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="小伦敦桥">
+            <img src="photos/小伦敦桥/IMG_20191225_163038.jpg" alt="小伦敦桥" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="小伦敦桥">
+            <img src="photos/小伦敦桥/IMG_20191225_163054.jpg" alt="小伦敦桥" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="小伦敦桥">
+            <img src="photos/小伦敦桥/IMG_20191225_163109.jpg" alt="小伦敦桥" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="小伦敦桥">
+            <img src="photos/小伦敦桥/IMG_20191225_163154.jpg" alt="小伦敦桥" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="小伦敦桥">
+            <img src="photos/小伦敦桥/IMG_20191225_164500.jpg" alt="小伦敦桥" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="小伦敦桥">
+            <img src="photos/小伦敦桥/IMG_20191225_174750.jpg" alt="小伦敦桥" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="小伦敦桥">
+            <img src="photos/小伦敦桥/IMG_20191225_175009.jpg" alt="小伦敦桥" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="小伦敦桥">
+            <img src="photos/小伦敦桥/IMG_20191225_175209.jpg" alt="小伦敦桥" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="小伦敦桥">
+            <img src="photos/小伦敦桥/IMG_20191225_175751.jpg" alt="小伦敦桥" loading="lazy">
+        </a>
+
+    </section>
+    <section class="park-section" id="51区">
+            <div class="park-title">
+                51区
+                <span class="badge">18 张</span>
+            </div>
+            <div class="park-divider"></div>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="51区">
+            <img src="photos/51区/11 (309).jpg" alt="51区" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="51区">
+            <img src="photos/51区/20180314_131732.jpg" alt="51区" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="51区">
+            <img src="photos/51区/20180317_085909.jpg" alt="51区" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="51区">
+            <img src="photos/51区/20180317_090801.jpg" alt="51区" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="51区">
+            <img src="photos/51区/20180317_090835.jpg" alt="51区" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="51区">
+            <img src="photos/51区/20180317_095109.jpg" alt="51区" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="51区">
+            <img src="photos/51区/20180317_095921.jpg" alt="51区" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="51区">
+            <img src="photos/51区/20180317_095938.jpg" alt="51区" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="51区">
+            <img src="photos/51区/20180317_100113.jpg" alt="51区" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="51区">
+            <img src="photos/51区/20180317_100153.jpg" alt="51区" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="51区">
+            <img src="photos/51区/20180317_100305.jpg" alt="51区" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="51区">
+            <img src="photos/51区/20180317_165938.jpg" alt="51区" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="51区">
+            <img src="photos/51区/20180317_165946.jpg" alt="51区" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="51区">
+            <img src="photos/51区/20180317_170120.jpg" alt="51区" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="51区">
+            <img src="photos/51区/IMG_20180317_090506.jpg" alt="51区" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="51区">
+            <img src="photos/51区/IMG_20180317_090515.jpg" alt="51区" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="51区">
+            <img src="photos/51区/IMG_20180317_090606.jpg" alt="51区" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="51区">
+            <img src="photos/51区/mmexport1525052057948.jpg" alt="51区" loading="lazy">
+        </a>
+
+    </section>
+    <section class="park-section" id="胡佛水坝">
+            <div class="park-title">
+                胡佛水坝
+                <span class="badge">4 张</span>
+            </div>
+            <div class="park-divider"></div>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="胡佛水坝">
+            <img src="photos/胡佛水坝/IMG_1926.JPG" alt="胡佛水坝" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="胡佛水坝">
+            <img src="photos/胡佛水坝/IMG_20191029_224329.jpg" alt="胡佛水坝" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="胡佛水坝">
+            <img src="photos/胡佛水坝/IMG_20191029_224341.jpg" alt="胡佛水坝" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="胡佛水坝">
+            <img src="photos/胡佛水坝/胡佛大坝2.jpg" alt="胡佛水坝" loading="lazy">
+        </a>
+
+    </section>
+    <section class="park-section" id="纪念碑谷">
+            <div class="park-title">
+                纪念碑谷
+                <span class="badge">4 张</span>
+            </div>
+            <div class="park-divider"></div>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="纪念碑谷">
+            <img src="photos/纪念碑谷/IMG_1280.JPG" alt="纪念碑谷" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="纪念碑谷">
+            <img src="photos/纪念碑谷/IMG_1281.JPG" alt="纪念碑谷" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="纪念碑谷">
+            <img src="photos/纪念碑谷/IMG_1283.JPG" alt="纪念碑谷" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="纪念碑谷">
+            <img src="photos/纪念碑谷/IMG_1290.JPG" alt="纪念碑谷" loading="lazy">
+        </a>
+
+    </section>
+    <section class="park-section" id="野驴镇">
+            <div class="park-title">
+                野驴镇
+                <span class="badge">5 张</span>
+            </div>
+            <div class="park-divider"></div>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="野驴镇">
+            <img src="photos/野驴镇/IMG_20191225_145635.jpg" alt="野驴镇" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="野驴镇">
+            <img src="photos/野驴镇/IMG_20191225_145649.jpg" alt="野驴镇" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="野驴镇">
+            <img src="photos/野驴镇/IMG_20191225_150054.jpg" alt="野驴镇" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="野驴镇">
+            <img src="photos/野驴镇/IMG_20191225_150319.jpg" alt="野驴镇" loading="lazy">
+        </a>
+            <a class="masonry-item" onclick="openLightbox(this.querySelector('img').src)" title="野驴镇">
+            <img src="photos/野驴镇/IMG_20191225_150335.jpg" alt="野驴镇" loading="lazy">
+        </a>
+
+    </section>
+    </main>
+
+    <!-- 灯箱 -->
+    <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+        <img src="" alt="大图预览">
+    </div>
+
+    <footer class="footer">
+        &copy; 2026 <a href="index.html">尊享旅行 JJTOUR</a> | EXPLORING THE UNKNOWN
+    </footer>
+
+    <script>
+        // 类别筛选功能
+        const navTabs = document.querySelectorAll('.nav-tab');
+        const sections = document.querySelectorAll('.park-section');
+
+        function filterByCategory(category) {
+            // 更新导航激活状态
+            navTabs.forEach(tab => {
+                if (tab.dataset.category === category) {
+                    tab.classList.add('nav-tab-active');
+                } else {
+                    tab.classList.remove('nav-tab-active');
+                }
+            });
+
+            // 显示/隐藏对应区域
+            sections.forEach(section => {
+                if (section.id === category) {
+                    section.style.display = '';
+                    // 给当前 section 的标题加 active 类
+                    const title = section.querySelector('.park-title');
+                    if (title) title.classList.add('active');
+                } else {
+                    section.style.display = 'none';
+                    // 移除其它 section 标题的 active 类
+                    const title = section.querySelector('.park-title');
+                    if (title) title.classList.remove('active');
+                }
+            });
+        }
+
+        // 导航点击事件
+        navTabs.forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                const category = this.dataset.category;
+                filterByCategory(category);
+                
+                // 点击类别，滚动到对应 section
+                const section = document.getElementById(category);
+                if (section) {
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: section.offsetTop - 60,
+                            behavior: 'smooth'
+                        });
+                    }, 50);
+                }
+            });
+        });
+
+
+        // ===== 灯箱功能 =====
+        function openLightbox(src) {
+            const lb = document.getElementById('lightbox');
+            lb.querySelector('img').src = src;
+            lb.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            const lb = document.getElementById('lightbox');
+            lb.classList.remove('active');
+            lb.querySelector('img').src = '';
+            document.body.style.overflow = '';
+        }
+        // ESC 关闭灯箱
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // 照片滚动到视图时淡入
+        document.addEventListener('DOMContentLoaded', function() {
+            const imgs = document.querySelectorAll('.masonry-item img');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            imgs.forEach(img => {
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 0.6s ease';
+                observer.observe(img);
+            });
+        });
+    </script>
+</body>
+</html>
