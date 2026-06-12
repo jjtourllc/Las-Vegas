@@ -28,16 +28,12 @@
             color: var(--text-primary);
             line-height: 1.6;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
             padding: 2rem 1rem;
         }
 
         .container {
-            max-width: 800px;
-            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         /* 头部 */
@@ -57,12 +53,40 @@
             font-size: 0.9rem;
         }
 
+        /* 页面筛选标签 */
+        .page-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .page-tab {
+            padding: 0.6rem 1.5rem;
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .page-tab:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent-green);
+        }
+        .page-tab.active {
+            background: var(--accent-green-dim);
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
         /* 统计卡片 */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1.5rem;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
         .stat-card {
             background: var(--bg-card);
@@ -92,6 +116,62 @@
             text-shadow: 0 0 20px rgba(0,230,118,0.4);
         }
         .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* 页面细分 */
+        .page-stats {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .page-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .page-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        .page-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: rgba(255,255,255,0.02);
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.04);
+        }
+        .page-name {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+        .page-name .icon {
+            font-size: 1.3rem;
+        }
+        .page-meta {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        .page-visitors {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-green);
+            font-family: 'Noto Serif SC', serif;
+        }
+        .page-views {
             font-size: 0.85rem;
             color: var(--text-secondary);
         }
@@ -132,7 +212,7 @@
             color: var(--accent-green);
             font-weight: 500;
         }
-        .recent-ip {
+        .recent-page {
             color: var(--text-secondary);
         }
 
@@ -187,10 +267,13 @@
         /* 响应式 */
         @media (max-width: 768px) {
             .stats-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
             .stat-value {
                 font-size: 2.2rem;
+            }
+            .page-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -203,6 +286,14 @@
             <p>仅供管理员查看 · 24小时去重计数</p>
         </div>
 
+        <!-- 页面筛选 -->
+        <div class="page-tabs">
+            <button class="page-tab active" onclick="filterByPage('all', this)">全部页面</button>
+            <button class="page-tab" onclick="filterByPage('/index.html', this)">🏠 首页</button>
+            <button class="page-tab" onclick="filterByPage('/explore-routes/index.html', this)">🗺️ 探索线路</button>
+            <button class="page-tab" onclick="filterByPage('/photo-gallery.html', this)">📸 景点相册</button>
+        </div>
+
         <!-- 统计卡片 -->
         <div class="stats-grid">
             <div class="stat-card">
@@ -211,7 +302,7 @@
                 <div class="stat-label">总独立访客</div>
             </div>
             <div class="stat-card">
-                <div class="stat-icon">📈</div>
+                <div class="stat-icon">📅</div>
                 <div class="stat-value" id="today-visitors">0</div>
                 <div class="stat-label">今日访客</div>
             </div>
@@ -219,6 +310,14 @@
                 <div class="stat-icon">🔄</div>
                 <div class="stat-value" id="total-views">0</div>
                 <div class="stat-label">总访问次数</div>
+            </div>
+        </div>
+
+        <!-- 页面细分统计 -->
+        <div class="page-stats">
+            <div class="page-title">各页面访客数据</div>
+            <div class="page-grid" id="page-grid">
+                <!-- 动态填充 -->
             </div>
         </div>
 
@@ -242,19 +341,28 @@
 
         <!-- 返回链接 -->
         <div class="nav-back">
-            <a href="index.html">← 返回探索线路主页</a>
+            <a href="../index.html">← 回到首页</a>
         </div>
     </div>
 
     <script>
         const STORAGE_KEY = 'site_visitor_stats';
+        let currentFilter = 'all';
+
+        // 页面映射
+        const pageNames = {
+            '/index.html': { icon: '🏠', name: '首页' },
+            '/explore-routes/index.html': { icon: '🗺️', name: '探索线路' },
+            '/photo-gallery.html': { icon: '📸', name: '景点相册' },
+            '/explore-routes/stats.html': { icon: '📊', name: '访客统计' }
+        };
 
         // 初始化或获取统计数据
         function getStats() {
             const data = localStorage.getItem(STORAGE_KEY);
             if (!data) {
                 const initial = {
-                    visitors: [], // [{id, timestamp, ip, page}]
+                    visitors: [],
                     totalViews: 0
                 };
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(initial));
@@ -283,38 +391,71 @@
             const stats = getStats();
             const visitorId = getVisitorId();
             const now = new Date();
-            const today = now.toISOString().split('T')[0]; // YYYY-MM-DD
-
-            // 检查今天是否已经记录过该访客
-            const alreadyVisitedToday = stats.visitors.some(v => 
-                v.visitorId === visitorId && v.timestamp.startsWith(today)
-            );
+            const today = now.toISOString().split('T')[0];
 
             // 添加访问记录
             const visitRecord = {
                 visitorId: visitorId,
                 timestamp: now.toISOString(),
-                ip: 'local', // 本地无法获取真实IP
                 page: window.location.pathname
             };
 
             stats.visitors.push(visitRecord);
             stats.totalViews++;
             saveStats(stats);
-
-            return { alreadyVisitedToday, visitRecord };
         }
 
-        // 获取独立访客数（某天）
-        function getUniqueVisitors(dateStr) {
+        // 按页面筛选
+        function filterByPage(page, btn) {
+            currentFilter = page;
+            
+            // 更新按钮状态
+            document.querySelectorAll('.page-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            btn.classList.add('active');
+
+            renderPage();
+        }
+
+        // 获取某页面的独立访客
+        function getPageVisitors(page) {
             const stats = getStats();
-            const visitedIds = new Set();
+            const today = new Date().toISOString().split('T')[0];
+            
+            if (currentFilter === 'all') {
+                // 全部页面
+                const visitedIds = new Set();
+                stats.visitors.forEach(v => {
+                    if (v.timestamp.startsWith(today) && (!page || v.page === page)) {
+                        visitedIds.add(v.visitorId);
+                    }
+                });
+                return visitedIds.size;
+            } else {
+                // 指定页面
+                const visitedIds = new Set();
+                stats.visitors.forEach(v => {
+                    if (v.timestamp.startsWith(today) && v.page === currentFilter) {
+                        visitedIds.add(v.visitorId);
+                    }
+                });
+                return visitedIds.size;
+            }
+        }
+
+        // 获取某页面的总访问次数
+        function getPageViews(page) {
+            const stats = getStats();
+            let count = 0;
             stats.visitors.forEach(v => {
-                if (v.timestamp.startsWith(dateStr)) {
-                    visitedIds.add(v.visitorId);
+                if (currentFilter === 'all') {
+                    count++;
+                } else if (v.page === currentFilter) {
+                    count++;
                 }
             });
-            return visitedIds.size;
+            return count;
         }
 
         // 渲染页面
@@ -324,28 +465,76 @@
             const today = now.toISOString().split('T')[0];
 
             // 总独立访客
-            const allVisitorIds = new Set(stats.visitors.map(v => v.visitorId));
+            const allVisitorIds = new Set();
+            const filteredVisitors = stats.visitors.filter(v => {
+                if (currentFilter === 'all') return true;
+                return v.page === currentFilter;
+            });
+            filteredVisitors.forEach(v => allVisitorIds.add(v.visitorId));
             document.getElementById('total-visitors').textContent = allVisitorIds.size;
 
-            // 今日访客
-            document.getElementById('today-visitors').textContent = getUniqueVisitors(today);
+            // 今日访客（筛选后）
+            const todayVisitorIds = new Set();
+            filteredVisitors.forEach(v => {
+                if (v.timestamp.startsWith(today)) {
+                    todayVisitorIds.add(v.visitorId);
+                }
+            });
+            document.getElementById('today-visitors').textContent = todayVisitorIds.size;
 
             // 总访问次数
-            document.getElementById('total-views').textContent = stats.totalViews;
+            document.getElementById('total-views').textContent = filteredVisitors.length;
 
-            // 最近访问记录（最近20条）
-            const recentList = document.getElementById('recent-list');
-            const recentVisits = stats.visitors.slice(-20).reverse();
+            // 页面细分统计
+            const pageGrid = document.getElementById('page-grid');
+            const pageStats = {};
             
+            stats.visitors.forEach(v => {
+                if (!pageStats[v.page]) {
+                    pageStats[v.page] = { visitors: new Set(), views: 0 };
+                }
+                pageStats[v.page].visitors.add(v.visitorId);
+                pageStats[v.page].views++;
+            });
+
+            pageGrid.innerHTML = Object.entries(pageStats).map(([page, data]) => {
+                const info = pageNames[page] || { icon: '📄', name: page };
+                return `
+                    <div class="page-item">
+                        <div class="page-name">
+                            <span class="icon">${info.icon}</span>
+                            <span>${info.name}</span>
+                        </div>
+                        <div class="page-meta">
+                            <span class="page-views">${data.views} 次访问</span>
+                            <span class="page-visitors">${data.visitors.size} 访客</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            if (Object.keys(pageStats).length === 0) {
+                pageGrid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; color: var(--text-secondary); padding: 2rem;">暂无数据</div>';
+            }
+
+            // 最近访问记录
+            const recentList = document.getElementById('recent-list');
+            let recentVisits = stats.visitors.slice(-20).reverse();
+            
+            if (currentFilter !== 'all') {
+                recentVisits = recentVisits.filter(v => v.page === currentFilter);
+            }
+
             recentList.innerHTML = recentVisits.map(v => {
                 const time = new Date(v.timestamp).toLocaleString('zh-CN', {
                     year: 'numeric', month: '2-digit', day: '2-digit',
                     hour: '2-digit', minute: '2-digit', second: '2-digit'
                 });
+                const info = pageNames[v.page] || { icon: '📄', name: v.page };
                 return `
                     <li class="recent-item">
                         <span class="recent-time">${time}</span>
-                        <span class="recent-ip">${v.ip || '本地'}</span>
+                        <span class="recent-page">${info.icon} ${info.name}</span>
                     </li>
                 `;
             }).join('');
@@ -386,7 +575,7 @@
         }
 
         // 页面加载时记录访问
-        const { alreadyVisitedToday } = recordVisit();
+        recordVisit();
         renderPage();
     </script>
 </body>
