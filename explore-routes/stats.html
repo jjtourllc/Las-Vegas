@@ -289,9 +289,9 @@
         <!-- 页面筛选 -->
         <div class="page-tabs">
             <button class="page-tab active" onclick="filterByPage('all', this)">全部页面</button>
-            <button class="page-tab" onclick="filterByPage('/index.html', this)">🏠 首页</button>
-            <button class="page-tab" onclick="filterByPage('/explore-routes/index.html', this)">🗺️ 探索线路</button>
-            <button class="page-tab" onclick="filterByPage('/photo-gallery.html', this)">📸 景点相册</button>
+            <button class="page-tab" onclick="filterByPage('index.html', this)">🏠 首页</button>
+            <button class="page-tab" onclick="filterByPage('explore-routes/index.html', this)">🗺️ 探索线路</button>
+            <button class="page-tab" onclick="filterByPage('photo-gallery.html', this)">📸 景点相册</button>
         </div>
 
         <!-- 统计卡片 -->
@@ -341,7 +341,7 @@
 
         <!-- 返回链接 -->
         <div class="nav-back">
-            <a href="../index.html">← 回到首页</a>
+            <a href="index.html">← 回到探索线路</a>
         </div>
     </div>
 
@@ -386,6 +386,15 @@
             return visitorId;
         }
 
+        // 获取标准化页面路径
+        function getPagePath() {
+            const pathname = window.location.pathname;
+            // 提取文件名部分，比如 /explore-routes/index.html -> explore-routes/index.html
+            const parts = pathname.split('/').filter(p => p.length > 0);
+            if (parts.length === 0) return 'index.html';
+            return parts.join('/');
+        }
+
         // 记录访问
         function recordVisit() {
             const stats = getStats();
@@ -397,7 +406,7 @@
             const visitRecord = {
                 visitorId: visitorId,
                 timestamp: now.toISOString(),
-                page: window.location.pathname
+                page: getPagePath()
             };
 
             stats.visitors.push(visitRecord);
