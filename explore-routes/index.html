@@ -269,13 +269,15 @@
         /* ===== Tour Orders Section ===== */
         .tour-filter-bar {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            align-items: center;
             gap: 1rem;
             margin-bottom: 2rem;
+            flex-wrap: wrap;
         }
         .departure-filter {
-            width: 100%;
-            max-width: 400px;
+            width: auto;
+            min-width: 220px;
             padding: 0.75rem 1.25rem;
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
@@ -285,7 +287,6 @@
             font-family: inherit;
             cursor: pointer;
             transition: all 0.3s ease;
-            align-self: flex-start;
         }
         .departure-filter:hover,
         .departure-filter:focus {
@@ -472,10 +473,9 @@
             color: var(--text-secondary);
             line-height: 1.7;
         }
-        .tour-search-box {
-            max-width: 600px;
-            margin: 0 auto 2.5rem;
-            position: relative;
+        .tour-search-input-wrap {
+            flex: 1;
+            min-width: 300px;
         }
         .tour-search-input {
             width: 100%;
@@ -502,7 +502,6 @@
             text-align: center;
             color: var(--text-secondary);
             font-size: 0.9rem;
-            margin-top: 1rem;
         }
 
         /* ===== Back Button (Fixed Top-Left) ===== */
@@ -742,7 +741,11 @@
                 flex-direction: column;
             }
             .departure-filter {
-                max-width: 100%;
+                width: 100%;
+                min-width: auto;
+            }
+            .tour-search-input-wrap {
+                width: 100%;
             }
             .tours-section {
                 padding: 2rem 1rem 3rem;
@@ -1046,11 +1049,11 @@
                 <select id="departure-filter" class="departure-filter">
                     <option value="">全部出发城市</option>
                 </select>
-                <div class="tour-search-box">
+                <div class="tour-search-input-wrap">
                     <input type="text" id="tour-search-input" class="tour-search-input" placeholder="输入目的地、出发城市等关键字搜索...">
-                    <p class="tour-search-hint">搜索关键字寻找团型</p>
                 </div>
             </div>
+            <p class="tour-search-hint" style="text-align: center; color: var(--text-secondary); margin-bottom: 1.5rem;">搜索关键字寻找团型</p>
             <div class="tours-grid" id="tours-grid"></div>
             <div id="no-results" style="grid-column: 1 / -1; text-align: center; color: var(--text-secondary); padding: 3rem; display: none;">
                 <p>未找到匹配的团单，请尝试其他关键字</p>
