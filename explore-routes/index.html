@@ -267,6 +267,36 @@
         }
 
         /* ===== Tour Orders Section ===== */
+        .tour-filter-bar {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .departure-filter {
+            width: 100%;
+            max-width: 400px;
+            padding: 0.75rem 1.25rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+        }
+        .departure-filter:hover,
+        .departure-filter:focus {
+            border-color: var(--accent-green);
+            box-shadow: 0 0 0 2px rgba(0,230,118,0.15);
+            outline: none;
+        }
+        .departure-filter option {
+            background: var(--bg-surface);
+            color: var(--text-primary);
+        }
         .tours-section {
             max-width: 1400px;
             margin: 0 auto;
@@ -708,6 +738,12 @@
             }
 
             /* 团单区域适配 */
+            .tour-filter-bar {
+                flex-direction: column;
+            }
+            .departure-filter {
+                max-width: 100%;
+            }
             .tours-section {
                 padding: 2rem 1rem 3rem;
             }
@@ -1006,9 +1042,14 @@
         </header>
 
         <section class="tours-section">
-            <div class="tour-search-box">
-                <input type="text" id="tour-search-input" class="tour-search-input" placeholder="输入目的地、出发城市等关键字搜索...">
-                <p class="tour-search-hint">搜索关键字寻找团型</p>
+            <div class="tour-filter-bar">
+                <select id="departure-filter" class="departure-filter">
+                    <option value="">全部出发城市</option>
+                </select>
+                <div class="tour-search-box">
+                    <input type="text" id="tour-search-input" class="tour-search-input" placeholder="输入目的地、出发城市等关键字搜索...">
+                    <p class="tour-search-hint">搜索关键字寻找团型</p>
+                </div>
             </div>
             <div class="tours-grid" id="tours-grid"></div>
             <div id="no-results" style="grid-column: 1 / -1; text-align: center; color: var(--text-secondary); padding: 3rem; display: none;">
@@ -1078,6 +1119,18 @@
                     const grid = document.getElementById('tours-grid');
                     if (!grid || tours.length === 0) return;
                     
+                    // 提取唯一出发城市列表
+                    const cities = [...new Set(tours.map(t => t.departure_city))].sort();
+                    const citySelect = document.getElementById('departure-filter');
+                    if (citySelect && cities.length > 0) {
+                        cities.forEach(city => {
+                            const opt = document.createElement('option');
+                            opt.value = city;
+                            opt.textContent = city;
+                            citySelect.appendChild(opt);
+                        });
+                    }
+                    
                     // 清空现有卡片，避免重复加载
                     grid.innerHTML = '';
                     
@@ -1091,6 +1144,7 @@
                         const wrapper = document.createElement('div');
                         wrapper.className = 'tour-card-wrapper';
                         wrapper.dataset.originalIndex = originalIndex;
+                        wrapper.dataset.departureCity = tour.departure_city;
                         
                         const card = document.createElement('div');
                         card.className = 'tour-card';
@@ -1129,6 +1183,9 @@
 
                     // 同时更新景点和照片统计
                     loadSpotStats();
+                    
+                    // 绑定筛选和搜索事件
+                    bindFilterEvents();
                 })
                 .catch(err => {
                     console.error('Failed to load tours:', err);
@@ -1265,19 +1322,26 @@
             }
         });
 
-        // Tour search functionality
-        const searchInput = document.getElementById('tour-search-input');
-        if (searchInput) {
-            searchInput.addEventListener('input', function() {
-                const keyword = this.value.toLowerCase().trim();
+        // 筛选和搜索逻辑
+        function bindFilterEvents() {
+            const citySelect = document.getElementById('departure-filter');
+            const searchInput = document.getElementById('tour-search-input');
+            
+            function filterCards() {
+                const selectedCity = citySelect ? citySelect.value : '';
+                const keyword = searchInput ? searchInput.value.toLowerCase().trim() : '';
                 const wrappers = document.querySelectorAll('.tour-card-wrapper');
                 let visibleCount = 0;
 
                 wrappers.forEach(wrapper => {
                     const card = wrapper.querySelector('.tour-card');
                     const text = card.textContent.toLowerCase();
+                    const city = (wrapper.dataset.departureCity || '').toLowerCase();
                     
-                    if (!keyword || text.includes(keyword)) {
+                    let cityMatch = !selectedCity || city === selectedCity.toLowerCase();
+                    let keywordMatch = !keyword || text.includes(keyword);
+                    
+                    if (cityMatch && keywordMatch) {
                         wrapper.style.display = '';
                         visibleCount++;
                     } else {
@@ -1287,7 +1351,14 @@
 
                 const noResults = document.getElementById('no-results');
                 noResults.style.display = visibleCount === 0 ? 'block' : 'none';
-            });
+            }
+            
+            if (citySelect) {
+                citySelect.addEventListener('change', filterCards);
+            }
+            if (searchInput) {
+                searchInput.addEventListener('input', filterCards);
+            }
         }
     </script>
 </body>
