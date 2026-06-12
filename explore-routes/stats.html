@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8">
+    <title>访客统计</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a0a0f;
+            --bg-surface: #12121a;
+            --bg-card: rgba(255,255,255,0.04);
+            --bg-card-hover: rgba(255,255,255,0.08);
+            --border-subtle: rgba(255,255,255,0.08);
+            --text-primary: #f0f0f5;
+            --text-secondary: rgba(240,240,245,0.6);
+            --accent-green: #00e676;
+            --accent-green-dim: rgba(0,230,118,0.15);
+            --glow-green: 0 0 20px rgba(0,230,118,0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        /* 头部 */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .header h1 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-green);
+            margin-bottom: 0.5rem;
+        }
+        .header p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* 统计卡片 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.75rem 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .stat-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent-green);
+            box-shadow: var(--glow-green);
+            transform: translateY(-2px);
+        }
+        .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .stat-value {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--accent-green);
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 20px rgba(0,230,118,0.4);
+        }
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* 最近记录 */
+        .recent-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .recent-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .recent-list {
+            list-style: none;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .recent-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            font-size: 0.85rem;
+        }
+        .recent-item:last-child {
+            border-bottom: none;
+        }
+        .recent-time {
+            color: var(--accent-green);
+            font-weight: 500;
+        }
+        .recent-ip {
+            color: var(--text-secondary);
+        }
+
+        /* 管理区域 */
+        .admin-section {
+            background: rgba(255,100,100,0.05);
+            border: 1px solid rgba(255,100,100,0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        .admin-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: rgba(255,150,150,0.9);
+            margin-bottom: 1rem;
+        }
+        .admin-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .admin-btn {
+            padding: 0.6rem 1.2rem;
+            border: 1px solid rgba(255,100,100,0.3);
+            border-radius: 8px;
+            background: rgba(255,100,100,0.1);
+            color: rgba(255,150,150,0.9);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .admin-btn:hover {
+            background: rgba(255,100,100,0.2);
+            border-color: rgba(255,100,100,0.5);
+        }
+
+        /* 导航 */
+        .nav-back {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .nav-back a {
+            color: var(--accent-green);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+        .nav-back a:hover {
+            color: #69f0ae;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .stat-value {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <div class="header">
+            <h1>📊 访客统计面板</h1>
+            <p>仅供管理员查看 · 24小时去重计数</p>
+        </div>
+
+        <!-- 统计卡片 -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-value" id="total-visitors">0</div>
+                <div class="stat-label">总独立访客</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📈</div>
+                <div class="stat-value" id="today-visitors">0</div>
+                <div class="stat-label">今日访客</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🔄</div>
+                <div class="stat-value" id="total-views">0</div>
+                <div class="stat-label">总访问次数</div>
+            </div>
+        </div>
+
+        <!-- 最近访问记录 -->
+        <div class="recent-section">
+            <div class="recent-title">最近访问记录</div>
+            <ul class="recent-list" id="recent-list">
+                <!-- 动态填充 -->
+            </ul>
+        </div>
+
+        <!-- 管理区域 -->
+        <div class="admin-section">
+            <div class="admin-title">管理工具（仅管理员）</div>
+            <div class="admin-buttons">
+                <button class="admin-btn" onclick="resetStats()">重置所有统计数据</button>
+                <button class="admin-btn" onclick="exportData()">导出数据</button>
+                <button class="admin-btn" onclick="forceVisit()">测试访问</button>
+            </div>
+        </div>
+
+        <!-- 返回链接 -->
+        <div class="nav-back">
+            <a href="index.html">← 返回探索线路主页</a>
+        </div>
+    </div>
+
+    <script>
+        const STORAGE_KEY = 'site_visitor_stats';
+
+        // 初始化或获取统计数据
+        function getStats() {
+            const data = localStorage.getItem(STORAGE_KEY);
+            if (!data) {
+                const initial = {
+                    visitors: [], // [{id, timestamp, ip, page}]
+                    totalViews: 0
+                };
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(initial));
+                return initial;
+            }
+            return JSON.parse(data);
+        }
+
+        // 保存统计数据
+        function saveStats(stats) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(stats));
+        }
+
+        // 生成唯一访客ID
+        function getVisitorId() {
+            let visitorId = localStorage.getItem('visitor_id');
+            if (!visitorId) {
+                visitorId = 'v_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                localStorage.setItem('visitor_id', visitorId);
+            }
+            return visitorId;
+        }
+
+        // 记录访问
+        function recordVisit() {
+            const stats = getStats();
+            const visitorId = getVisitorId();
+            const now = new Date();
+            const today = now.toISOString().split('T')[0]; // YYYY-MM-DD
+
+            // 检查今天是否已经记录过该访客
+            const alreadyVisitedToday = stats.visitors.some(v => 
+                v.visitorId === visitorId && v.timestamp.startsWith(today)
+            );
+
+            // 添加访问记录
+            const visitRecord = {
+                visitorId: visitorId,
+                timestamp: now.toISOString(),
+                ip: 'local', // 本地无法获取真实IP
+                page: window.location.pathname
+            };
+
+            stats.visitors.push(visitRecord);
+            stats.totalViews++;
+            saveStats(stats);
+
+            return { alreadyVisitedToday, visitRecord };
+        }
+
+        // 获取独立访客数（某天）
+        function getUniqueVisitors(dateStr) {
+            const stats = getStats();
+            const visitedIds = new Set();
+            stats.visitors.forEach(v => {
+                if (v.timestamp.startsWith(dateStr)) {
+                    visitedIds.add(v.visitorId);
+                }
+            });
+            return visitedIds.size;
+        }
+
+        // 渲染页面
+        function renderPage() {
+            const stats = getStats();
+            const now = new Date();
+            const today = now.toISOString().split('T')[0];
+
+            // 总独立访客
+            const allVisitorIds = new Set(stats.visitors.map(v => v.visitorId));
+            document.getElementById('total-visitors').textContent = allVisitorIds.size;
+
+            // 今日访客
+            document.getElementById('today-visitors').textContent = getUniqueVisitors(today);
+
+            // 总访问次数
+            document.getElementById('total-views').textContent = stats.totalViews;
+
+            // 最近访问记录（最近20条）
+            const recentList = document.getElementById('recent-list');
+            const recentVisits = stats.visitors.slice(-20).reverse();
+            
+            recentList.innerHTML = recentVisits.map(v => {
+                const time = new Date(v.timestamp).toLocaleString('zh-CN', {
+                    year: 'numeric', month: '2-digit', day: '2-digit',
+                    hour: '2-digit', minute: '2-digit', second: '2-digit'
+                });
+                return `
+                    <li class="recent-item">
+                        <span class="recent-time">${time}</span>
+                        <span class="recent-ip">${v.ip || '本地'}</span>
+                    </li>
+                `;
+            }).join('');
+
+            if (recentVisits.length === 0) {
+                recentList.innerHTML = '<li class="recent-item"><span style="color: var(--text-secondary);">暂无访问记录</span></li>';
+            }
+        }
+
+        // 重置统计数据
+        function resetStats() {
+            if (confirm('确定要重置所有统计数据吗？此操作不可恢复！')) {
+                if (confirm('再次确认：真的要删除所有访客数据吗？')) {
+                    localStorage.removeItem(STORAGE_KEY);
+                    renderPage();
+                }
+            }
+        }
+
+        // 导出数据
+        function exportData() {
+            const stats = getStats();
+            const dataStr = JSON.stringify(stats, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `visitor-stats-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // 测试访问
+        function forceVisit() {
+            recordVisit();
+            renderPage();
+            alert('测试访问已记录！');
+        }
+
+        // 页面加载时记录访问
+        const { alreadyVisitedToday } = recordVisit();
+        renderPage();
+    </script>
+</body>
+</html>
