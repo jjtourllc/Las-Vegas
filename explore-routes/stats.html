@@ -397,6 +397,11 @@
 
         // 记录访问
         function recordVisit() {
+            // 不统计stats页面本身的访问
+            if (getPagePath() === 'explore-routes/stats.html' || getPagePath() === 'stats.html') {
+                return;
+            }
+
             const stats = getStats();
             const visitorId = getVisitorId();
             const now = new Date();
