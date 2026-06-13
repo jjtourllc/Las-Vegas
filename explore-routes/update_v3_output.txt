@@ -1,0 +1,275 @@
+============================================================
+Travel Product Card Auto Update Script v3
+============================================================
+
+Existing products count: 10
+Existing product_codes: ['R0000864', 'R0001761', 'R0003521', 'R0004016', 'R0004514', 'R0004536', 'R0004737', 'R0005175', 'R0005286', 'R0005640']
+
+DOCX files in outuan dir: 17
+
+============================================================
+Parsing: 不超过14人的精品小团  死亡谷国家公园+流纹岩鬼城 1日游（英文团）.docx
+  product_code: R0001467
+  tour_code: DV1-EN
+  departure_city: 2. 导游及司机的服务费（必付费用）：每人每天最低支付US$15，儿童及占座婴儿均按成人标准支付）；
+  arrival_city: 拉斯维加斯 Las Vegas
+  duration: 1 天 0 晚
+  price: 4. 实际出行过程中，导游或司机有权根据天气、交通等情况，适当调整景点的游览顺序、停留时间或集合时间以确保行程顺利进行。
+  route: 死亡谷国家公园 Death Valley National Park
+  highlights: 
+  ADDED to tours.json!
+  Copied to tour-files/
+  NEW: 不超过14人的精品小团  死亡谷国家公园+流纹岩鬼城 1日游（英文团）
+
+============================================================
+Parsing: 就是精品  不超过13人的精品小团  拉斯维加斯+锡安国家公园+布莱斯峡谷国家公园+羚羊彩穴+大峡谷国家公园+洛杉矶 8日游（套餐） .docx
+  product_code: R0005286
+  tour_code: JP-VBW8X
+  departure_city: 拉斯维加斯 Las Vegas
+  arrival_city: 4. 参团客人需跟团上导游购买门票，不可自行带票或使用City Pass。景点的门票费和团上餐费可能会根据景点官方的临时通知而变动，以当日景点公布的价格为准。
+  duration: 价格说明
+  price: 5. 尊享旅行有权在方便出团操作的情况下，对行程顺序进行适当调整以确保旅游团顺利进行，但不会减少行程中应包含的项目。
+  route: 
+  highlights: 
+  SKIP: File already in tour-files directory
+
+============================================================
+Parsing: 就是精品  不超过13人的精品小团  锡安国家公园+布莱斯峡谷国家公园+羚羊彩穴+大峡谷国家公园 4日游 .docx
+  product_code: R0005175
+  tour_code: JP-BW4X
+  departure_city: 拉斯维加斯 Las Vegas
+  arrival_city: 4. 参团客人需跟团上导游购买门票，不可自行带票或使用City Pass。景点的门票费和团上餐费可能会根据景点官方的临时通知而变动，以当日景点公布的价格为准。
+  duration: 价格说明
+  price: 5. 尊享旅行有权在方便出团操作的情况下，对行程顺序进行适当调整以确保旅游团顺利进行，但不会减少行程中应包含的项目。
+  route: 
+  highlights: 
+  SKIP: File already in tour-files directory
+
+============================================================
+Parsing: 拉斯维加斯+大峡谷国家公园+马蹄湾+羚羊彩穴+布莱斯峡谷国家公园+大提顿国家公园+黄石国家公园+盐湖城+大盐湖 6日游.docx
+  product_code: R0004737
+  tour_code: YF6
+  departure_city: 3. 服务费：每人每天$18，按预订行程的天数计算，大人小孩同价；
+  arrival_city: 4. 参团客人需跟团上导游购买门票，不可自行带票或使用City Pass。景点的门票费和团上餐费可能会根据景点官方的临时通知而变动，以当日景点公布的价格为准。
+  duration: 价格说明
+  price: 5. 尊享旅行有权在方便出团操作的情况下，对行程顺序进行适当调整以确保旅游团顺利进行，但不会减少行程中应包含的项目。
+  route: 
+  highlights: 3天2晚黄石公园，保证游览15大景点！ | 打卡美西四大国家公园/保留地，两大摄影胜地！ | 精选西黄石核心区稀缺品质酒店 ——Wagon Wheel Hote...
+  SKIP: Product R0004737 already in tours.json
+
+============================================================
+Parsing: 拉斯维加斯接机+大峡谷国家公园+羚羊彩穴+布莱斯峡谷国家公园+大提顿国家公园+黄石国家公园+盐湖城+两天洛杉矶自由行 10日游.docx
+  product_code: R0003713
+  tour_code: VYB10
+  departure_city: 3. 服务费：每人每天$15，按预订行程的天数计算，大人小孩同价；
+  arrival_city: 4. 参团客人需跟团上导游购买门票，不可自行带票或使用City Pass。景点的门票费和团上餐费可能会根据景点官方的临时通知而变动，以当日景点公布的价格为准。
+  duration: 4. 预计开放时间：03/20/2026-10/23/2026。
+  price: 5. 尊享旅行有权在方便出团操作的情况下，对行程顺序进行适当调整以确保旅游团顺利进行，但不会减少行程中应包含的项目。
+  route: 
+  highlights: 
+  ADDED to tours.json!
+  Copied to tour-files/
+  NEW: 拉斯维加斯接机+大峡谷国家公园+羚羊彩穴+布莱斯峡谷国家公园+大提顿国家公园+黄石国家公园+盐湖城+
+
+============================================================
+Parsing: 旧金山+太浩湖+蛇河峡谷+黄石国家公园+大提顿国家公园+下羚羊彩穴+大峡谷国家公园+拉斯维加斯 7日游 .docx
+  product_code: R0001767
+  tour_code: YL7
+  departure_city: 3. 服务费：每人每天$15，按预订行程的天数计算，大人小孩同价；
+  arrival_city: 4. 参团客人需跟团上导游购买门票，不可自行带票或使用City Pass。景点的门票费和团上餐费可能会根据景点官方的临时通知而变动，以当日景点公布的价格为准。
+  duration: 价格说明
+  price: 5. 尊享旅行有权在方便出团操作的情况下，对行程顺序进行适当调整以确保旅游团顺利进行，但不会减少行程中应包含的项目。
+  route: 
+  highlights: 入住2023年新开幕的五星级豪华酒店：枫丹白露酒店（Fontainebleau Las Vegas）！酒店位于繁华的拉斯大道，坐享绝佳地理位置，全新酒店房间，网...
+  ADDED to tours.json!
+  Copied to tour-files/
+  NEW: 旧金山+太浩湖+蛇河峡谷+黄石国家公园+大提顿国家公园+下羚羊彩穴+大峡谷国家公园+拉斯维加斯 7日
+
+============================================================
+Parsing: 洛杉矶+17哩湾风景线+一号公路+大苏尔+硅谷纳帕+索诺玛酒庄+旧金山市区游+优胜美地国家公园+拉斯维加斯+锡安国家公园+布莱斯峡谷国家公园+羚羊彩穴 9日游.docx
+  product_code: R0005640
+  tour_code: SFB9
+  departure_city: 3. 服务费：每人每天$15，按预订行程的天数计算，大人小孩同价；
+  arrival_city: 4. 参团客人需跟团上导游购买门票，不可自行带票或使用City Pass。景点的门票费和团上餐费可能会根据景点官方的临时通知而变动，以当日景点公布的价格为准。
+  duration: 价格说明
+  price: 5. 尊享旅行有权在方便出团操作的情况下，对行程顺序进行适当调整以确保旅游团顺利进行，但不会减少行程中应包含的项目。
+  route: 
+  highlights: 
+  SKIP: File already in tour-files directory
+
+============================================================
+Parsing: 洛杉矶接机+拉斯维加斯+下羚羊彩穴+大提顿国家公园+黄石国家公园+总统山+疯马巨石+盐湖城 9日游（套餐）.docx
+  product_code: R0003521
+  tour_code: LMB9
+  departure_city: 3. 服务费：每人每天$15，按预订行程的天数计算，大人小孩同价；
+  arrival_city: 4. 参团客人需跟团上导游购买门票，不可自行带票或使用City Pass。景点的门票费和团上餐费可能会根据景点官方的临时通知而变动，以当日景点公布的价格为准。
+  duration: 价格说明
+  price: 5. 尊享旅行有权在方便出团操作的情况下，对行程顺序进行适当调整以确保旅游团顺利进行，但不会减少行程中应包含的项目。
+  route: 
+  highlights: 连续超过15年热卖经典黄石公园+总统巨石线路！ | 饱览黄石公园、总统巨石、魔鬼峰，是美国精神的象征！ | 游览黄石10大景点！ | 途经美西7大州，风土人情，...
+  SKIP: File already in tour-files directory
+
+============================================================
+Parsing: 盐湖城进出+大提顿国家公园+黄石国家公园 4日游.docx
+  product_code: R0001761
+  tour_code: Y4
+  departure_city: 盐湖城 Salt Lake City
+  arrival_city: 4. 参团客人需跟团上导游购买门票，不可自行带票或使用City Pass。景点的门票费和团上餐费可能会根据景点官方的临时通知而变动，以当日景点公布的价格为准。
+  duration: 价格说明
+  price: 5. 尊享旅行有权在方便出团操作的情况下，对行程顺序进行适当调整以确保旅游团顺利进行，但不会减少行程中应包含的项目。
+  route: 大提顿国家公园 Grand Teton National Park、黄石国家公园 Yellowstone National Park、黄石熊世界 Yellows
+  highlights: 空降盐湖城，最短平快的方式游览黄石！ | 三天黄石公园，保证游览15大景点！ | 参/离团地点 | 盐湖城自行入住酒店； | 请自行入住Radisson Hot...
+  SKIP: File already in tour-files directory
+
+============================================================
+Parsing: 精品  不超过13人的精品小团  全新高顶  拉斯维加斯接机+下羚羊彩穴+马蹄湾+布莱斯峡谷国家公园+黄石国家公园+大提顿国家公园+盐湖城+锡安国家公园 8日游（套餐） .docx
+  product_code: R0004514
+  tour_code: JP-VYH8X
+  departure_city: 拉斯维加斯 Las Vegas
+  arrival_city: 4. 参团客人需跟团上导游购买门票，不可自行带票或使用City Pass。景点的门票费和团上餐费可能会根据景点官方的临时通知而变动，以当日景点公布的价格为准。
+  duration: 价格说明
+  price: 5. 尊享旅行有权在方便出团操作的情况下，对行程顺序进行适当调整以确保旅游团顺利进行，但不会减少行程中应包含的项目。
+  route: 黄石国家公园 Yellowstone National Park、大提顿国家公园 Grand Teton National Park
+  highlights: 3天2晚黄石公园，保证15大景点！ | 打卡世界七大地质摄影奇观之一的羚羊彩穴、自然奇景马蹄湾，留下属于自己的心动回忆。 | 畅游布莱斯峡谷国家公园、锡安国家公...
+  SKIP: File already in tour-files directory
+
+============================================================
+Parsing: 精品小团 盐湖城进出+大提顿国家公园+黄石国家公园 4日游.docx
+  product_code: R0004536
+  tour_code: JP-EY4
+  departure_city: 盐湖城 Salt Lake City
+  arrival_city: 4. 参团客人需跟团上导游购买门票，不可自行带票或使用City Pass。景点的门票费和团上餐费可能会根据景点官方的临时通知而变动，以当日景点公布的价格为准。
+  duration: 价格说明
+  price: 5. 尊享旅行有权在方便出团操作的情况下，对行程顺序进行适当调整以确保旅游团顺利进行，但不会减少行程中应包含的项目。
+  route: 黄石国家公园 Yellowstone National Park、大提顿国家公园 Grand Teton National Park、盐湖城 Salt Lake
+  highlights: 
+  SKIP: File already in tour-files directory
+
+============================================================
+Parsing: 纽约+费城+华盛顿特区+尼亚加拉瀑布+波士顿+拉斯维加斯+大峡谷国家公园+羚羊彩穴+洛杉矶+旧金山+优胜美地国家公园 13日游.docx
+  product_code: R0003635
+  tour_code: APEW13
+  departure_city: 3. 服务费：每人每天$15，按预订行程的天数计算，大人小孩同价；
+  arrival_city: 4. 参团客人需跟团上导游购买门票，不可自行带票或使用City Pass。景点的门票费和团上餐费可能会根据景点官方的临时通知而变动，以当日景点公布的价格为准。
+  duration: 4. 预计开放时间：03/20/2026-10/23/2026。
+  price: 5. 尊享旅行有权在方便出团操作的情况下，对行程顺序进行适当调整以确保旅游团顺利进行，但不会减少行程中应包含的项目。
+  route: 
+  highlights: 
+  ADDED to tours.json!
+  Copied to tour-files/
+  NEW: 纽约+费城+华盛顿特区+尼亚加拉瀑布+波士顿+拉斯维加斯+大峡谷国家公园+羚羊彩穴+洛杉矶+旧金山+
+
+============================================================
+Parsing: 美国 拉斯维加斯+大峡谷国家公园+马蹄湾+羚羊彩穴+布莱斯峡谷国家公园+大提顿国家公园+黄石国家公园+盐湖城+大盐湖 6日游 .docx
+  product_code: R0004737
+  tour_code: YF6
+  departure_city: 3. 服务费：每人每天$18，按预订行程的天数计算，大人小孩同价；
+  arrival_city: 4. 参团客人需跟团上导游购买门票，不可自行带票或使用City Pass。景点的门票费和团上餐费可能会根据景点官方的临时通知而变动，以当日景点公布的价格为准。
+  duration: 价格说明
+  price: 5. 尊享旅行有权在方便出团操作的情况下，对行程顺序进行适当调整以确保旅游团顺利进行，但不会减少行程中应包含的项目。
+  route: 
+  highlights: 3天2晚黄石公园，保证游览15大景点！ | 打卡美西四大国家公园/保留地，两大摄影胜地！ | 精选西黄石核心区稀缺品质酒店 ——Wagon Wheel Hote...
+  SKIP: File already in tour-files directory
+
+============================================================
+Parsing: 羚羊谷一日游.docx
+  product_code: R0000864
+  tour_code: AC1
+  departure_city: 2. 导游及司机的服务费（必付费用）：每人每天最低支付US$15，儿童及占座婴儿均按成人标准支付）；
+  arrival_city: 拉斯维加斯 Las Vegas
+  duration: 1 天 0 晚
+  price: 4. 实际出行过程中，导游或司机有权根据天气、交通等情况，适当调整景点的游览顺序、停留时间或集合时间以确保行程顺利进行。
+  route: 
+  highlights: 
+  SKIP: File already in tour-files directory
+
+============================================================
+Parsing: 西南巨环丨拉斯接机+锡安国家公园+布莱斯峡谷国家公园+羚羊彩穴+大峡谷国家公园+拉斯维加斯+洛杉矶自由行7日游.docx
+  product_code: R0004202
+  tour_code: VAW7
+  departure_city: 拉斯维加斯 Las Vegas
+  arrival_city: 4. 参团客人需跟团上导游购买门票，不可自行带票或使用City Pass。景点的门票费和团上餐费可能会根据景点官方的临时通知而变动，以当日景点公布的价格为准。
+  duration: 价格说明
+  price: 5. 尊享旅行有权在方便出团操作的情况下，对行程顺序进行适当调整以确保旅游团顺利进行，但不会减少行程中应包含的项目。
+  route: 
+  highlights: 
+  ADDED to tours.json!
+  Copied to tour-files/
+  NEW: 西南巨环丨拉斯接机+锡安国家公园+布莱斯峡谷国家公园+羚羊彩穴+大峡谷国家公园+拉斯维加斯+洛杉矶自
+
+============================================================
+Parsing: 西南巨环丨拉斯维加斯+锡安国家公园+布莱斯峡谷国家公园+羚羊彩穴+大峡谷国家公园+优胜美地国家公园+洛杉矶自由行 10日游（套餐） .docx
+  product_code: R0004016
+  tour_code: VBWS10
+  departure_city: 拉斯维加斯 Las Vegas
+  arrival_city: 4. 参团客人需跟团上导游购买门票，不可自行带票或使用City Pass。景点的门票费和团上餐费可能会根据景点官方的临时通知而变动，以当日景点公布的价格为准。
+  duration: 价格说明
+  price: 5. 尊享旅行有权在方便出团操作的情况下，对行程顺序进行适当调整以确保旅游团顺利进行，但不会减少行程中应包含的项目。
+  route: 
+  highlights: 
+  SKIP: File already in tour-files directory
+
+============================================================
+Parsing: 西峡谷 1日游（包含西峡谷门票） .docx
+  product_code: R0005677
+  tour_code: VCA
+  departure_city: 2. 导游及司机的服务费（必付费用）：每人每天最低支付US$15，儿童及占座婴儿均按成人标准支付）；
+  arrival_city: 拉斯维加斯 Las Vegas
+  duration: 价格说明
+  price: 4. 实际出行过程中，导游或司机有权根据天气、交通等情况，适当调整景点的游览顺序、停留时间或集合时间以确保行程顺利进行。
+  route: 大峡谷国家公园 Grand Canyon National Park
+  highlights: 
+  ADDED to tours.json!
+  Copied to tour-files/
+  NEW: 西峡谷 1日游（包含西峡谷门票） 
+
+============================================================
+FINAL SUMMARY
+============================================================
+DOCX files parsed: 17
+New products added: 6
+Skipped products: 11
+
+[NEW PRODUCTS ADDED]
+  [R0001467] 不超过14人的精品小团  死亡谷国家公园+流纹岩鬼城 1日游（英文团）
+    Route: 2. 导游及司机的服务费（必付费用）：每人每天最低支付US$15，儿童及占座婴儿均按成人标准支付）； -> Duration: 1 天 0 晚
+    Path: 死亡谷国家公园 Death Valley National Park
+  [R0003713] 拉斯维加斯接机+大峡谷国家公园+羚羊彩穴+布莱斯峡谷国家公园+大提顿国家公园+黄石国家公园+盐湖城+
+    Route: 3. 服务费：每人每天$15，按预订行程的天数计算，大人小孩同价； -> Duration: 4. 预计开放时间：03/20/2026-10/23/2026。
+  [R0001767] 旧金山+太浩湖+蛇河峡谷+黄石国家公园+大提顿国家公园+下羚羊彩穴+大峡谷国家公园+拉斯维加斯 7日
+    Route: 3. 服务费：每人每天$15，按预订行程的天数计算，大人小孩同价； -> Duration: 价格说明
+  [R0003635] 纽约+费城+华盛顿特区+尼亚加拉瀑布+波士顿+拉斯维加斯+大峡谷国家公园+羚羊彩穴+洛杉矶+旧金山+
+    Route: 3. 服务费：每人每天$15，按预订行程的天数计算，大人小孩同价； -> Duration: 4. 预计开放时间：03/20/2026-10/23/2026。
+  [R0004202] 西南巨环丨拉斯接机+锡安国家公园+布莱斯峡谷国家公园+羚羊彩穴+大峡谷国家公园+拉斯维加斯+洛杉矶自
+    Route: 拉斯维加斯 Las Vegas -> Duration: 价格说明
+  [R0005677] 西峡谷 1日游（包含西峡谷门票） 
+    Route: 2. 导游及司机的服务费（必付费用）：每人每天最低支付US$15，儿童及占座婴儿均按成人标准支付）； -> Duration: 价格说明
+    Path: 大峡谷国家公园 Grand Canyon National Park
+
+[SKIPPED PRODUCTS]
+  - 就是精品  不超过13人的精品小团  拉斯维加斯+锡安国家公园+布莱斯峡谷国家公园+羚羊彩穴+大峡谷国家公园+洛杉矶 8日游（套餐） .docx
+    Reason: File already in tour-files directory
+  - 就是精品  不超过13人的精品小团  锡安国家公园+布莱斯峡谷国家公园+羚羊彩穴+大峡谷国家公园 4日游 .docx
+    Reason: File already in tour-files directory
+  - 拉斯维加斯+大峡谷国家公园+马蹄湾+羚羊彩穴+布莱斯峡谷国家公园+大提顿国家公园+黄石国家公园+盐湖城+大盐湖 6日游.docx
+    Reason: Product R0004737 already in tours.json
+  - 洛杉矶+17哩湾风景线+一号公路+大苏尔+硅谷纳帕+索诺玛酒庄+旧金山市区游+优胜美地国家公园+拉斯维加斯+锡安国家公园+布莱斯峡谷国家公园+羚羊彩穴 9日游.docx
+    Reason: File already in tour-files directory
+  - 洛杉矶接机+拉斯维加斯+下羚羊彩穴+大提顿国家公园+黄石国家公园+总统山+疯马巨石+盐湖城 9日游（套餐）.docx
+    Reason: File already in tour-files directory
+  - 盐湖城进出+大提顿国家公园+黄石国家公园 4日游.docx
+    Reason: File already in tour-files directory
+  - 精品  不超过13人的精品小团  全新高顶  拉斯维加斯接机+下羚羊彩穴+马蹄湾+布莱斯峡谷国家公园+黄石国家公园+大提顿国家公园+盐湖城+锡安国家公园 8日游（套餐） .docx
+    Reason: File already in tour-files directory
+  - 精品小团 盐湖城进出+大提顿国家公园+黄石国家公园 4日游.docx
+    Reason: File already in tour-files directory
+  - 美国 拉斯维加斯+大峡谷国家公园+马蹄湾+羚羊彩穴+布莱斯峡谷国家公园+大提顿国家公园+黄石国家公园+盐湖城+大盐湖 6日游 .docx
+    Reason: File already in tour-files directory
+  - 羚羊谷一日游.docx
+    Reason: File already in tour-files directory
+  - 西南巨环丨拉斯维加斯+锡安国家公园+布莱斯峡谷国家公园+羚羊彩穴+大峡谷国家公园+优胜美地国家公园+洛杉矶自由行 10日游（套餐） .docx
+    Reason: File already in tour-files directory
+
+============================================================
+Update completed!
+============================================================

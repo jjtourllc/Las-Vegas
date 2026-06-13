@@ -1,0 +1,274 @@
+======================================================================
+Travel Product Card Auto-Update - Scan Report (v5)
+======================================================================
+
+Existing products in tours.json: 16
+Codes: ['R0000864', 'R0001467', 'R0001761', 'R0001767', 'R0003521', 'R0003635', 'R0003713', 'R0004016', 'R0004202', 'R0004514', 'R0004536', 'R0004737', 'R0005175', 'R0005286', 'R0005640', 'R0005677']
+
+DOCX files to scan: 17
+
+======================================================================
+File: 不超过14人的精品小团  死亡谷国家公园+流纹岩鬼城 1日游（英文团）.docx
+  product_code: R0001467
+  tour_code: DV1-EN
+  departure_city: 拉斯维加斯 Las Vegas
+  arrival_city: 拉斯维加斯 Las Vegas
+  duration: 1 天 0 晚
+  price: (NONE)
+  route: 死亡谷国家公园 Death Valley National Park
+  highlights: (NONE)
+  dates: (FOUND)
+  SKIP: File already in tour-files
+
+======================================================================
+File: 就是精品  不超过13人的精品小团  拉斯维加斯+锡安国家公园+布莱斯峡谷国家公园+羚羊彩穴+大峡谷国家公园+洛杉矶 8
+  product_code: R0005286
+  tour_code: JP-VBW8X
+  departure_city: 拉斯维加斯 Las Vegas
+  arrival_city: 洛杉矶 Los Angeles
+  duration: 8 天 7 晚
+  price: (NONE)
+  route: 锡安国家公园 Zion National Park、布莱斯峡谷国家公园 Bryce Canyon National Pa
+  highlights: (NONE)
+  dates: (FOUND)
+  SKIP: File already in tour-files
+
+======================================================================
+File: 就是精品  不超过13人的精品小团  锡安国家公园+布莱斯峡谷国家公园+羚羊彩穴+大峡谷国家公园 4日游 .docx
+  product_code: R0005175
+  tour_code: JP-BW4X
+  departure_city: 拉斯维加斯 Las Vegas
+  arrival_city: 拉斯维加斯 Las Vegas
+  duration: 4 天 3 晚
+  price: (NONE)
+  route: 锡安国家公园 Zion National Park、布莱斯峡谷国家公园 Bryce Canyon National Pa
+  highlights: (NONE)
+  dates: (FOUND)
+  SKIP: File already in tour-files
+
+======================================================================
+File: 拉斯维加斯+大峡谷国家公园+马蹄湾+羚羊彩穴+布莱斯峡谷国家公园+大提顿国家公园+黄石国家公园+盐湖城+大盐湖 6日游.
+  product_code: R0004737
+  tour_code: YF6
+  departure_city: 拉斯维加斯 Las Vegas
+  arrival_city: 拉斯维加斯 Las Vegas
+  duration: 6 天 5 晚
+  price: (NONE)
+  route: 拉斯维加斯 Las Vegas、大峡谷国家公园 Grand Canyon National Park、马蹄湾 Horse
+  highlights: 3天2晚黄石公园，保证游览15大景点！ | 打卡美西四大国家公园/保留地，两大摄影胜地！ | 精选西黄石核心区稀缺品质酒
+  dates: (FOUND)
+  SKIP: Product R0004737 already in tours.json
+
+======================================================================
+File: 拉斯维加斯接机+大峡谷国家公园+羚羊彩穴+布莱斯峡谷国家公园+大提顿国家公园+黄石国家公园+盐湖城+两天洛杉矶自由行 1
+  product_code: R0003713
+  tour_code: VYB10
+  departure_city: 拉斯维加斯 Las Vegas
+  arrival_city: 洛杉矶 Los Angeles
+  duration: 10 天 9 晚
+  price: (NONE)
+  route: 大峡谷国家公园 Grand Canyon National Park、下羚羊彩穴 Lower Antelope Cany
+  highlights: (NONE)
+  dates: (FOUND)
+  SKIP: File already in tour-files
+
+======================================================================
+File: 旧金山+太浩湖+蛇河峡谷+黄石国家公园+大提顿国家公园+下羚羊彩穴+大峡谷国家公园+拉斯维加斯 7日游 .docx
+  product_code: R0001767
+  tour_code: YL7
+  departure_city: 旧金山 San Francisco
+  arrival_city: 旧金山 San Francisco
+  duration: 7 天 6 晚
+  price: (NONE)
+  route: 太浩湖 Lake Tahoe、黄石国家公园 Yellowstone National Park、大提顿国家公园 Gran
+  highlights: 最佳行程设计，不走回头路！一趟旅程，看遍美西精华！深度品质行程，保证停留黄石12~15大景点！领略最壮观的大峡谷国家公园
+  dates: (FOUND)
+  SKIP: File already in tour-files
+
+======================================================================
+File: 洛杉矶+17哩湾风景线+一号公路+大苏尔+硅谷纳帕+索诺玛酒庄+旧金山市区游+优胜美地国家公园+拉斯维加斯+锡安国家公园
+  product_code: R0005640
+  tour_code: SFB9
+  departure_city: 洛杉矶 Los Angeles
+  arrival_city: 洛杉矶 Los Angeles
+  duration: 9 天 8 晚
+  price: (NONE)
+  route: 17哩湾风景线 17-Mile Drive、优胜美地国家公园 Yosemite National Park、拉斯维加斯 
+  highlights: (NONE)
+  dates: (FOUND)
+  SKIP: File already in tour-files
+
+======================================================================
+File: 洛杉矶接机+拉斯维加斯+下羚羊彩穴+大提顿国家公园+黄石国家公园+总统山+疯马巨石+盐湖城 9日游（套餐）.docx
+  product_code: R0003521
+  tour_code: LMB9
+  departure_city: 洛杉矶 Los Angeles
+  arrival_city: 洛杉矶 Los Angeles
+  duration: 9 天 8 晚
+  price: (NONE)
+  route: 拉斯维加斯 Las Vegas、下羚羊彩穴 Lower Antelope Canyon、大提顿国家公园 Grand Te
+  highlights: 连续超过15年热卖经典黄石公园+总统巨石线路！ | 饱览黄石公园、总统巨石、魔鬼峰，是美国精神的象征！ | 久居美国，想
+  dates: (FOUND)
+  SKIP: File already in tour-files
+
+======================================================================
+File: 盐湖城进出+大提顿国家公园+黄石国家公园 4日游.docx
+  product_code: R0001761
+  tour_code: Y4
+  departure_city: 盐湖城 Salt Lake City
+  arrival_city: 盐湖城 Salt Lake City
+  duration: 4 天 3 晚
+  price: (NONE)
+  route: 大提顿国家公园 Grand Teton National Park、黄石国家公园 Yellowstone Nationa
+  highlights: 空降盐湖城，最短平快的方式游览黄石！ | 三天黄石公园，保证游览15大景点！ | 请自行入住Radisson Hotel
+  dates: (FOUND)
+  SKIP: File already in tour-files
+
+======================================================================
+File: 精品  不超过13人的精品小团  全新高顶  拉斯维加斯接机+下羚羊彩穴+马蹄湾+布莱斯峡谷国家公园+黄石国家公园+大提
+  product_code: R0004514
+  tour_code: JP-VYH8X
+  departure_city: 拉斯维加斯 Las Vegas
+  arrival_city: 洛杉矶 Los Angeles
+  duration: 8 天 7 晚
+  price: (NONE)
+  route: 黄石国家公园 Yellowstone National Park、大提顿国家公园 Grand Teton Nationa
+  highlights: 3天2晚黄石公园，保证15大景点！ | 打卡世界七大地质摄影奇观之一的羚羊彩穴、自然奇景马蹄湾，留下属于自己的心动回忆。
+  dates: (FOUND)
+  SKIP: File already in tour-files
+
+======================================================================
+File: 精品小团 盐湖城进出+大提顿国家公园+黄石国家公园 4日游.docx
+  product_code: R0004536
+  tour_code: JP-EY4
+  departure_city: 盐湖城 Salt Lake City
+  arrival_city: 盐湖城 Salt Lake City
+  duration: 4 天 3 晚
+  price: (NONE)
+  route: 黄石国家公园 Yellowstone National Park、大提顿国家公园 Grand Teton Nationa
+  highlights: (NONE)
+  dates: (FOUND)
+  SKIP: File already in tour-files
+
+======================================================================
+File: 纽约+费城+华盛顿特区+尼亚加拉瀑布+波士顿+拉斯维加斯+大峡谷国家公园+羚羊彩穴+洛杉矶+旧金山+优胜美地国家公园 1
+  product_code: R0003635
+  tour_code: APEW13
+  departure_city: 纽约市 New York
+  arrival_city: 洛杉矶 Los Angeles
+  duration: 13 天 12 晚
+  price: (NONE)
+  route: (NONE)
+  highlights: (NONE)
+  dates: (FOUND)
+  SKIP: File already in tour-files
+
+======================================================================
+File: 美国 拉斯维加斯+大峡谷国家公园+马蹄湾+羚羊彩穴+布莱斯峡谷国家公园+大提顿国家公园+黄石国家公园+盐湖城+大盐湖 6
+  product_code: R0004737
+  tour_code: YF6
+  departure_city: 拉斯维加斯 Las Vegas
+  arrival_city: 拉斯维加斯 Las Vegas
+  duration: 6 天 5 晚
+  price: (NONE)
+  route: 拉斯维加斯 Las Vegas、大峡谷国家公园 Grand Canyon National Park、马蹄湾 Horse
+  highlights: 3天2晚黄石公园，保证游览15大景点！ | 打卡美西四大国家公园/保留地，两大摄影胜地！ | 精选西黄石核心区稀缺品质酒
+  dates: (FOUND)
+  SKIP: File already in tour-files
+
+======================================================================
+File: 羚羊谷一日游.docx
+  product_code: R0000864
+  tour_code: AC1
+  departure_city: 拉斯维加斯 Las Vegas
+  arrival_city: 拉斯维加斯 Las Vegas
+  duration: 1 天 0 晚
+  price: (NONE)
+  route: 下羚羊彩穴 Lower Antelope Canyon、马蹄湾 Horseshoe Bend
+  highlights: (NONE)
+  dates: (FOUND)
+  SKIP: File already in tour-files
+
+======================================================================
+File: 西南巨环丨拉斯接机+锡安国家公园+布莱斯峡谷国家公园+羚羊彩穴+大峡谷国家公园+拉斯维加斯+洛杉矶自由行7日游.docx
+  product_code: R0004202
+  tour_code: VAW7
+  departure_city: 拉斯维加斯 Las Vegas
+  arrival_city: 洛杉矶 Los Angeles
+  duration: 7 天 6 晚
+  price: (NONE)
+  route: 锡安国家公园 Zion National Park、布莱斯峡谷国家公园 Bryce Canyon National Pa
+  highlights: (NONE)
+  dates: (FOUND)
+  SKIP: File already in tour-files
+
+======================================================================
+File: 西南巨环丨拉斯维加斯+锡安国家公园+布莱斯峡谷国家公园+羚羊彩穴+大峡谷国家公园+优胜美地国家公园+洛杉矶自由行 10日
+  product_code: R0004016
+  tour_code: VBWS10
+  departure_city: 拉斯维加斯 Las Vegas
+  arrival_city: 洛杉矶 Los Angeles
+  duration: 10 天 9 晚
+  price: (NONE)
+  route: 锡安国家公园 Zion National Park、布莱斯峡谷国家公园 Bryce Canyon National Pa
+  highlights: (NONE)
+  dates: (FOUND)
+  SKIP: File already in tour-files
+
+======================================================================
+File: 西峡谷 1日游（包含西峡谷门票） .docx
+  product_code: R0005677
+  tour_code: VCA
+  departure_city: 拉斯维加斯 Las Vegas
+  arrival_city: 拉斯维加斯 Las Vegas
+  duration: 1 天 0 晚
+  price: (NONE)
+  route: 大峡谷国家公园 Grand Canyon National Park
+  highlights: (NONE)
+  dates: (FOUND)
+  SKIP: File already in tour-files
+
+======================================================================
+FINAL SUMMARY
+======================================================================
+Total scanned: 17
+New products: 0
+Skipped: 17
+
+[SKIPPED]
+  - 不超过14人的精品小团  死亡谷国家公园+流纹岩鬼城 1日游（英文团）.docx
+    Reason: File already in tour-files
+  - 就是精品  不超过13人的精品小团  拉斯维加斯+锡安国家公园+布莱斯峡谷国家公园+羚羊彩穴+大峡谷国家公园+洛杉矶 8
+    Reason: File already in tour-files
+  - 就是精品  不超过13人的精品小团  锡安国家公园+布莱斯峡谷国家公园+羚羊彩穴+大峡谷国家公园 4日游 .docx
+    Reason: File already in tour-files
+  - 拉斯维加斯+大峡谷国家公园+马蹄湾+羚羊彩穴+布莱斯峡谷国家公园+大提顿国家公园+黄石国家公园+盐湖城+大盐湖 6日游.
+    Reason: Product R0004737 already in tours.json
+  - 拉斯维加斯接机+大峡谷国家公园+羚羊彩穴+布莱斯峡谷国家公园+大提顿国家公园+黄石国家公园+盐湖城+两天洛杉矶自由行 1
+    Reason: File already in tour-files
+  - 旧金山+太浩湖+蛇河峡谷+黄石国家公园+大提顿国家公园+下羚羊彩穴+大峡谷国家公园+拉斯维加斯 7日游 .docx
+    Reason: File already in tour-files
+  - 洛杉矶+17哩湾风景线+一号公路+大苏尔+硅谷纳帕+索诺玛酒庄+旧金山市区游+优胜美地国家公园+拉斯维加斯+锡安国家公园
+    Reason: File already in tour-files
+  - 洛杉矶接机+拉斯维加斯+下羚羊彩穴+大提顿国家公园+黄石国家公园+总统山+疯马巨石+盐湖城 9日游（套餐）.docx
+    Reason: File already in tour-files
+  - 盐湖城进出+大提顿国家公园+黄石国家公园 4日游.docx
+    Reason: File already in tour-files
+  - 精品  不超过13人的精品小团  全新高顶  拉斯维加斯接机+下羚羊彩穴+马蹄湾+布莱斯峡谷国家公园+黄石国家公园+大提
+    Reason: File already in tour-files
+  - 精品小团 盐湖城进出+大提顿国家公园+黄石国家公园 4日游.docx
+    Reason: File already in tour-files
+  - 纽约+费城+华盛顿特区+尼亚加拉瀑布+波士顿+拉斯维加斯+大峡谷国家公园+羚羊彩穴+洛杉矶+旧金山+优胜美地国家公园 1
+    Reason: File already in tour-files
+  - 美国 拉斯维加斯+大峡谷国家公园+马蹄湾+羚羊彩穴+布莱斯峡谷国家公园+大提顿国家公园+黄石国家公园+盐湖城+大盐湖 6
+    Reason: File already in tour-files
+  - 羚羊谷一日游.docx
+    Reason: File already in tour-files
+  - 西南巨环丨拉斯接机+锡安国家公园+布莱斯峡谷国家公园+羚羊彩穴+大峡谷国家公园+拉斯维加斯+洛杉矶自由行7日游.docx
+    Reason: File already in tour-files
+  - 西南巨环丨拉斯维加斯+锡安国家公园+布莱斯峡谷国家公园+羚羊彩穴+大峡谷国家公园+优胜美地国家公园+洛杉矶自由行 10日
+    Reason: File already in tour-files
+  - 西峡谷 1日游（包含西峡谷门票） .docx
+    Reason: File already in tour-files
+
+======================================================================
