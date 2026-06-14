@@ -3539,7 +3539,7 @@
             if (img) {
                 const overlay = document.getElementById('qr-overlay');
                 const overlayImg = document.getElementById('qr-overlay-img');
-                overlayImg.src = img.src;
+                overlayImg.src = img.getAttribute('src');
                 overlayImg.alt = img.alt;
                 overlay.classList.add('active');
                 document.body.style.overflow = '';
