@@ -11,7 +11,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <script src="lang-switch.js"></script>
     <style>
         :root {
             --color-primary: #2D5A3D;
@@ -100,31 +99,6 @@
 
         .nav.scrolled .nav-logo-text {
             color: var(--color-primary-dark);
-        }
-        .lang-switch-btn {
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.6);
-            color: white;
-            padding: 0.35rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-left: 1rem;
-        }
-        .nav.scrolled .lang-switch-btn {
-            border-color: var(--color-border);
-            color: var(--color-text-dark);
-        }
-        .lang-switch-btn:hover {
-            background: rgba(255,255,255,0.15);
-            border-color: rgba(255,255,255,0.9);
-        }
-        .nav.scrolled .lang-switch-btn:hover {
-            background: var(--color-bg-cream);
-            border-color: var(--color-accent);
-            color: var(--color-accent);
         }
 
         .nav-links {
@@ -2399,7 +2373,6 @@
             <li><a href="#fleet" onclick="closeNav()">关于我们车队</a></li>
             <li><a href="#contact" onclick="closeNav()">联系我们</a></li>
         </ul>
-        <button class="lang-switch-btn" id="lang-switch-btn" onclick="toggleLang()">EN</button>
     </nav>
 
     <!-- Hero Section -->
@@ -2408,15 +2381,15 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="hero-badge">美西精品旅游</div>
-            <h1 data-i18n="hero-sub">探索美西壮美自然风光</h1>
-            <p>黄石公园、羚羊彩穴、大峡谷……<span data-i18n="hero-desc">多条精品线路，带你深入美西最震撼的自然景观</span></p>
+            <h1>探索美西壮美自然风光</h1>
+            <p>黄石公园、羚羊彩穴、大峡谷……多条精品线路，带你深入美西最震撼的自然景观</p>
             <div class="hero-buttons">
                 <a href="explore-routes/index.html" class="hero-cta">
-                    <span data-i18n="hero-btn1">探索线路</span>
+                    探索线路
                     <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
                 </a>
                 <a href="photo-gallery.html" class="hero-cta gallery-cta">
-                    <span data-i18n="hero-btn2">景点相册</span>
+                    景点相册
                     <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                 </a>
             </div>
@@ -2430,9 +2403,9 @@
     <section class="section" id="tours">
         <div class="container">
             <div class="section-header animate-on-scroll">
-                <span class="section-label" data-i18n="tours-label">精选线路</span>
-                <h2 data-i18n="tours-title">多条精品线路</h2>
-                <p data-i18n="tours-desc">从黄石公园到羚羊彩穴，从大峡谷到优胜美地，每一条线路都是精心设计的深度体验之旅</p>
+                <span class="section-label">精选线路</span>
+                <h2>六大精选旅行线路</h2>
+                <p>从黄石公园到羚羊彩穴，从大峡谷到优胜美地，每一条线路都是精心设计的深度体验之旅</p>
                 <div class="rte-new-routes-badge" style="margin-top: 1rem;">
                     <span class="rte-new-icon">🔄</span>
                     <span>不定期更新精选路线 · 每天发掘好团行程</span>
@@ -2462,19 +2435,19 @@
                         </div>
                         <div class="tour-card-pricing">
                             <div class="tour-price-row">
-                                <span class="tour-price-label" data-i18n="price-single">单人入住</span>
+                                <span class="tour-price-label">单人入住</span>
                                 <span class="tour-price-value tour-price-highlight">$1,068 /人</span>
                             </div>
                             <div class="tour-price-row">
-                                <span class="tour-price-label" data-i18n="price-double">两人入住</span>
+                                <span class="tour-price-label">两人入住</span>
                                 <span class="tour-price-value">$838 /人</span>
                             </div>
                             <div class="tour-price-row">
-                                <span class="tour-price-label" data-i18n="price-triple">三人入住</span>
+                                <span class="tour-price-label">三人入住</span>
                                 <span class="tour-price-value">$728 /人</span>
                             </div>
                             <div class="tour-price-row">
-                                <span class="tour-price-label" data-i18n="price-quad">四人入住</span>
+                                <span class="tour-price-label">四人入住</span>
                                 <span class="tour-price-value">$678 /人</span>
                             </div>
                         </div>
@@ -2501,7 +2474,7 @@
                 <div class="tour-card animate-on-scroll">
                     <div class="tour-card-image">
                         <img src="images/tour1-arch.jpg" alt="西南巨环" loading="lazy">
-                        <span class="tour-card-badge" data-i18n="badge-recommended">推荐</span>
+                        <span class="tour-card-badge">推荐</span>
                         <span class="tour-card-days">10天9晚</span>
                     </div>
                     <div class="tour-card-body">
@@ -2519,19 +2492,19 @@
                         </div>
                         <div class="tour-card-pricing">
                             <div class="tour-price-row">
-                                <span class="tour-price-label" data-i18n="price-single">单人入住</span>
+                                <span class="tour-price-label">单人入住</span>
                                 <span class="tour-price-value tour-price-highlight">$1,748/人</span>
                             </div>
                             <div class="tour-price-row">
-                                <span class="tour-price-label" data-i18n="price-double">两人入住</span>
+                                <span class="tour-price-label">两人入住</span>
                                 <span class="tour-price-value">$1,278/人</span>
                             </div>
                             <div class="tour-price-row">
-                                <span class="tour-price-label" data-i18n="price-triple">三人入住</span>
+                                <span class="tour-price-label">三人入住</span>
                                 <span class="tour-price-value">$1,098/人</span>
                             </div>
                             <div class="tour-price-row">
-                                <span class="tour-price-label" data-i18n="price-quad">四人入住</span>
+                                <span class="tour-price-label">四人入住</span>
                                 <span class="tour-price-value">$1,018/人</span>
                             </div>
                         </div>
@@ -2558,7 +2531,7 @@
                 <div class="tour-card animate-on-scroll">
                     <div class="tour-card-image">
                         <img src="images/tour2-premium.jpg" alt="精品8日" loading="lazy">
-                        <span class="tour-card-badge" data-i18n="badge-premium">精品小团</span>
+                        <span class="tour-card-badge">精品小团</span>
                         <span class="tour-card-days">8天7晚</span>
                     </div>
                     <div class="tour-card-body">
@@ -2576,19 +2549,19 @@
                         </div>
                         <div class="tour-card-pricing">
                             <div class="tour-price-row">
-                                <span class="tour-price-label" data-i18n="price-single">单人入住</span>
+                                <span class="tour-price-label">单人入住</span>
                                 <span class="tour-price-value tour-price-highlight">$2,378 /人</span>
                             </div>
                             <div class="tour-price-row">
-                                <span class="tour-price-label" data-i18n="price-double">两人入住</span>
+                                <span class="tour-price-label">两人入住</span>
                                 <span class="tour-price-value">$1,658 /人</span>
                             </div>
                             <div class="tour-price-row">
-                                <span class="tour-price-label" data-i18n="price-triple">三人入住</span>
+                                <span class="tour-price-label">三人入住</span>
                                 <span class="tour-price-value">$1,428 /人</span>
                             </div>
                             <div class="tour-price-row">
-                                <span class="tour-price-label" data-i18n="price-quad">四人入住</span>
+                                <span class="tour-price-label">四人入住</span>
                                 <span class="tour-price-value">$1,108 /人</span>
                             </div>
                         </div>
@@ -2615,7 +2588,7 @@
                 <div class="tour-card animate-on-scroll">
                     <div class="tour-card-image">
                         <img src="images/tour3-la9day.jpg" alt="洛杉矶9日" loading="lazy">
-                        <span class="tour-card-badge" data-i18n="badge-hot">热卖</span>
+                        <span class="tour-card-badge">热卖</span>
                         <span class="tour-card-days">9天8晚</span>
                     </div>
                     <div class="tour-card-body">
@@ -2633,19 +2606,19 @@
                         </div>
                         <div class="tour-card-pricing">
                             <div class="tour-price-row">
-                                <span class="tour-price-label" data-i18n="price-single">单人入住</span>
+                                <span class="tour-price-label">单人入住</span>
                                 <span class="tour-price-value tour-price-highlight">$1,648 /人</span>
                             </div>
                             <div class="tour-price-row">
-                                <span class="tour-price-label" data-i18n="price-double">两人入住</span>
+                                <span class="tour-price-label">两人入住</span>
                                 <span class="tour-price-value">$1,218 /人</span>
                             </div>
                             <div class="tour-price-row">
-                                <span class="tour-price-label" data-i18n="price-triple">三人入住</span>
+                                <span class="tour-price-label">三人入住</span>
                                 <span class="tour-price-value">$1,118 /人</span>
                             </div>
                             <div class="tour-price-row">
-                                <span class="tour-price-label" data-i18n="price-quad">四人入住</span>
+                                <span class="tour-price-label">四人入住</span>
                                 <span class="tour-price-value">$1,028 /人</span>
                             </div>
                         </div>
@@ -2672,7 +2645,7 @@
                 <div class="tour-card animate-on-scroll">
                     <div class="tour-card-image">
                         <img src="images/tour4-jp4day.jpg" alt="精品4日" loading="lazy">
-                        <span class="tour-card-badge" data-i18n="badge-premium">精品小团</span>
+                        <span class="tour-card-badge">精品小团</span>
                         <span class="tour-card-days">4天3晚</span>
                     </div>
                     <div class="tour-card-body">
@@ -2690,19 +2663,19 @@
                         </div>
                         <div class="tour-card-pricing">
                             <div class="tour-price-row">
-                                <span class="tour-price-label" data-i18n="price-single">单人入住</span>
+                                <span class="tour-price-label">单人入住</span>
                                 <span class="tour-price-value tour-price-highlight">$1,248 /人</span>
                             </div>
                             <div class="tour-price-row">
-                                <span class="tour-price-label" data-i18n="price-double">两人入住</span>
+                                <span class="tour-price-label">两人入住</span>
                                 <span class="tour-price-value">$898 /人</span>
                             </div>
                             <div class="tour-price-row">
-                                <span class="tour-price-label" data-i18n="price-triple">三人入住</span>
+                                <span class="tour-price-label">三人入住</span>
                                 <span class="tour-price-value">$798 /人</span>
                             </div>
                             <div class="tour-price-row">
-                                <span class="tour-price-label" data-i18n="price-quad">四人入住</span>
+                                <span class="tour-price-label">四人入住</span>
                                 <span class="tour-price-value">$758 /人</span>
                             </div>
                         </div>
@@ -2729,7 +2702,7 @@
                 <div class="tour-card animate-on-scroll">
                     <div class="tour-card-image">
                         <img src="images/tour5-y4.jpg" alt="黄石4日" loading="lazy">
-                        <span class="tour-card-badge" data-i18n="badge-classic">经典线路</span>
+                        <span class="tour-card-badge">经典线路</span>
                         <span class="tour-card-days">4天3晚</span>
                     </div>
                     <div class="tour-card-body">
@@ -2746,19 +2719,19 @@
                         </div>
                         <div class="tour-card-pricing">
                             <div class="tour-price-row">
-                                <span class="tour-price-label" data-i18n="price-single">单人入住</span>
+                                <span class="tour-price-label">单人入住</span>
                                 <span class="tour-price-value tour-price-highlight">$778 /人</span>
                             </div>
                             <div class="tour-price-row">
-                                <span class="tour-price-label" data-i18n="price-double">两人入住</span>
+                                <span class="tour-price-label">两人入住</span>
                                 <span class="tour-price-value">$528 /人</span>
                             </div>
                             <div class="tour-price-row">
-                                <span class="tour-price-label" data-i18n="price-triple">三人入住</span>
+                                <span class="tour-price-label">三人入住</span>
                                 <span class="tour-price-value">$488 /人</span>
                             </div>
                             <div class="tour-price-row">
-                                <span class="tour-price-label" data-i18n="price-quad">四人入住</span>
+                                <span class="tour-price-label">四人入住</span>
                                 <span class="tour-price-value">$428 /人</span>
                             </div>
                         </div>
@@ -2789,9 +2762,9 @@
     <section class="section more-options" id="more-options">
         <div class="container">
             <div class="section-header animate-on-scroll">
-                <span class="section-label" data-i18n="more-label">更多选择</span>
-                <h2 data-i18n="more-title">更多团型 · 全球线路</h2>
-                <p data-i18n="more-desc">除了以上标准行程，我们还有更多选择适合您的需求，欢迎通过地图查阅然后咨询</p>
+                <span class="section-label">更多选择</span>
+                <h2>更多团型 · 全球线路</h2>
+                <p>除了以上6条标准行程，我们还有更多选择适合您的需求，欢迎通过地图查阅然后咨询</p>
             </div>
 
             <!-- 世界地图 -->
@@ -2806,7 +2779,7 @@
                     <button class="map-zoom-btn" id="zoom-out" title="缩小">−</button>
                     <button class="map-zoom-btn" id="map-reset" title="重置">↺</button>
                 </div>
-                <p class="map-hint" data-i18n="map-hint">💡 鼠标滚轮缩放 · 拖拽查看</p>
+                <p class="map-hint">💡 鼠标滚轮缩放 · 拖拽查看</p>
             </div>
 
             <!-- 三种团型分类 -->
@@ -2835,15 +2808,15 @@
                             <rect x="26" y="50" width="12" height="4" rx="1" fill="white"/>
                         </svg>
                     </div>
-                    <h3 data-i18n="bus-title">大巴团</h3>
-                    <p class="tour-type-desc" data-i18n="bus-desc">经济实惠、结伴出行、标准行程</p>
+                    <h3>大巴团</h3>
+                    <p class="tour-type-desc">经济实惠、结伴出行、标准行程</p>
                     <ul class="tour-type-features">
-                        <li><li data-i18n="bus-f1">✓ 价格优惠，适合个人、情侣</li></li>
-                        <li><li data-i18n="bus-f2">✓ 标准行程，固定出发日期</li></li>
-                        <li><li data-i18n="bus-f3">✓ 结识旅伴，欢乐同行</li></li>
+                        <li>✓ 价格优惠，适合个人、情侣</li>
+                        <li>✓ 标准行程，固定出发日期</li>
+                        <li>✓ 结识旅伴，欢乐同行</li>
                     </ul>
                     <div class="tour-type-cta">
-                        <span style="color: var(--color-text-light); font-size: 0.85rem;"><div class="tour-type-cta"><span data-i18n="type-consult">欢迎电话/微信咨询</span></div></span>
+                        <span style="color: var(--color-text-light); font-size: 0.85rem;">欢迎电话/微信咨询</span>
                     </div>
                 </div>
 
@@ -2876,15 +2849,15 @@
                             <line x1="37.5" y1="41" x2="42.5" y2="41" stroke="#8B6914" stroke-width="1"/>
                         </svg>
                     </div>
-                    <h3 data-i18n="premium-title">精品小团</h3>
-                    <p class="tour-type-desc" data-i18n="premium-desc">6-12人、高顶商务、灵活舒适</p>
+                    <h3>精品小团</h3>
+                    <p class="tour-type-desc">6-12人、高顶商务、灵活舒适</p>
                     <ul class="tour-type-features">
-                        <li><li data-i18n="premium-f1">✓ 精品小团，体验更私密</li></li>
-                        <li><li data-i18n="premium-f2">✓ 高顶商务，空间宽敞</li></li>
-                        <li><li data-i18n="premium-f3">✓ 两人即可成团，灵活出发</li></li>
+                        <li>✓ 精品小团，体验更私密</li>
+                        <li>✓ 高顶商务，空间宽敞</li>
+                        <li>✓ 两人即可成团，灵活出发</li>
                     </ul>
                     <div class="tour-type-cta">
-                        <span style="color: var(--color-text-light); font-size: 0.85rem;"><div class="tour-type-cta"><span data-i18n="type-consult">欢迎电话/微信咨询</span></div></span>
+                        <span style="color: var(--color-text-light); font-size: 0.85rem;">欢迎电话/微信咨询</span>
                     </div>
                 </div>
 
@@ -2904,15 +2877,15 @@
                             <path d="M14 24 L18 22 L22 24 L18 26 Z" fill="#AB47BC" stroke="#7B1FA2"/>
                         </svg>
                     </div>
-                    <h3 data-i18n="custom-title">定制包团</h3>
-                    <p class="tour-type-desc" data-i18n="custom-desc">私人专属、自由搭配、专属导游</p>
+                    <h3>定制包团</h3>
+                    <p class="tour-type-desc">私人专属、自由搭配、专属导游</p>
                     <ul class="tour-type-features">
-                        <li><li data-i18n="custom-f1">✓ 专属行程，自由组合景点</li></li>
-                        <li><li data-i18n="custom-f2">✓ 专属导游，全程贴心服务</li></li>
-                        <li><li data-i18n="custom-f3">✓ 企业团队、家庭包团首选</li></li>
+                        <li>✓ 专属行程，自由组合景点</li>
+                        <li>✓ 专属导游，全程贴心服务</li>
+                        <li>✓ 企业团队、家庭包团首选</li>
                     </ul>
                     <div class="tour-type-cta">
-                        <span style="color: var(--color-text-light); font-size: 0.85rem;"><div class="tour-type-cta"><span data-i18n="type-consult">欢迎电话/微信咨询</span></div></span>
+                        <span style="color: var(--color-text-light); font-size: 0.85rem;">欢迎电话/微信咨询</span>
                     </div>
                 </div>
             </div>
@@ -2924,38 +2897,38 @@
     <section class="section features" id="features">
         <div class="container">
             <div class="section-header animate-on-scroll">
-                <span class="section-label" data-i18n="features-label">服务优势</span>
-                <h2 data-i18n="features-title">为什么选择我们</h2>
-                <p data-i18n="features-desc">多年深耕美国旅游线路，为您打造无忧的深度旅行体验</p>
+                <span class="section-label">服务优势</span>
+                <h2>为什么选择我们</h2>
+                <p>多年深耕美国旅游线路，为您打造无忧的深度旅行体验</p>
             </div>
             <div class="features-grid">
                 <div class="feature-item animate-on-scroll">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/></svg>
                     </div>
-                    <h3 data-i18n="feat1-title">尊享体验</h3>
-                    <p><span data-i18n="feat1-desc">大巴，精品小团，订制包团，VIP级别旅行体验，拒绝走马观花</span></p>
+                    <h3>尊享体验</h3>
+                    <p>大巴，精品小团，订制包团，VIP级别旅行体验，拒绝走马观花</p>
                 </div>
                 <div class="feature-item animate-on-scroll">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
                     </div>
-                    <h3 data-i18n="feat2-title">多年经验</h3>
-                    <p><span data-i18n="feat2-desc">连续超过15年热卖经典线路，经验丰富，服务可靠</span></p>
+                    <h3>多年经验</h3>
+                    <p>连续超过15年热卖经典线路，经验丰富，服务可靠</p>
                 </div>
                 <div class="feature-item animate-on-scroll">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg>
                     </div>
-                    <h3 data-i18n="feat3-title">诚信为本</h3>
-                    <p><span data-i18n="feat3-desc">我们始终秉持诚实与透明的原则，坚守行业底线与品牌信誉。</span></p>
+                    <h3>诚信为本</h3>
+                    <p>我们始终秉持诚实与透明的原则，坚守行业底线与品牌信誉。</p>
                 </div>
                 <div class="feature-item animate-on-scroll">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                     </div>
-                    <h3 data-i18n="feat4-title">贴心服务</h3>
-                    <p><span data-i18n="feat4-desc">我们懂两种语言，更懂您一份安心。全程照顾，尊享出行</span></p>
+                    <h3>贴心服务</h3>
+                    <p>我们懂两种语言，更懂您一份安心。全程照顾，尊享出行</p>
                 </div>
             </div>
         </div>
@@ -2965,9 +2938,9 @@
     <section class="section fleet-section" id="fleet">
         <div class="container">
             <div class="section-header animate-on-scroll">
-                <span class="section-label" data-i18n="fleet-label">我们的车队</span>
-                <h2 data-i18n="fleet-title">关于我们车队</h2>
-                <p data-i18n="fleet-desc">从高端商务用车到大型豪华巴士，一站式满足不同出行需求</p>
+                <span class="section-label">我们的车队</span>
+                <h2>关于我们车队</h2>
+                <p>从高端商务用车到大型豪华巴士，一站式满足不同出行需求</p>
             </div>
             <div class="fleet-display-grid">
                 <div class="fleet-card animate-on-scroll">
@@ -2978,9 +2951,9 @@
                         <h3>14-15座高顶商务车</h3>
                         <p>高顶设计,轻松进出。商务级内饰,舒适私密。小型包团与家庭出游首选。</p>
                         <div class="fleet-tags">
-                            <span class="fleet-tag"> <span data-i18n="fleet-t1">高顶设计</span> </span>
-                            <span class="fleet-tag"> <span data-i18n="fleet-t2">商务内饰</span> </span>
-                            <span class="fleet-tag"> <span data-i18n="fleet-t3">舒适私密</span> </span>
+                            <span class="fleet-tag">高顶设计</span>
+                            <span class="fleet-tag">商务内饰</span>
+                            <span class="fleet-tag">舒适私密</span>
                         </div>
                     </div>
                 </div>
@@ -2992,9 +2965,9 @@
                         <h3>38-40座中型巴士</h3>
                         <p>高顶设计,轻松进出。商务级内饰,舒适私密。中小型团队出游首选。</p>
                         <div class="fleet-tags">
-                            <span class="fleet-tag"> <span data-i18n="fleet-t1">高顶设计</span> </span>
-                            <span class="fleet-tag"> <span data-i18n="fleet-t2">商务内饰</span> </span>
-                            <span class="fleet-tag"> <span data-i18n="fleet-t4">轻松进出</span> </span>
+                            <span class="fleet-tag">高顶设计</span>
+                            <span class="fleet-tag">商务内饰</span>
+                            <span class="fleet-tag">轻松进出</span>
                         </div>
                     </div>
                 </div>
@@ -3006,9 +2979,9 @@
                         <h3>7座高端商务车</h3>
                         <p>空间宽绰,上下自如。豪华内饰,私享舒适。精品小团与家庭出游首选。</p>
                         <div class="fleet-tags">
-                            <span class="fleet-tag"> <span data-i18n="fleet-t5">空间宽绰</span> </span>
-                            <span class="fleet-tag"> <span data-i18n="fleet-t6">豪华内饰</span> </span>
-                            <span class="fleet-tag"> <span data-i18n="fleet-t7">私享舒适</span> </span>
+                            <span class="fleet-tag">空间宽绰</span>
+                            <span class="fleet-tag">豪华内饰</span>
+                            <span class="fleet-tag">私享舒适</span>
                         </div>
                     </div>
                 </div>
@@ -3020,9 +2993,9 @@
                         <h3>56座豪华大巴</h3>
                         <p>宽敞空间,舒适出行。豪华设施,平稳安静。大型团队与长途旅行首选。</p>
                         <div class="fleet-tags">
-                            <span class="fleet-tag"> <span data-i18n="fleet-t8">56座超大</span> </span>
-                            <span class="fleet-tag"> <span data-i18n="fleet-t9">超大行李舱</span> </span>
-                            <span class="fleet-tag"> <span data-i18n="fleet-t10">车载洗手间</span> </span>
+                            <span class="fleet-tag">56座超大</span>
+                            <span class="fleet-tag">超大行李舱</span>
+                            <span class="fleet-tag">车载洗手间</span>
                         </div>
                     </div>
                 </div>
@@ -3116,43 +3089,43 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="booking-name">姓名 <span class="required">*</span></label>
-                            <input type="text" id="booking-name" name="name" placeholder="请输入您的姓名" data-i18n-ph="name" required>
+                            <input type="text" id="booking-name" name="name" placeholder="请输入您的姓名" required>
                         </div>
                         <div class="form-group">
-                            <label for="booking-phone" data-i18n="phone-f">电话</label>
+                            <label for="booking-phone">电话</label>
                             <input type="tel" id="booking-phone" name="phone" placeholder="例如：702-123-4567">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="booking-email" data-i18n="email-f">邮箱</label>
-                            <input type="email" id="booking-email" name="email" placeholder="example@email.com" data-i18n-ph="email">
+                            <label for="booking-email">邮箱</label>
+                            <input type="email" id="booking-email" name="email" placeholder="example@email.com">
                         </div>
                         <div class="form-group">
-                            <label for="booking-tour" data-i18n="wechat-f">微信号</label>
-                            <input type="text" id="booking-tour" name="tour" placeholder="请输入您的微信号" data-i18n-ph="wechat">
+                            <label for="booking-tour">微信号</label>
+                            <input type="text" id="booking-tour" name="tour" placeholder="请输入您的微信号">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="booking-date" data-i18n="date">期望出行日期</label>
+                            <label for="booking-date">期望出行日期</label>
                             <input type="date" id="booking-date" name="travel_date">
                         </div>
                         <div class="form-group">
-                            <label for="booking-guests" data-i18n="guests">出行人数 <span class="required">*</span></label>
+                            <label for="booking-guests">出行人数 <span class="required">*</span></label>
                             <select id="booking-guests" name="guests" required>
-                                <option value="" data-i18n="guests-select">请选择人数</option>
-                                <option value="1人" data-i18n="guest-1">1人</option>
-                                <option value="2人" data-i18n="guest-2">2人</option>
-                                <option value="3人" data-i18n="guest-3">3人</option>
-                                <option value="4人" data-i18n="guest-4">4人</option>
-                                <option value="5人以上" data-i18n="guest-5">5人以上</option>
+                                <option value="">请选择人数</option>
+                                <option value="1人">1人</option>
+                                <option value="2人">2人</option>
+                                <option value="3人">3人</option>
+                                <option value="4人">4人</option>
+                                <option value="5人以上">5人以上</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group full-width">
-                        <label for="booking-message" data-i18n="message">备注留言</label>
-                        <textarea id="booking-message" name="message" placeholder="请告知旅行线路或包团定制需求及联系方式......" data-i18n-ph="message"></textarea>
+                        <label for="booking-message">备注留言</label>
+                        <textarea id="booking-message" name="message" placeholder="请告知旅行线路或包团定制需求及联系方式......"></textarea>
                     </div>
                     <!-- Formspree hidden field -->
                     <input type="text" name="_gotcha" style="display:none">
@@ -3170,7 +3143,7 @@
 
     <!-- QR Code Overlay -->
     <div class="qr-overlay" id="qr-overlay" onclick="closeQrOverlay()">
-        <span class="qr-close-hint"><span data-i18n="close-qr">点击任意位置关闭</span></span>
+        <span class="qr-close-hint">点击任意位置关闭</span>
         <img src="" alt="放大二维码" id="qr-overlay-img">
     </div>
 
@@ -3189,7 +3162,7 @@
             </div>
             <div class="modal-body">
                 <div class="modal-section">
-                    <h3 data-i18n="modal-features">行程特色</h3>
+                    <h3>行程特色</h3>
                     <ul>
                         <li>领略最完整的西南巨环行程！</li>
                         <li>感受狂野美西的热情！</li>
@@ -3198,7 +3171,7 @@
                     </ul>
                 </div>
                 <div class="modal-section">
-                    <h3 data-i18n="modal-price">价格</h3>
+                    <h3>价格</h3>
                     <div class="modal-price-box">
                         <div class="modal-price-item"><div class="price-label">单人入住</div><div class="price-value">$1,068/人</div></div>
                         <div class="modal-price-item"><div class="price-label">两人入住</div><div class="price-value">$838/人</div></div>
@@ -3207,19 +3180,19 @@
                     </div>
                 </div>
                 <div class="modal-section">
-                    <h3 data-i18n="modal-dates">出发班期</h3>
+                    <h3>出发班期</h3>
                     <p>11/10/2025-12/25/2026：周五，两人成团，保证出发。</p>
                 </div>
                 <div class="modal-section">
-                    <h3 data-i18n="modal-route">途经景点</h3>
+                    <h3>途经景点</h3>
                     <p>锡安国家公园 Zion National Park、布莱斯峡谷国家公园 Bryce Canyon National Park、大峡谷国家公园 Grand Canyon National Park、峡谷地国家公园 Canyonlands National Park、拱门国家公园 Arches National Park、纪念碑谷 Monument Valley、马蹄湾 Horseshoe Bend、下羚羊彩穴 Lower Antelope Canyon</p>
                 </div>
                 <div class="modal-section">
-                    <h3 data-i18n="modal-pickup">参/离团地点</h3>
+                    <h3>参/离团地点</h3>
                     <p><strong>参团：</strong>拉斯维加斯（Las Vegas）</p>
                     <p><strong>离团：</strong>拉斯维加斯（Las Vegas）</p>
                 </div>
-                <a href="#contact" class="modal-cta" data-i18n="modal-cta" onclick="closeModal('tour1')"><span data-i18n="modal-cta">立即咨询此线路</span></a>
+                <a href="#contact" class="modal-cta" onclick="closeModal('tour1')">立即咨询此线路</a>
             </div>
         </div>
     </div>
@@ -3237,7 +3210,7 @@
             </div>
             <div class="modal-body">
                 <div class="modal-section">
-                    <h3 data-i18n="modal-features">产品特色</h3>
+                    <h3>产品特色</h3>
                     <ul>
                         <li>领略最完整的西南巨环行程！</li>
                         <li>感受狂野美西的热情！</li>
@@ -3247,7 +3220,7 @@
                     </ul>
                 </div>
                 <div class="modal-section">
-                    <h3 data-i18n="modal-price">价格</h3>
+                    <h3>价格</h3>
                     <div class="modal-price-box">
                         <div class="modal-price-item"><div class="price-label">单人入住</div><div class="price-value">$1,748/人</div></div>
                         <div class="modal-price-item"><div class="price-label">两人入住</div><div class="price-value">$1,278/人</div></div>
@@ -3256,15 +3229,15 @@
                     </div>
                 </div>
                 <div class="modal-section">
-                    <h3 data-i18n="modal-dates">出发班期</h3>
+                    <h3>出发班期</h3>
                     <p>套餐A：每周日出发（01/22-12/24）；套餐B：每周四出发（01/22-12/24）。两人成团，保证出发。</p>
                 </div>
                 <div class="modal-section">
-                    <h3 data-i18n="modal-pickup">参/离团地点</h3>
+                    <h3>参/离团地点</h3>
                     <p><strong>参团：</strong>拉斯维加斯哈里·瑞德国际机场 (LAS)，免费接机时间10:00-18:00。另可选 STRAT Hotel 15:30 出发。</p>
                     <p><strong>离团：</strong>Howard Johnson Fullerton / Motel 6 Fountain Valley</p>
                 </div>
-                <a href="#contact" class="modal-cta" data-i18n="modal-cta" onclick="closeModal('tour2')"><span data-i18n="modal-cta">立即咨询此线路</span></a>
+                <a href="#contact" class="modal-cta" onclick="closeModal('tour2')">立即咨询此线路</a>
             </div>
         </div>
     </div>
@@ -3282,7 +3255,7 @@
             </div>
             <div class="modal-body">
                 <div class="modal-section">
-                    <h3 data-i18n="modal-features">行程特色</h3>
+                    <h3>行程特色</h3>
                     <ul>
                         <li>3天2晚黄石公园，保证15大景点！</li>
                         <li>打卡世界七大地质摄影奇观之一的羚羊彩穴、自然奇景马蹄湾</li>
@@ -3297,7 +3270,7 @@
                     </ul>
                 </div>
                 <div class="modal-section">
-                    <h3 data-i18n="modal-price">价格</h3>
+                    <h3>价格</h3>
                     <div class="modal-price-box">
                         <div class="modal-price-item"><div class="price-label">单人入住</div><div class="price-value">$2,378/人</div></div>
                         <div class="modal-price-item"><div class="price-label">两人入住</div><div class="price-value">$1,658/人</div></div>
@@ -3306,15 +3279,15 @@
                     </div>
                 </div>
                 <div class="modal-section">
-                    <h3 data-i18n="modal-dates">出发班期</h3>
+                    <h3>出发班期</h3>
                     <p>05/13-10/07：每周二出发。两人成团，保证出发。</p>
                 </div>
                 <div class="modal-section">
-                    <h3 data-i18n="modal-pickup">参/离团地点</h3>
+                    <h3>参/离团地点</h3>
                     <p><strong>参团：</strong>拉斯维加斯哈里·瑞德国际机场 (LAS)</p>
                     <p><strong>离团：</strong>洛杉矶国际机场 (LAX)</p>
                 </div>
-                <a href="#contact" class="modal-cta" data-i18n="modal-cta" onclick="closeModal('tour6')"><span data-i18n="modal-cta">立即咨询此线路</span></a>
+                <a href="#contact" class="modal-cta" onclick="closeModal('tour6')">立即咨询此线路</a>
             </div>
         </div>
     </div>
@@ -3332,7 +3305,7 @@
             </div>
             <div class="modal-body">
                 <div class="modal-section">
-                    <h3 data-i18n="modal-features">行程特色</h3>
+                    <h3>行程特色</h3>
                     <ul>
                         <li>连续超过15年热卖经典黄石公园+总统巨石线路！</li>
                         <li>饱览黄石公园、总统巨石、魔鬼峰，是美国精神的象征！</li>
@@ -3342,7 +3315,7 @@
                     </ul>
                 </div>
                 <div class="modal-section">
-                    <h3 data-i18n="modal-price">价格</h3>
+                    <h3>价格</h3>
                     <div class="modal-price-box">
                         <div class="modal-price-item"><div class="price-label">单人入住</div><div class="price-value">$1,648/人</div></div>
                         <div class="modal-price-item"><div class="price-label">两人入住</div><div class="price-value">$1,218/人</div></div>
@@ -3351,15 +3324,15 @@
                     </div>
                 </div>
                 <div class="modal-section">
-                    <h3 data-i18n="modal-dates">出发班期</h3>
+                    <h3>出发班期</h3>
                     <p>05/12-09/29：每周二出发。两人成团，保证出发。</p>
                 </div>
                 <div class="modal-section">
-                    <h3 data-i18n="modal-pickup">参/离团地点</h3>
+                    <h3>参/离团地点</h3>
                     <p><strong>参团：</strong>洛杉矶国际机场 (LAX)，免费接机时间10:00-22:00</p>
                     <p><strong>离团：</strong>拉斯维加斯哈里·瑞德国际机场 (LAS)，免费送机10:30出发</p>
                 </div>
-                <a href="#contact" class="modal-cta" data-i18n="modal-cta" onclick="closeModal('tour3')"><span data-i18n="modal-cta">立即咨询此线路</span></a>
+                <a href="#contact" class="modal-cta" onclick="closeModal('tour3')">立即咨询此线路</a>
             </div>
         </div>
     </div>
@@ -3377,7 +3350,7 @@
             </div>
             <div class="modal-body">
                 <div class="modal-section">
-                    <h3 data-i18n="modal-features">产品特色</h3>
+                    <h3>产品特色</h3>
                     <ul>
                         <li>厌倦了走马观花？这就是你在寻找的深度体验型旅游产品！</li>
                         <li>3天2晚游览黄石国家公园，保证停留13大景点，地球之眼等您一探究竟</li>
@@ -3389,7 +3362,7 @@
                     </ul>
                 </div>
                 <div class="modal-section">
-                    <h3 data-i18n="modal-price">价格</h3>
+                    <h3>价格</h3>
                     <div class="modal-price-box">
                         <div class="modal-price-item"><div class="price-label">单人入住</div><div class="price-value">$1,248/人</div></div>
                         <div class="modal-price-item"><div class="price-label">两人入住</div><div class="price-value">$898/人</div></div>
@@ -3398,15 +3371,15 @@
                     </div>
                 </div>
                 <div class="modal-section">
-                    <h3 data-i18n="modal-dates">出发班期</h3>
+                    <h3>出发班期</h3>
                     <p>05/16-09/26：周一、周三、周五、周六出发。另有加开班期：04/26、04/30、05/04等。</p>
                 </div>
                 <div class="modal-section">
-                    <h3 data-i18n="modal-pickup">参/离团地点</h3>
+                    <h3>参/离团地点</h3>
                     <p><strong>参团：</strong>盐湖城国际机场（SLC），免费接机10:00-20:00</p>
                     <p><strong>离团：</strong>盐湖城国际机场（SLC），建议预订21:00以后起飞的航班</p>
                 </div>
-                <a href="#contact" class="modal-cta" data-i18n="modal-cta" onclick="closeModal('tour4')"><span data-i18n="modal-cta">立即咨询此线路</span></a>
+                <a href="#contact" class="modal-cta" onclick="closeModal('tour4')">立即咨询此线路</a>
             </div>
         </div>
     </div>
@@ -3424,7 +3397,7 @@
             </div>
             <div class="modal-body">
                 <div class="modal-section">
-                    <h3 data-i18n="modal-features">行程特色</h3>
+                    <h3>行程特色</h3>
                     <ul>
                         <li>空降盐湖城，最短平快的方式游览黄石！</li>
                         <li>三天黄石公园，保证游览15大景点！</li>
@@ -3433,7 +3406,7 @@
                     </ul>
                 </div>
                 <div class="modal-section">
-                    <h3 data-i18n="modal-price">价格</h3>
+                    <h3>价格</h3>
                     <div class="modal-price-box">
                         <div class="modal-price-item"><div class="price-label">单人入住</div><div class="price-value">$778/人</div></div>
                         <div class="modal-price-item"><div class="price-label">两人入住</div><div class="price-value">$528/人</div></div>
@@ -3442,15 +3415,15 @@
                     </div>
                 </div>
                 <div class="modal-section">
-                    <h3 data-i18n="modal-dates">出发班期</h3>
+                    <h3>出发班期</h3>
                     <p>05/14-08/17：周一、周四、周六、周日出发。08/18-10/10：周三、周四、周六出发。另有加开日期。</p>
                 </div>
                 <div class="modal-section">
-                    <h3 data-i18n="modal-pickup">参/离团地点</h3>
+                    <h3>参/离团地点</h3>
                     <p><strong>参团：</strong>盐湖城自行入住 Radisson Hotel Salt Lake City Airport</p>
                     <p><strong>离团：</strong>盐湖城国际机场 (SLC)，建议预订21:00以后起飞的航班</p>
                 </div>
-                <a href="#contact" class="modal-cta" data-i18n="modal-cta" onclick="closeModal('tour5')"><span data-i18n="modal-cta">立即咨询此线路</span></a>
+                <a href="#contact" class="modal-cta" onclick="closeModal('tour5')">立即咨询此线路</a>
             </div>
         </div>
     </div>
@@ -3458,7 +3431,7 @@
 
     <!-- Footer -->
     <footer style="text-align: center; padding: 2rem 2rem 1rem; background: transparent; color: #999; font-size: 0.8rem;">
-        <p><span data-i18n="footer">&copy; 2026 尊享旅行. JJ Tour LLC.</span></p>
+        <p>&copy; 2026 尊享旅行. JJ Tour LLC.</p>
     </footer>
 
     <script>
