@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>404 · Johnny Tours</title>
+<script>
+// Fix case-incorrect /Las-Vegas paths (las-vegas, Las-vegas, LAS-VEGAS, ...)
+// GitHub Pages paths are case-sensitive; correct spelling is Las-Vegas.
+(function(){
+  var p = location.pathname;
+  var m = p.match(/^\/[Ll]as-[Vv]egas(?=[/?#]|$)/);
+  if (m && m[0] !== '/Las-Vegas') {
+    location.replace('/Las-Vegas' + p.slice(m[0].length));
+  }
+})();
+</script>
+<style>
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;
+       display:flex;min-height:100vh;align-items:center;justify-content:center;margin:0;
+       background:#f7f8fa;color:#222;text-align:center}
+  .card{padding:2rem 2.5rem;max-width:420px}
+  h1{font-size:3rem;margin:0 0 .5rem}
+  a{display:inline-block;margin-top:1.2rem;padding:.6rem 1.4rem;background:#0968b4;color:#fff;
+   text-decoration:none;border-radius:8px}
+  a:hover{background:#054b81}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>404</h1>
+  <p>页面没找到。<br>你可能拼错了网址，比如 <b>las-vegas</b>，正确写法是 <b>Las-Vegas</b>。</p>
+  <a href="/Las-Vegas/">返回首页</a>
+</div>
+</body>
+</html>
